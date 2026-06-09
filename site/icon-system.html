@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Day-Mark Family · FDB 2026</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="fdb.css">
+<style>
+  body { background: var(--fdb-cream); }
+  .ref-wrap { max-width: 1060px; margin: 0 auto; padding: 0 3rem; }
+  .ref-card { background: var(--fdb-white); border: 1px solid var(--fdb-border); border-radius: var(--fdb-radius-md); }
+  @media (max-width: 720px) { .ref-wrap { padding: 0 1.5rem; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="motif.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+const ARROW = '\u2192';
+
+// The four day-marks, in arc order, with the gesture each performs on the mark.
+const FAMILY = [
+  { state: 'council',    day: 'Day One',   name: 'The Leadership Meeting', gesture: 'Closed',  line: 'The squares barely turn — a tight, contained stack. A private room, drawn together.' },
+  { state: 'awards',     day: 'Day One · evening', name: 'X. Awards', gesture: 'The lockup', line: 'The fixed X. Awards mark: the same squares carrying the calligraphic x. Carried over, unchanged.', locked: true },
+  { state: 'programme',  day: 'Day Two',   name: 'The Keynote Day', gesture: 'Fanned',  line: 'The squares spread like a hand of cards — the programme, many voices opening out.' },
+  { state: 'workstream', day: 'Day Three', name: 'The Trends Workstream', gesture: 'Bloomed', line: 'The squares pivot fully open about one centre — a rosette. Generative, the year unfolding.' },
+];
+
+function Kicker({ children, style }) {
+  return <div style={{ fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--fdb-ink-faint)', ...style }}>{children}</div>;
+}
+
+// ── Interactive morph: the header twist, demonstrated big ──────────────────
+function MorphDemo() {
+  const order = ['brand', 'council', 'awards', 'programme', 'workstream'];
+  const labels = { brand: 'Brand mark', council: 'Day One · closed', awards: 'X. Awards', programme: 'Day Two · fanned', workstream: 'Day Three · bloomed' };
+  const [i, setI] = useState(0);
+  const [auto, setAuto] = useState(true);
+  const timer = useRef(null);
+  useEffect(() => {
+    if (!auto) return;
+    timer.current = setInterval(() => setI((p) => (p + 1) % order.length), 1900);
+    return () => clearInterval(timer.current);
+  }, [auto]);
+  const cur = order[i];
+  return (
+    <div className="ref-card" style={{ padding: '2.5rem', display: 'grid', gridTemplateColumns: '260px 1fr', gap: '2.5rem', alignItems: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 200, background: 'var(--fdb-cream)', borderRadius: 'var(--fdb-radius-sm)' }}>
+        {cur === 'awards'
+          ? <Motif state="awards" size={150}/>
+          : <TwistMark state={cur} size={150} sw={3.2}/>}
+      </div>
+      <div>
+        <Kicker style={{ color: 'var(--fdb-purple)' }}>The header twists to the day</Kicker>
+        <h3 style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--fdb-ink)', margin: '0.6rem 0 0.5rem' }}>{labels[cur]}</h3>
+        <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'var(--fdb-ink-muted)', maxWidth: '46ch', marginBottom: '1.4rem' }}>
+          The same three squares, turned by hand. As you move through the event, the mark in the header physically twists from the resting cascade into each day's gesture.
+        </p>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          {order.map((s, n) => (
+            <button key={s} onClick={() => { setAuto(false); setI(n); }}
+              style={{ background: n === i ? 'var(--fdb-purple)' : 'transparent', color: n === i ? '#fff' : 'var(--fdb-ink-muted)',
+                border: `1px solid ${n === i ? 'var(--fdb-purple)' : 'var(--fdb-border-strong)'}`, borderRadius: 'var(--fdb-radius-sm)',
+                padding: '0.45rem 0.8rem', fontFamily: 'inherit', fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer' }}>
+              {labels[s].split(' · ')[0]}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FamilyCard({ item }) {
+  return (
+    <div className="ref-card" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ width: 96, height: 96, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--fdb-cream)', borderRadius: 'var(--fdb-radius-sm)' }}>
+          <Motif state={item.state} size={72} sw={item.state === 'awards' ? 2 : 2.6}/>
+        </div>
+        {/* the size it actually appears at on the site */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.4rem' }}>
+          <div style={{ width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--fdb-cream)', borderRadius: 'var(--fdb-radius-sm)' }}>
+            <Motif state={item.state} size={40} sw={3.2}/>
+          </div>
+          <span style={{ fontSize: '0.5rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--fdb-ink-faint)' }}>at 40px</span>
+        </div>
+      </div>
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+          <Kicker>{item.day}</Kicker>
+          {item.locked && <span style={{ fontSize: '0.5rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--fdb-purple-deep)', background: 'var(--fdb-purple-tint)', borderRadius: 2, padding: '0.15rem 0.4rem' }}>Locked</span>}
+        </div>
+        <div style={{ fontSize: '1.05rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--fdb-ink)', lineHeight: 1.15 }}>{item.name}</div>
+        <div style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--fdb-purple)', margin: '0.45rem 0 0.6rem' }}>{item.gesture}</div>
+        <p style={{ fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--fdb-ink-muted)', margin: 0 }}>{item.line}</p>
+      </div>
+    </div>
+  );
+}
+
+function ReferencePage() {
+  return (
+    <div style={{ paddingBottom: '6rem' }}>
+      {/* header band */}
+      <div style={{ borderBottom: '1px solid var(--fdb-border)', padding: '2rem 0', marginBottom: '3.5rem' }}>
+        <div className="ref-wrap" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <BrandLockup state="brand" markSize={30} fontSize="0.95rem"/>
+          <span style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fdb-ink-muted)', borderLeft: '1px solid var(--fdb-border-strong)', paddingLeft: '1rem' }}>Day-mark system · v2</span>
+        </div>
+      </div>
+
+      <div className="ref-wrap fdb-rise">
+        <Kicker style={{ color: 'var(--fdb-purple)', marginBottom: '1.25rem' }}>The icon system, revisited</Kicker>
+        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.6rem)', fontWeight: 800, lineHeight: 1.02, letterSpacing: '-0.035em', color: 'var(--fdb-ink)', maxWidth: '18ch', marginBottom: '1.5rem' }}>
+          One mark, <span style={{ color: 'var(--fdb-purple)' }}>four turns.</span>
+        </h1>
+        <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--fdb-ink-mid)', maxWidth: '60ch', marginBottom: '0.75rem' }}>
+          Every day-mark is the <strong style={{ color: 'var(--fdb-ink)', fontWeight: 700 }}>same three squares of the FDB logo</strong>, turned a different way — like a set of squares you twist in your hands. The mark opens across the arc: closed for the private room, fanned for the public programme, bloomed for the generative workstream. The X. Awards lockup, built from the same squares plus the calligraphic <em>x.</em>, sits naturally inside the family and stays exactly as it is.
+        </p>
+      </div>
+
+      {/* the lineage strip */}
+      <div className="ref-wrap" style={{ marginTop: '3.5rem' }}>
+        <Kicker style={{ marginBottom: '1.5rem' }}>The lineage</Kicker>
+        <div className="ref-card" style={{ padding: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.7rem' }}>
+            <Motif state="brand" size={88} sw={2.4}/>
+            <Kicker>The logo</Kicker>
+          </div>
+          <span style={{ fontSize: '1.4rem', color: 'var(--fdb-ink-faint)' }}>{ARROW}</span>
+          {FAMILY.map((f, n) => (
+            <React.Fragment key={f.state}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.7rem' }}>
+                <Motif state={f.state} size={88} sw={f.state === 'awards' ? 2 : 2.4}/>
+                <Kicker style={{ color: 'var(--fdb-purple)' }}>{f.gesture}</Kicker>
+              </div>
+              {n < FAMILY.length - 1 && <span style={{ fontSize: '1.1rem', color: 'var(--fdb-ink-faint)' }}>·</span>}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      {/* interactive morph */}
+      <div className="ref-wrap" style={{ marginTop: '3.5rem' }}>
+        <Kicker style={{ marginBottom: '1.5rem' }}>The header, in motion</Kicker>
+        <MorphDemo/>
+      </div>
+
+      {/* the four cards */}
+      <div className="ref-wrap" style={{ marginTop: '3.5rem' }}>
+        <Kicker style={{ marginBottom: '1.5rem' }}>Each day · large, and at the size it ships</Kicker>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+          {FAMILY.map((f) => <FamilyCard key={f.state} item={f}/>)}
+        </div>
+      </div>
+
+      {/* dark legibility row */}
+      <div className="ref-wrap" style={{ marginTop: '3.5rem' }}>
+        <Kicker style={{ marginBottom: '1.5rem' }}>Reads small, light and dark</Kicker>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+          {[{ bg: 'var(--fdb-cream)', label: 'On cream' }, { bg: 'var(--fdb-ink)', label: 'On ink', dark: true }].map((row) => (
+            <div key={row.label} style={{ background: row.bg, border: '1px solid var(--fdb-border)', borderRadius: 'var(--fdb-radius-md)', padding: '1.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginBottom: '1.1rem' }}>
+                {['brand', 'council', 'awards', 'programme', 'workstream'].map((s) => <Motif key={s} state={s} size={40} sw={3.2}/>)}
+              </div>
+              <span style={{ fontSize: '0.55rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: row.dark ? 'rgba(245,240,233,0.5)' : 'var(--fdb-ink-faint)' }}>{row.label} · 40px</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const stubNav = { nav: () => {}, path: '/', station: null };
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <NavContext.Provider value={stubNav}><ReferencePage/></NavContext.Provider>
+);
+</script>
+</body>
+</html>

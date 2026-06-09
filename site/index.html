@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future. Destination. Brand. 2026 · Dublin</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="fdb.css">
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="components.jsx"></script>
+<script src="x-glyph-path.js"></script>
+<script type="text/babel" src="motif.jsx"></script>
+<script type="text/babel" src="page-overview.jsx"></script>
+<script type="text/babel" src="page-leadership.jsx"></script>
+<script type="text/babel" src="page-aiact.jsx"></script>
+<script type="text/babel" src="page-awards.jsx"></script>
+<script type="text/babel" src="page-keynotes.jsx"></script>
+<script type="text/babel" src="page-workstream.jsx"></script>
+<script type="text/babel" src="page-register.jsx"></script>
+
+<script type="text/babel">
+
+const { useState, useEffect } = React;
+const { NavContext } = window;
+
+// The arc. Order matters - the journey runs in this sequence.
+const SCREENS = {
+  '/': { label: '01 Overview', station: null, Page: () => <OverviewPage /> },
+  '/leadership': { label: '02 Day One', station: 'council', Page: () => <LeadershipPage /> },
+  '/ai-act': { label: '03 EU AI Act', station: 'council', Page: () => <AiActPage /> },
+  '/awards': { label: '04 X. Awards', station: 'awards', Page: () => <AwardsPage /> },
+  '/keynotes': { label: '05 Day Two', station: 'programme', Page: () => <KeynotesPage /> },
+  '/workstream': { label: '06 Day Three', station: 'workstream', Page: () => <WorkstreamPage /> },
+  '/register': { label: '07 Register', station: null, Page: () => <RegisterPage /> }
+};
+
+function getPath() {
+  const h = window.location.hash.replace(/^#/, '');
+  return SCREENS[h] ? h : '/';
+}
+
+function App() {
+  const [path, setPath] = useState(getPath());
+
+  useEffect(() => {
+    const onHash = () => {
+      const np = getPath();
+      const apply = () => { ReactDOM.flushSync(() => setPath(np)); window.scrollTo(0, 0); };
+      if (document.startViewTransition) { document.startViewTransition(apply); }
+      else { setPath(np); window.scrollTo(0, 0); }
+    };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  const nav = (p) => {
+    if (p === path) {window.scrollTo({ top: 0, behavior: 'smooth' });return;}
+    window.location.hash = p === '/' ? '' : p;
+  };
+
+  const { label, station, Page } = SCREENS[path];
+
+  return (
+    <div data-screen-label={label} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--fdb-cream)', color: 'var(--fdb-ink)' }} data-comment-anchor="5f85cd33c4-div-38-7">
+        <FDBHeader currentPath={path} onNav={nav} />
+        <main style={{ flex: 1 }}>
+          <NavContext.Provider value={{ nav, path, station }}>
+            <Page />
+          </NavContext.Provider>
+        </main>
+        <FDBFooter onNav={nav} />
+      </div>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+</body>
+</html>
