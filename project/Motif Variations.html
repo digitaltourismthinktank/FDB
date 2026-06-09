@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDB · Motif Variations — Day 2 & Day 3</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Geist', sans-serif; background: var(--fdb-cream); color: var(--fdb-ink); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 3.5rem 3rem 5rem; }
+  .eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fdb-purple); }
+  .label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint); }
+  h1 { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.035em; line-height: 1; margin: 1.25rem 0 1rem; }
+  .lead { font-size: 1rem; line-height: 1.7; color: var(--fdb-ink-mid); max-width: 64ch; }
+  hr { border: none; border-top: 1px solid var(--fdb-border); margin: 0; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .card { border: 1px solid var(--fdb-border); border-radius: 6px; background: var(--fdb-white); overflow: hidden; display: flex; flex-direction: column; }
+  .card.current { border-color: var(--fdb-purple-soft); }
+  .card-canvas { aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; background: var(--fdb-cream); position: relative; }
+  .card-body { padding: 1.1rem 1.2rem 1.3rem; border-top: 1px solid var(--fdb-border); }
+  .card-name { font-size: 1.02rem; font-weight: 800; letter-spacing: -0.02em; }
+  .card-rat { font-size: 0.8rem; color: var(--fdb-ink-muted); line-height: 1.55; margin-top: 0.4rem; }
+  .badge { position: absolute; top: 0.6rem; left: 0.6rem; font-size: 0.5rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fdb-purple-deep); background: var(--fdb-purple-tint); border-radius: 2px; padding: 0.2rem 0.45rem; }
+  .badge.cur { color: var(--fdb-ink-muted); background: var(--fdb-cream-deep); }
+  /* in-context row: rail mark + framed mark */
+  .ctx { display: flex; align-items: center; gap: 1.1rem; padding: 0.9rem 1.2rem; border-top: 1px solid var(--fdb-border); background: var(--fdb-cream); }
+  .ctx-item { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+  .ctx-tag { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fdb-ink-faint); }
+  .framed { width: 46px; height: 46px; border: 1px solid var(--fdb-purple-soft); border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+  .approved { display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; }
+  .approved .a { display: flex; align-items: center; gap: 0.9rem; }
+  .approved .a .framed { width: 56px; height: 56px; border-radius: 5px; }
+  .anote { font-size: 0.8rem; color: var(--fdb-ink-muted); }
+  .anote b { color: var(--fdb-ink); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">FDB 2026 · Motif system</div>
+  <h1>Day 2 &amp; Day 3 marks.</h1>
+  <p class="lead">Each mark is still the three squares of the FDB brand — only their behaviour changes to carry the meaning of the day. Council (nested) and the framed X. Awards (the lockup) stay as they are. Below: candidate directions for the <b>Keynote Day</b> and the <b>Trends Workstream</b>, shown large, at rail/icon size, and framed.</p>
+
+  <!-- approved anchors -->
+  <div style="margin-top:2.5rem; padding:1.5rem 1.75rem; border:1px solid var(--fdb-border); border-radius:6px; background:var(--fdb-cream-deep);">
+    <div class="label" style="margin-bottom:1.1rem;">Approved · staying as-is</div>
+    <div class="approved">
+      <div class="a">
+        <span class="framed" data-motif="council" data-size="40"></span>
+        <span class="anote"><b>Council</b> · Day One — nested, concentric, contained.</span>
+      </div>
+      <div class="a">
+        <span class="framed" data-motif="awards" data-size="36"></span>
+        <span class="anote"><b>X. Awards</b> · the lockup, framed. You liked this most.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div style="margin-top:3.5rem;">
+    <div class="label" style="margin-bottom:0.4rem;">Day Two · 03 Dec</div>
+    <div style="font-size:1.5rem; font-weight:800; letter-spacing:-0.025em; margin-bottom:0.5rem;">The Keynote Day.</div>
+    <p class="anote" style="max-width:60ch; margin-bottom:1.75rem;">A programme of back-to-back talks from leading destinations. The mark should read as <b>sequence, cadence, a stage</b> — not a flat row.</p>
+    <div class="grid" id="day2"></div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div style="margin-top:3.5rem;">
+    <div class="label" style="margin-bottom:0.4rem;">Day Three · 04 Dec</div>
+    <div style="font-size:1.5rem; font-weight:800; letter-spacing:-0.025em; margin-bottom:0.5rem;">The Trends Workstream.</div>
+    <p class="anote" style="max-width:60ch; margin-bottom:1.75rem;">Members build the 2027 report together across eight tables. The mark should read as <b>assembly, convergence, contribution</b> — building something, not drifting apart.</p>
+    <div class="grid" id="day3"></div>
+  </div>
+</div>
+
+<script>
+const STROKE = { deep: 'var(--fdb-purple)', mid: 'var(--fdb-purple-mid)', soft: 'var(--fdb-purple-soft)' };
+
+// Each square: x,y,s (viewBox 100), c tier, optional r (rotation about own centre)
+const VARIANTS = {
+  // ── approved anchors ──
+  council:   [ {x:16,y:16,s:68,c:'soft'},{x:26,y:26,s:48,c:'mid'},{x:36,y:36,s:28,c:'deep'} ],
+  awards:    [ {x:30,y:6,s:56,c:'soft'},{x:18,y:18,s:56,c:'mid'},{x:6,y:30,s:56,c:'deep'} ],
+
+  // ── DAY 2 candidates ──
+  d2_current:  { squares:[ {x:2,y:28,s:44,c:'deep'},{x:28,y:28,s:44,c:'mid'},{x:54,y:28,s:44,c:'soft'} ],
+                 name:'Even row', rat:'Current. Three equal squares in a paced row. Reads as a sequence, but flat and a little generic.', current:true },
+  d2_cadence:  { squares:[ {x:4,y:54,s:30,c:'deep'},{x:35,y:37,s:30,c:'mid'},{x:66,y:20,s:30,c:'soft'} ],
+                 name:'Cadence', rat:'A stair-step rising across a baseline — the rhythm of a programme building through the day.' },
+  d2_stage:    { squares:[ {x:28,y:18,s:46,c:'deep'},{x:6,y:42,s:26,c:'soft'},{x:68,y:42,s:26,c:'mid'} ],
+                 name:'Stage', rat:'One focal square flanked by two — a keynote on a stage. The most literal "talks" read.' },
+  d2_sequence: { squares:[ {x:6,y:26,s:48,c:'soft'},{x:26,y:26,s:48,c:'mid'},{x:46,y:26,s:48,c:'deep'} ],
+                 name:'Sequence', rat:'Overlapping cards, front to back — back-to-back sessions, a deck advancing. Echoes the Awards offset.' },
+
+  // ── DAY 3 candidates ──
+  d3_current:  { squares:[ {x:4,y:50,s:40,c:'deep'},{x:34,y:26,s:34,c:'mid'},{x:62,y:6,s:30,c:'soft'} ],
+                 name:'Drift', rat:'Current. Squares scatter up and out. Forward-looking, but reads as dispersal — the opposite of building together.', current:true },
+  d3_ascent:   { squares:[ {x:6,y:42,s:32,c:'soft'},{x:34,y:14,s:32,c:'deep'},{x:62,y:42,s:32,c:'mid'} ],
+                 name:'Ascent', rat:'Three squares forming an upward point — convergence on a shared output. Forward, but together.' },
+  d3_assembly: { squares:[ {x:14,y:14,s:34,c:'deep'},{x:52,y:14,s:34,c:'mid'},{x:14,y:52,s:34,c:'soft'} ],
+                 name:'Assembly', rat:'Three of a four-square grid, one space open — a table being built, room left to contribute. Ties to "your name here".' },
+  d3_bloom:    { squares:[ {x:30,y:30,s:40,c:'soft',r:0},{x:30,y:30,s:40,c:'mid',r:18},{x:30,y:30,s:40,c:'deep',r:36} ],
+                 name:'Bloom', rat:'One square rotating open in three steps — generative, the workstream unfolding. The most dynamic option.' },
+};
+
+function svgFor(squares, size, sw) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('width', size); svg.setAttribute('height', size);
+  svg.setAttribute('viewBox', '0 0 100 100'); svg.setAttribute('fill', 'none');
+  svg.style.display = 'block';
+  squares.forEach(q => {
+    const r = document.createElementNS(ns, 'rect');
+    r.setAttribute('x', q.x); r.setAttribute('y', q.y);
+    r.setAttribute('width', q.s); r.setAttribute('height', q.s); r.setAttribute('rx', 5);
+    r.setAttribute('stroke', STROKE[q.c]); r.setAttribute('stroke-width', sw);
+    if (q.r) r.setAttribute('transform', `rotate(${q.r} ${q.x + q.s/2} ${q.y + q.s/2})`);
+    svg.appendChild(r);
+  });
+  return svg;
+}
+
+// fill approved framed marks
+document.querySelectorAll('[data-motif]').forEach(el => {
+  const sq = VARIANTS[el.dataset.motif];
+  el.appendChild(svgFor(sq, +el.dataset.size, 3.4));
+});
+
+function card(key) {
+  const v = VARIANTS[key];
+  const el = document.createElement('div');
+  el.className = 'card' + (v.current ? ' current' : '');
+  el.innerHTML = `
+    <div class="card-canvas">
+      <span class="badge ${v.current ? 'cur' : ''}">${v.current ? 'Current' : 'New'}</span>
+    </div>
+    <div class="ctx">
+      <div class="ctx-item"><span class="big"></span></div>
+    </div>
+    <div class="card-body">
+      <div class="card-name">${v.name}</div>
+      <div class="card-rat">${v.rat}</div>
+    </div>`;
+  // large
+  el.querySelector('.card-canvas').appendChild(svgFor(v.squares, 116, 2.2));
+  // context row: rebuild properly
+  const ctx = el.querySelector('.ctx');
+  ctx.innerHTML = '';
+  const rail = document.createElement('div'); rail.className = 'ctx-item';
+  rail.appendChild(svgFor(v.squares, 40, 3.2));
+  const rtag = document.createElement('span'); rtag.className = 'ctx-tag'; rtag.textContent = 'Rail · 40px'; rail.appendChild(rtag);
+  const fr = document.createElement('div'); fr.className = 'ctx-item';
+  const box = document.createElement('span'); box.className = 'framed'; box.appendChild(svgFor(v.squares, 32, 3.4)); fr.appendChild(box);
+  const ftag = document.createElement('span'); ftag.className = 'ctx-tag'; ftag.textContent = 'Framed'; fr.appendChild(ftag);
+  ctx.appendChild(rail); ctx.appendChild(fr);
+  return el;
+}
+
+['d2_current','d2_cadence','d2_stage','d2_sequence'].forEach(k => document.getElementById('day2').appendChild(card(k)));
+['d3_current','d3_ascent','d3_assembly','d3_bloom'].forEach(k => document.getElementById('day3').appendChild(card(k)));
+</script>
+</body>
+</html>

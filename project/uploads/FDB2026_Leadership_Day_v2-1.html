@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadership in the Age of AI · Future. Destination. Brand. 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F0EDE8;
+    --ink: #1A1A1A;
+    --ink-mid: #3A3A3A;
+    --ink-muted: #7A7A7A;
+    --ink-faint: #B0B0B0;
+    --purple: #7B35D9;
+    --purple-deep: #5B1FBF;
+    --purple-light: #EDE5F8;
+    --purple-mid: #C9AAEE;
+    --border: rgba(26,26,26,0.1);
+    --border-strong: rgba(26,26,26,0.18);
+    --white: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── MARK (stacked squares) ── */
+  .fdb-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+  .fdb-mark svg { position: absolute; }
+
+  /* ── WORDMARK ── */
+  .fdb-wordmark {
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .fdb-wordmark span { color: var(--purple); }
+
+  /* ── HEADER ── */
+  .hdr {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .hdr-left { display: flex; align-items: center; gap: 0.75rem; }
+  .hdr-right { display: flex; align-items: center; gap: 1rem; }
+  .hdr-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    border-left: 1px solid var(--border-strong);
+    padding-left: 0.75rem;
+    margin-left: 0.25rem;
+  }
+  .hdr-pill {
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--purple);
+    border: 1px solid var(--purple-mid);
+    background: var(--purple-light);
+    padding: 0.28rem 0.65rem;
+    border-radius: 2px;
+  }
+  .hdr-contact {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-strong);
+    padding-bottom: 1px;
+    transition: color 0.15s;
+    cursor: pointer;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: inherit;
+  }
+  .hdr-contact:hover { color: var(--purple); border-color: var(--purple); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 5rem 3rem 4.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+  .hero-left {}
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.75rem;
+  }
+  .hero-title strong {
+    color: var(--purple);
+    font-weight: 800;
+  }
+  .hero-intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink-mid);
+    max-width: 42ch;
+    margin-bottom: 2.5rem;
+  }
+  .hero-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .hero-meta-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+  .hero-meta-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    width: 80px;
+    flex-shrink: 0;
+  }
+  .hero-meta-value {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+
+  /* ── LARGE MARK (decorative) ── */
+  .hero-mark-large {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+
+  /* ── DIVIDER ── */
+  .rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* ── BODY LAYOUT ── */
+  .body-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 3rem 5rem;
+  }
+
+  /* ── SECTION LABEL ── */
+  .sec-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 2.5rem 0 1.5rem;
+  }
+
+  /* ── INTRO STATEMENT ── */
+  .statement {
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 680px;
+    margin-bottom: 1.25rem;
+  }
+  .statement strong { color: var(--purple); font-weight: 800; }
+
+  .body-text {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    max-width: 620px;
+  }
+  .body-text + .body-text { margin-top: 0.85rem; }
+
+  /* ── POLICY BAR ── */
+  .policy-bar {
+    background: var(--purple);
+    border-radius: 4px;
+    padding: 1.75rem 2rem;
+    margin: 2.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+  .policy-item-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple-mid);
+    margin-bottom: 0.4rem;
+  }
+  .policy-item-text {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.55;
+  }
+  .policy-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.15);
+    position: absolute;
+  }
+
+  /* ── PROGRAMME ── */
+  .programme {
+    margin-top: 0.5rem;
+  }
+  .prog-row {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .prog-row:first-child { border-top: 1px solid var(--border); }
+  .prog-time {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--purple);
+    padding-top: 0.1rem;
+  }
+  .prog-right {}
+  .prog-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+    line-height: 1.35;
+  }
+  .prog-desc {
+    font-size: 0.83rem;
+    color: var(--ink-muted);
+    line-height: 1.62;
+    max-width: 600px;
+  }
+  .prog-speaker {
+    margin-top: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .prog-speaker-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+    flex-shrink: 0;
+  }
+  .prog-speaker.tbc { color: var(--ink-muted); font-weight: 500; font-style: italic; }
+  .prog-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--purple-light);
+    color: var(--purple-deep);
+    border-radius: 2px;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.55rem;
+    margin-right: 0.35rem;
+  }
+  .prog-sessions {
+    margin-top: 0.85rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .prog-session-card {
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    padding: 0.9rem 1rem;
+    background: rgba(255,255,255,0.6);
+  }
+  .prog-session-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 0.3rem;
+  }
+  .prog-session-title {
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+  }
+  .prog-session-desc {
+    font-size: 0.76rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ── PARTICIPANTS SECTION ── */
+  .participants-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+  .participant-cell {
+    background: var(--cream);
+    padding: 1.25rem 1.25rem;
+  }
+  .participant-type {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 0.35rem;
+  }
+  .participant-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+    line-height: 1.3;
+  }
+  .participant-org {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    line-height: 1.4;
+  }
+  .participant-name.tbc {
+    color: var(--ink-muted);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  /* ── OUTPUTS ── */
+  .outputs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+  }
+  .output-item {
+    border-top: 2px solid var(--purple);
+    padding-top: 1rem;
+  }
+  .output-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .output-desc {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .closing-statement {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .closing-statement strong { color: var(--purple); }
+  .closing-right {}
+  .closing-body {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+  }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--purple);
+    color: #fff;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1.4rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.15s;
+    text-transform: uppercase;
+  }
+  .contact-btn:hover { background: var(--purple-deep); }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 1.25rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .footer-left { display: flex; align-items: center; gap: 0.75rem; }
+  .footer-text {
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+  }
+  .footer-text strong { color: var(--ink-muted); font-weight: 600; }
+
+  @media (max-width: 760px) {
+    .hdr { padding: 0 1.5rem; }
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem 3rem; gap: 2rem; }
+    .hero-right { align-items: flex-start; }
+    .body-wrap { padding: 0 1.5rem 3rem; }
+    .policy-bar { grid-template-columns: 1fr; }
+    .prog-sessions { grid-template-columns: 1fr; }
+    .participants-grid { grid-template-columns: 1fr 1fr; }
+    .outputs-grid { grid-template-columns: 1fr; }
+    .closing { grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer { padding: 1.25rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-left">
+    <!-- FDB Mark (stacked squares) -->
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="6" width="18" height="18" rx="2" stroke="#C9AAEE" stroke-width="1.5" fill="none"/>
+      <rect x="6" y="3" width="18" height="18" rx="2" stroke="#9B6FE0" stroke-width="1.5" fill="none"/>
+      <rect x="11" y="0" width="18" height="18" rx="2" stroke="#7B35D9" stroke-width="1.5" fill="none"/>
+    </svg>
+    <div class="fdb-wordmark">Future Destination <span>Brand.</span></div>
+    <span class="hdr-label">Dublin · December 2026</span>
+  </div>
+  <div class="hdr-right">
+    <span class="hdr-pill">Invite Only</span>
+    <button class="hdr-contact" data-intercom-launch>Get in touch</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Day One · Leadership Programme</div>
+    <h1 class="hero-title">Leadership<br>in the Age<br>of <strong>AI.</strong></h1>
+    <p class="hero-intro">A global leadership day for national tourism organisation CEOs, senior government ministers and the technology leaders shaping AI's role in destination marketing and management.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-row">
+        <span class="hero-meta-label">Date</span>
+        <span class="hero-meta-value">December 2026 (TBC)</span>
+      </div>
+      <div class="hero-meta-row">
+        <span class="hero-meta-label">Location</span>
+        <span class="hero-meta-value">Dublin, Ireland</span>
+      </div>
+      <div class="hero-meta-row">
+        <span class="hero-meta-label">Format</span>
+        <span class="hero-meta-value">Invite-only · 30 to 40 participants</span>
+      </div>
+      <div class="hero-meta-row">
+        <span class="hero-meta-label">Host</span>
+        <span class="hero-meta-value">Fáilte Ireland</span>
+      </div>
+      <div class="hero-meta-row">
+        <span class="hero-meta-label">Presidency</span>
+        <span class="hero-meta-value">Irish EU Council Presidency · H2 2026</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Large decorative mark -->
+    <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="47" width="80" height="80" rx="6" stroke="#C9AAEE" stroke-width="2" fill="none"/>
+      <rect x="30" y="22" width="80" height="80" rx="6" stroke="#9B6FE0" stroke-width="2" fill="none"/>
+      <rect x="58" y="0" width="80" height="80" rx="6" stroke="#7B35D9" stroke-width="2" fill="none"/>
+    </svg>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- BODY -->
+<div class="body-wrap">
+
+  <!-- ABOUT -->
+  <div class="sec-label">About the day</div>
+
+  <p class="statement">AI is reshaping where destinations are discovered, how tourism is managed and how national bodies are led. The question is <strong>not whether to engage.</strong> It is whether leadership is ready.</p>
+
+  <p class="body-text">Leadership in the Age of AI is a structured, invite-only day for the chief executives, ministers and senior leaders who set tourism's direction at the national and international level. The format is a meeting, not a conference. Boardroom arrangement, no stage, no panels, no commercial agenda. The room is small by design.</p>
+
+  <p class="body-text" style="margin-top:0.85rem;">The day is convened by Fáilte Ireland under Ireland's EU Council Presidency and facilitated by the Digital Tourism Think Tank. It precedes Future. Destination. Brand. 2026, DTTT's flagship annual summit for senior destination marketers, taking place the following day in Dublin.</p>
+
+  <!-- POLICY BAR -->
+  <div class="policy-bar">
+    <div>
+      <div class="policy-item-label">For destinations</div>
+      <div class="policy-item-text">A mechanism for the sector to speak with one voice on AI policy, rather than leaving that agenda to platform companies alone.</div>
+    </div>
+    <div style="border-left:1px solid rgba(255,255,255,0.15);padding-left:2rem;">
+      <div class="policy-item-label">For technology leaders</div>
+      <div class="policy-item-text">Direct engagement with the leaders responsible for tourism at national scale, and a role in shaping the sector's published position on AI governance.</div>
+    </div>
+    <div style="border-left:1px solid rgba(255,255,255,0.15);padding-left:2rem;">
+      <div class="policy-item-label">For EU institutions</div>
+      <div class="policy-item-text">A structured, expert contribution to the AI and digital policy agenda from one of the sector's most senior international forums.</div>
+    </div>
+  </div>
+
+  <p class="body-text">The outputs of this day are submitted to EU institutions as a sector contribution during the Irish Presidency and distributed to the technology companies shaping the tools and regulations that govern destination marketing. What participants bring to this table does not stay in the room.</p>
+
+  <hr class="rule" style="margin-top:2.5rem;">
+
+  <!-- PROGRAMME -->
+  <div class="sec-label">Programme</div>
+
+  <div class="programme">
+
+    <div class="prog-row">
+      <div class="prog-time">08:30</div>
+      <div class="prog-right">
+        <div class="prog-title">Private breakfast</div>
+        <div class="prog-desc">Seated breakfast for all participants. Introductions happen informally before the working day begins.</div>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">09:30</div>
+      <div class="prog-right">
+        <div class="prog-title">Welcome and framing</div>
+        <div class="prog-desc">Fáilte Ireland opens with a statement of intent. DTTT frames the day's central question and working method.</div>
+        <div class="prog-speaker"><span class="prog-speaker-dot"></span>Caroline Bocquel, CEO · Fáilte Ireland</div>
+        <div class="prog-speaker"><span class="prog-speaker-dot"></span>Nick Hall, CEO · Digital Tourism Think Tank</div>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">10:00</div>
+      <div class="prog-right">
+        <div class="prog-title">Opening provocation</div>
+        <div class="prog-desc">A senior voice with direct experience of NTO leadership and the AI and data investment landscape delivers a deliberate challenge to the room. Twenty minutes, no slides. A further twenty minutes of open response from participants.</div>
+        <span class="prog-tag">Provocation</span><span class="prog-tag">Open response</span>
+        <div class="prog-speaker"><span class="prog-speaker-dot"></span>Oliver Csendes · Former CEO, Visit Hungary</div>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">11:00</div>
+      <div class="prog-right">
+        <div class="prog-title">AI in destination leadership: a shared framework</div>
+        <div class="prog-desc">DTTT introduces the AI Transparency Framework as a leadership instrument. Illustrated with practice from NTOs already deploying it nationally. Peers offer brief reflections on what the Framework has surfaced in their organisations, establishing a shared vocabulary for the working sessions that follow.</div>
+        <span class="prog-tag">Framework</span><span class="prog-tag">Peer testimony</span>
+        <div class="prog-speaker tbc"><span class="prog-speaker-dot" style="background:var(--ink-faint)"></span>NTO leaders engaged in AI governance programmes · TBC</div>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">11:30</div>
+      <div class="prog-right">
+        <div class="prog-title">Working sessions</div>
+        <div class="prog-desc">Two concurrent structured sessions of 75 minutes each. Participants are pre-assigned. Each session produces documented conclusions feeding directly into the published outputs.</div>
+        <div class="prog-sessions">
+          <div class="prog-session-card">
+            <div class="prog-session-label">Session A</div>
+            <div class="prog-session-title">AI readiness and organisational leadership</div>
+            <div class="prog-session-desc">What AI actually requires of an NTO leadership team. Where the gaps are. What decisions are being deferred.</div>
+          </div>
+          <div class="prog-session-card">
+            <div class="prog-session-label">Session B</div>
+            <div class="prog-session-title">AI and destination competitiveness</div>
+            <div class="prog-session-desc">How AI is reshaping where visitors go and how they choose. What this means for national positioning and investment.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">13:00</div>
+      <div class="prog-right">
+        <div class="prog-title">Private lunch</div>
+        <div class="prog-desc">Seated, hosted, informal. The conversation continues.</div>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">14:30</div>
+      <div class="prog-right">
+        <div class="prog-title">Big Tech intelligence briefing</div>
+        <div class="prog-desc">A senior representative from one of Dublin's major technology companies delivers a briefing on what the platforms are building, what they are observing in travel and destination search, and where they see the sector's opportunity and risk. Structured as a briefing with questions, not a keynote.</div>
+        <span class="prog-tag">Intelligence briefing</span>
+        <div class="prog-speaker tbc"><span class="prog-speaker-dot" style="background:var(--ink-faint)"></span>Senior representative · Google / Microsoft / OpenAI · Dublin · TBC</div>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">15:15</div>
+      <div class="prog-right">
+        <div class="prog-title">The European policy landscape</div>
+        <div class="prog-desc">A structured contribution on the regulatory and investment landscape around AI from a European institutional or government perspective.</div>
+        <span class="prog-tag">Policy</span>
+        <div class="prog-speaker tbc"><span class="prog-speaker-dot" style="background:var(--ink-faint)"></span>EU institutional or government representative · TBC</div>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">15:45</div>
+      <div class="prog-right">
+        <div class="prog-title">Synthesis and shared conclusions</div>
+        <div class="prog-desc">DTTT facilitates a structured synthesis of the day's working sessions. The output is a small number of documented priorities forming the basis of the Executive Briefing Summary submitted to EU institutions.</div>
+        <span class="prog-tag">Policy output</span>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">16:30</div>
+      <div class="prog-right">
+        <div class="prog-title">Dublin city experience</div>
+        <div class="prog-desc">A curated late afternoon in Dublin, in partnership with Fáilte Ireland's Winter in Dublin programme. Details to be confirmed.</div>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-time">19:30</div>
+      <div class="prog-right">
+        <div class="prog-title">X. Awards</div>
+        <div class="prog-desc">Transition to the X. Awards evening. The industry's most respected recognition of destination branding, transformation and digital innovation.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="rule" style="margin-top:0;">
+
+  <!-- PARTICIPANTS -->
+  <div class="sec-label">Who is in the room</div>
+
+  <p class="body-text" style="margin-bottom:1.5rem;">The day brings together eight to ten active contributors in a room of 30 to 40. Places are allocated by invitation only. The group is deliberately international, with strong North American and European representation alongside leaders from further afield.</p>
+
+  <div class="participants-grid">
+    <div class="participant-cell">
+      <div class="participant-type">Host</div>
+      <div class="participant-name">Caroline Bocquel</div>
+      <div class="participant-org">CEO · Fáilte Ireland</div>
+    </div>
+    <div class="participant-cell">
+      <div class="participant-type">Provocation</div>
+      <div class="participant-name">Oliver Csendes</div>
+      <div class="participant-org">Former CEO · Visit Hungary<br>UN Tourism advisor</div>
+    </div>
+    <div class="participant-cell">
+      <div class="participant-type">Facilitation</div>
+      <div class="participant-name">Nick Hall</div>
+      <div class="participant-org">CEO · Digital Tourism Think Tank</div>
+    </div>
+    <div class="participant-cell">
+      <div class="participant-type">Technology briefing</div>
+      <div class="participant-name tbc">Senior representative</div>
+      <div class="participant-org">Google / Microsoft / OpenAI<br>Dublin · TBC</div>
+    </div>
+    <div class="participant-cell">
+      <div class="participant-type">Policy voice</div>
+      <div class="participant-name tbc">EU institutional representative</div>
+      <div class="participant-org">European institution or government<br>TBC</div>
+    </div>
+    <div class="participant-cell">
+      <div class="participant-type">NTO leadership</div>
+      <div class="participant-name tbc">North American CEO</div>
+      <div class="participant-org">National or major regional tourism organisation · TBC</div>
+    </div>
+    <div class="participant-cell">
+      <div class="participant-type">NTO leadership</div>
+      <div class="participant-name tbc">European NTO CEO</div>
+      <div class="participant-org">National tourism organisation<br>Europe · TBC</div>
+    </div>
+    <div class="participant-cell">
+      <div class="participant-type">NTO leadership</div>
+      <div class="participant-name tbc">International NTO CEO</div>
+      <div class="participant-org">Asia-Pacific or Middle East<br>TBC</div>
+    </div>
+    <div class="participant-cell" style="background:var(--purple-light);">
+      <div class="participant-type" style="color:var(--purple-deep);">Further participants</div>
+      <div class="participant-name" style="font-size:0.82rem;color:var(--ink-mid);font-weight:500;font-style:normal;">20 to 30 additional NTO and DMO chief executives and C-suite leaders, by personal invitation.</div>
+    </div>
+  </div>
+
+  <hr class="rule" style="margin-top:2.5rem;">
+
+  <!-- OUTPUTS -->
+  <div class="sec-label">Published outputs</div>
+
+  <p class="body-text" style="margin-bottom:1.5rem;">The day produces two formal outputs, both published after the event and distributed beyond the room.</p>
+
+  <div class="outputs-grid">
+    <div class="output-item">
+      <div class="output-name">State of Destination AI Report</div>
+      <div class="output-desc">A comprehensive synthesis of insights from the leadership day, keynotes and workstreams. Published post-event, distributed across the industry and submitted to relevant EU institutions. The primary published output of Future. Destination. Brand. 2026.</div>
+    </div>
+    <div class="output-item">
+      <div class="output-name">Executive Briefing Summary</div>
+      <div class="output-desc">A structured summary of the leadership day's conclusions and priority recommendations. Distributed to all participants and submitted to EU institutions as a sector contribution during the Irish Presidency. Concise, formal, designed to be read by policy audiences.</div>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="closing-statement">The outputs of this day reach <strong>EU institutions, national governments</strong> and the technology companies shaping the tools and regulations that govern destination marketing.</div>
+    <div class="closing-right">
+      <p class="closing-body">Leadership in the Age of AI is one element of Future. Destination. Brand. 2026 — a two-day programme including the main FDB summit for destination CMOs and senior marketers, and the X. Awards, the industry's most respected recognition of destination branding and innovation.</p>
+      <p class="closing-body" style="margin-top:0.75rem;">Places on the leadership day are by personal invitation only. To discuss participation, please get in touch.</p>
+      <button class="contact-btn" data-intercom-launch>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Get in touch
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">
+    <svg width="20" height="20" viewBox="0 0 30 30" fill="none">
+      <rect x="1" y="6" width="18" height="18" rx="2" stroke="#C9AAEE" stroke-width="1.5" fill="none"/>
+      <rect x="6" y="3" width="18" height="18" rx="2" stroke="#9B6FE0" stroke-width="1.5" fill="none"/>
+      <rect x="11" y="0" width="18" height="18" rx="2" stroke="#7B35D9" stroke-width="1.5" fill="none"/>
+    </svg>
+    <span class="footer-text"><strong>Future. Destination. Brand. 2026</strong> · Hosted by Fáilte Ireland · Digital Tourism Think Tank</span>
+  </div>
+  <span class="footer-text">Ireland EU Council Presidency · H2 2026</span>
+</footer>
+
+<!-- INTERCOM -->
+<script>
+window.intercomSettings = {
+  api_base: "https://api-iam.intercom.io",
+  app_id: "o3cs3sqo",
+  hide_default_launcher: true,
+  action_color: "#7B35D9",
+  background_color: "#7B35D9",
+  vertical_padding: 80,
+  custom_attributes: {
+    source: "fdb2026_leadership_day_v2",
+    version: "v2"
+  }
+};
+</script>
+<script>
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/o3cs3sqo';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>
+<script>
+var PREFILL = "I was looking at the Leadership in the Age of AI programme and wanted to discuss ";
+function bindIntercomLaunches(){
+  document.querySelectorAll('[data-intercom-launch]').forEach(function(btn){
+    if(btn.dataset.icBound) return;
+    btn.dataset.icBound = '1';
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      if(typeof window.Intercom==='function') window.Intercom('showNewMessage', PREFILL);
+    });
+  });
+}
+bindIntercomLaunches();
+</script>
+
+</body>
+</html>

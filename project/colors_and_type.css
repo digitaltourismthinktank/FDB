@@ -1,0 +1,296 @@
+/* ============================================================================
+   FDB — Future. Destination. Brand. — Colors & Type
+   ============================================================================
+   The brand sits at the intersection of editorial restraint and a singular,
+   confident purple. Almost everything else is greyscale on cream.
+   ============================================================================ */
+
+/* ── BRAND TYPEFACE: GEIST ─────────────────────────────────────────────────
+   Geist replaces the prior Inter substitute. The brand uses weights 300–900;
+   Thin/ExtraLight are loaded but reserved.
+   The path is relative to wherever this stylesheet is imported FROM. Adjust
+   --fdb-font-base-url in the consuming page if needed.
+   ─────────────────────────────────────────────────────────────────────────── */
+@font-face { font-family: 'Geist'; font-weight: 100; font-style: normal; font-display: swap; src: url('fonts/Geist-Thin.ttf')        format('truetype'); }
+@font-face { font-family: 'Geist'; font-weight: 200; font-style: normal; font-display: swap; src: url('fonts/Geist-ExtraLight.ttf')  format('truetype'); }
+@font-face { font-family: 'Geist'; font-weight: 300; font-style: normal; font-display: swap; src: url('fonts/Geist-Light.ttf')       format('truetype'); }
+@font-face { font-family: 'Geist'; font-weight: 400; font-style: normal; font-display: swap; src: url('fonts/Geist-Regular.ttf')     format('truetype'); }
+@font-face { font-family: 'Geist'; font-weight: 500; font-style: normal; font-display: swap; src: url('fonts/Geist-Medium.ttf')      format('truetype'); }
+@font-face { font-family: 'Geist'; font-weight: 600; font-style: normal; font-display: swap; src: url('fonts/Geist-SemiBold.ttf')    format('truetype'); }
+@font-face { font-family: 'Geist'; font-weight: 700; font-style: normal; font-display: swap; src: url('fonts/Geist-Bold.ttf')        format('truetype'); }
+@font-face { font-family: 'Geist'; font-weight: 800; font-style: normal; font-display: swap; src: url('fonts/Geist-ExtraBold.ttf')   format('truetype'); }
+@font-face { font-family: 'Geist'; font-weight: 900; font-style: normal; font-display: swap; src: url('fonts/Geist-Black.ttf')       format('truetype'); }
+
+:root {
+  /* ── BACKGROUNDS ─────────────────────────────────────────────────────────── */
+  --fdb-cream:        #F5F0E9;   /* primary canvas — warm off-white */
+  --fdb-cream-deep:   #E6E2DA;   /* a half-step darker for subtle blocks */
+  --fdb-white:        #FFFFFF;
+  --fdb-bg:           var(--fdb-cream);
+
+  /* ── INK (TEXT GREYSCALE) ────────────────────────────────────────────────── */
+  --fdb-ink:          #1A1A1A;   /* fg1 — headlines, primary text */
+  --fdb-ink-mid:      #3A3A3A;   /* fg2 — body text on cream */
+  --fdb-ink-muted:    #7A7A7A;   /* fg3 — captions, secondary */
+  --fdb-ink-faint:    #B0B0B0;   /* fg4 — labels, dividers, "TBC" states */
+
+  /* ── PURPLE (THE BRAND) ──────────────────────────────────────────────────── */
+  --fdb-purple:       #8239C1;   /* primary accent — wordmark, CTAs, emphasis */
+  --fdb-purple-deep:  #5B1FBF;   /* hover, pressed */
+  --fdb-purple-mid:   #9B6FE0;   /* middle square of the mark */
+  --fdb-purple-soft:  #C9AAEE;   /* light square / chip borders */
+  --fdb-purple-tint:  #EDE5F8;   /* tinted backgrounds, chip fills */
+
+  /* X. Awards uses the same brand purple and the same stacked-squares mark
+     as FDB. It is a sub-brand of FDB, not a separate visual identity. */
+
+  /* ── DARK MODE ─────────────────────────────────────────────────────────────
+     A dark-canvas treatment, used selectively (not the default). On dark, the
+     purple shifts to a hotter pink-magenta so it stays vivid against ink.
+     Tokens are sampled from the official dark-mode logo PNGs.
+     ──────────────────────────────────────────────────────────────────────── */
+  --fdb-dark-bg:        #1A1A1A;   /* canvas / page */
+  --fdb-dark-bg-elev:   #242424;   /* card surfaces, raised blocks */
+  --fdb-dark-bg-deep:   #0E0E0E;   /* footer / extreme contrast */
+  --fdb-dark-fg:        #F0F0F0;   /* primary text */
+  --fdb-dark-fg-mid:    #B8B0A4;   /* body text (warm grey) */
+  --fdb-dark-fg-muted:  #7A7A7A;   /* captions, secondary */
+  --fdb-dark-fg-faint:  #4A4A4A;   /* labels, dividers, TBC */
+
+  --fdb-dark-accent:        #E070F0;   /* the brand on dark — hot magenta-pink */
+  --fdb-dark-accent-mid:    #9040A0;   /* middle square / hover-base */
+  --fdb-dark-accent-deep:   #502070;   /* back square / deep emphasis */
+  --fdb-dark-accent-tint:   rgba(224, 112, 240, 0.14);  /* chip backgrounds */
+  --fdb-dark-accent-soft:   rgba(224, 112, 240, 0.35);  /* chip borders */
+
+  --fdb-dark-x-awards:  #A030B0;   /* X. Awards lockup on dark */
+
+  --fdb-dark-border:        rgba(255, 255, 255, 0.10);
+  --fdb-dark-border-strong: rgba(255, 255, 255, 0.18);
+
+  /* ── BORDERS ─────────────────────────────────────────────────────────────── */
+  --fdb-border:        rgba(26, 26, 26, 0.10);
+  --fdb-border-strong: rgba(26, 26, 26, 0.18);
+  --fdb-border-purple: var(--fdb-purple-soft);
+
+  /* ── ELEVATION (used sparingly — brand is mostly flat) ──────────────────── */
+  --fdb-shadow-1: 0 1px 2px rgba(26,26,26,0.05);
+  --fdb-shadow-2: 0 6px 24px -8px rgba(26,26,26,0.12);
+
+  /* ── RADII (small, almost-square) ────────────────────────────────────────── */
+  --fdb-radius-xs: 2px;   /* pills, tags */
+  --fdb-radius-sm: 3px;   /* buttons */
+  --fdb-radius-md: 4px;   /* cards, callouts */
+  --fdb-radius-lg: 6px;   /* the big stacked-square mark */
+
+  /* ── SPACING (8-pt with 4-pt half-steps) ─────────────────────────────────── */
+  --fdb-space-1:  4px;
+  --fdb-space-2:  8px;
+  --fdb-space-3:  12px;
+  --fdb-space-4:  16px;
+  --fdb-space-5:  24px;
+  --fdb-space-6:  32px;
+  --fdb-space-7:  48px;
+  --fdb-space-8:  64px;
+  --fdb-space-9:  96px;
+
+  /* ── TYPE PRIMITIVES ─────────────────────────────────────────────────────── */
+  --fdb-font-sans: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fdb-font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Display / heading scale — tight tracking, heavy weight */
+  --fdb-fs-display:  clamp(2.8rem, 5.5vw, 4.2rem); /* @kind font */ /* hero titles */
+  --fdb-fs-h1:       2.4rem;
+  --fdb-fs-h2:       1.75rem;
+  --fdb-fs-h3:       1.25rem;
+  --fdb-fs-statement: 1.45rem;  /* lead paragraph / pull-quote */
+  --fdb-fs-body:     0.92rem;   /* default body */
+  --fdb-fs-body-lg:  1rem;
+  --fdb-fs-small:    0.83rem;
+  --fdb-fs-caption:  0.75rem;
+  --fdb-fs-eyebrow:  0.68rem;   /* uppercase section labels */
+  --fdb-fs-micro:    0.62rem;   /* uppercase micro labels */
+
+  --fdb-tracking-tight:  -0.03em;  /* big headlines */
+  --fdb-tracking-snug:   -0.02em;  /* statements */
+  --fdb-tracking-normal: 0;
+  --fdb-tracking-wide:   0.08em;   /* eyebrows */
+  --fdb-tracking-wider:  0.12em;   /* hero eyebrows */
+  --fdb-tracking-widest: 0.14em;   /* micro section labels */
+
+  --fdb-leading-tight:    1.0;
+  --fdb-leading-headline: 1.1;
+  --fdb-leading-snug:     1.35;
+  --fdb-leading-body:     1.7;
+}
+
+/* ============================================================================
+   SEMANTIC TYPE CLASSES
+   These are the tokens designers reach for first. They mirror what's used in
+   the marketing site and across the deck templates.
+   ============================================================================ */
+
+.fdb-display {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-display);
+  font-weight: 800;
+  line-height: var(--fdb-leading-tight);
+  letter-spacing: var(--fdb-tracking-tight);
+  color: var(--fdb-ink);
+}
+.fdb-display strong,
+.fdb-display .accent { color: var(--fdb-purple); font-weight: 800; }
+
+.fdb-h1 {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-h1);
+  font-weight: 800;
+  line-height: var(--fdb-leading-headline);
+  letter-spacing: var(--fdb-tracking-tight);
+  color: var(--fdb-ink);
+}
+
+.fdb-h2 {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: var(--fdb-tracking-snug);
+  color: var(--fdb-ink);
+}
+
+.fdb-h3 {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-h3);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: var(--fdb-tracking-snug);
+  color: var(--fdb-ink);
+}
+
+.fdb-statement {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-statement);
+  font-weight: 700;
+  line-height: var(--fdb-leading-snug);
+  letter-spacing: var(--fdb-tracking-snug);
+  color: var(--fdb-ink);
+  max-width: 38ch;
+}
+.fdb-statement strong,
+.fdb-statement .accent { color: var(--fdb-purple); font-weight: 800; }
+
+.fdb-body {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-body);
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--fdb-ink-mid);
+  max-width: 60ch;
+}
+
+.fdb-body-lg {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-body-lg);
+  font-weight: 400;
+  line-height: var(--fdb-leading-body);
+  color: var(--fdb-ink-mid);
+}
+
+.fdb-small {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-small);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--fdb-ink-muted);
+}
+
+.fdb-caption {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-caption);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--fdb-ink-muted);
+}
+
+/* Uppercase micro-labels — section eyebrows, metadata. The brand uses these
+   constantly to organise dense pages. */
+.fdb-eyebrow {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: var(--fdb-tracking-wider);
+  text-transform: uppercase;
+  color: var(--fdb-purple);
+}
+
+.fdb-eyebrow--muted {
+  color: var(--fdb-ink-muted);
+  letter-spacing: var(--fdb-tracking-wide);
+}
+
+.fdb-section-label {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-micro);
+  font-weight: 700;
+  letter-spacing: var(--fdb-tracking-widest);
+  text-transform: uppercase;
+  color: var(--fdb-ink-faint);
+}
+
+.fdb-meta-label {
+  font-family: var(--fdb-font-sans);
+  font-size: var(--fdb-fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fdb-ink-faint);
+}
+
+/* The wordmark style — used inline next to the mark in headers/footers */
+.fdb-wordmark {
+  font-family: var(--fdb-font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--fdb-ink);
+}
+.fdb-wordmark .accent { color: var(--fdb-purple); }
+
+/* ============================================================================
+   BASE ELEMENT RESET (opt-in via .fdb-prose container)
+   ============================================================================ */
+.fdb-prose h1 { font-size: var(--fdb-fs-h1); font-weight: 800; letter-spacing: var(--fdb-tracking-tight); line-height: 1.1; color: var(--fdb-ink); margin: 0 0 1rem; }
+.fdb-prose h2 { font-size: var(--fdb-fs-h2); font-weight: 700; letter-spacing: var(--fdb-tracking-snug); line-height: 1.2; color: var(--fdb-ink); margin: 2rem 0 0.75rem; }
+.fdb-prose h3 { font-size: var(--fdb-fs-h3); font-weight: 700; line-height: 1.3; color: var(--fdb-ink); margin: 1.5rem 0 0.5rem; }
+.fdb-prose p  { font-size: var(--fdb-fs-body); line-height: 1.75; color: var(--fdb-ink-mid); margin: 0 0 0.85rem; max-width: 62ch; }
+.fdb-prose strong { color: var(--fdb-purple); font-weight: 700; }
+.fdb-prose a  { color: var(--fdb-purple); text-decoration: none; border-bottom: 1px solid var(--fdb-purple-soft); }
+.fdb-prose a:hover { color: var(--fdb-purple-deep); border-color: var(--fdb-purple-deep); }
+/* ============================================================================
+   DARK MODE — opt-in via the .fdb-dark class on any container.
+   Flips the page surface to ink and remaps the purple accent to magenta-pink
+   so the brand still pops. Apply to a section, a card, or the body element.
+   ============================================================================ */
+
+.fdb-dark {
+  background: var(--fdb-dark-bg);
+  color: var(--fdb-dark-fg);
+  /* Remap the public tokens inside this scope so any component using
+     var(--fdb-...) automatically picks up the dark equivalent. */
+  --fdb-bg:            var(--fdb-dark-bg);
+  --fdb-cream:         var(--fdb-dark-bg);
+  --fdb-ink:           var(--fdb-dark-fg);
+  --fdb-ink-mid:       var(--fdb-dark-fg-mid);
+  --fdb-ink-muted:     var(--fdb-dark-fg-muted);
+  --fdb-ink-faint:     var(--fdb-dark-fg-faint);
+  --fdb-purple:        var(--fdb-dark-accent);
+  --fdb-purple-deep:   var(--fdb-dark-accent);
+  --fdb-purple-mid:    var(--fdb-dark-accent-mid);
+  --fdb-purple-soft:   var(--fdb-dark-accent-soft);
+  --fdb-purple-tint:   var(--fdb-dark-accent-tint);
+  --fdb-border:        var(--fdb-dark-border);
+  --fdb-border-strong: var(--fdb-dark-border-strong);
+}
+

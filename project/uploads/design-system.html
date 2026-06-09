@@ -1,0 +1,1409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CAMPUS Design System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  /* ============================================================
+     Documentation page chrome — wraps the design system itself.
+     The system's own styles are imported above; rules below are
+     scoped to the docs site (.docs prefix) so they don't leak.
+     ============================================================ */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body.campus { background: #faf8f3; }
+
+  .docs {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+    color: var(--ink);
+  }
+
+  /* ----- Sidebar ----- */
+  .docs-sb {
+    position: sticky; top: 0;
+    height: 100vh;
+    background: var(--forest);
+    color: #fff;
+    padding: 32px 28px;
+    display: flex; flex-direction: column; gap: 24px;
+    overflow-y: auto;
+  }
+  .docs-sb .brand { display: flex; align-items: center; gap: 14px; }
+  .docs-sb .brand img { height: 24px; width: auto; }
+  .docs-sb .brand .sep { color: rgba(255,255,255,0.3); }
+  .docs-sb .brand .role {
+    font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 600;
+  }
+  .docs-sb .ver {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: rgba(255,255,255,0.4); letter-spacing: 0.04em;
+  }
+  .docs-sb h5 {
+    margin: 14px 0 8px;
+    font-family: var(--font-body); font-weight: 600;
+    font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .docs-sb a {
+    display: block; padding: 7px 10px; border-radius: 6px;
+    color: rgba(255,255,255,0.78); text-decoration: none;
+    font-size: 0.86rem; font-weight: 400;
+    transition: background 0.2s ease, color 0.2s ease;
+    border-left: 2px solid transparent;
+  }
+  .docs-sb a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+  .docs-sb a.active { color: var(--sage); border-left-color: var(--sage); }
+
+  .docs-sb .foot {
+    margin-top: auto; padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.7rem; color: rgba(255,255,255,0.5); line-height: 1.5;
+  }
+  .docs-sb .foot a { display:inline; padding:0; color: var(--sage); border:0; }
+  .docs-sb .foot a:hover { background: transparent; }
+
+  /* ----- Main column ----- */
+  .docs-main { padding: 0; }
+  .docs-section {
+    padding: 96px clamp(48px, 6vw, 96px);
+    border-bottom: 1px solid rgba(30,93,0,0.08);
+    scroll-margin-top: 0;
+  }
+  .docs-section.alt { background: #fff; }
+  .docs-section.dark {
+    background: var(--forest); color: #fff; position: relative; overflow: hidden;
+  }
+  .docs-section.dark::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px; opacity: 0.3; mix-blend-mode: overlay;
+  }
+  .docs-section.dark > * { position: relative; z-index: 2; }
+
+  .sec-eyebrow {
+    display: inline-block; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--green-5); margin-bottom: 14px;
+  }
+  .docs-section.dark .sec-eyebrow { color: var(--sage); }
+  .sec-title {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.05;
+    color: var(--forest); margin: 0 0 14px; letter-spacing: -0.01em;
+  }
+  .docs-section.dark .sec-title { color: #fff; }
+  /* Higher specificity than colors_and_type.css's `.campus h1 em` rule */
+  .docs-section .sec-title em { font-style: italic; font-weight: 400; color: var(--deep-green); }
+  .docs-section.dark .sec-title em { color: var(--sage); }
+  .hero h1 em { color: var(--sage); }
+  .sec-lead {
+    font-family: var(--font-body); font-size: 1.05rem;
+    color: var(--slate); line-height: 1.65; font-weight: 400;
+    max-width: 64ch; margin: 0 0 56px;
+  }
+  .docs-section.dark .sec-lead { color: rgba(255,255,255,0.8); }
+
+  .sub-h {
+    font-family: var(--font-body); font-weight: 600; font-size: 0.78rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-5);
+    margin: 40px 0 16px;
+  }
+  .docs-section.dark .sub-h { color: var(--sage); }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    padding: 120px clamp(48px, 6vw, 96px) 96px;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 30%, rgba(121,164,0,0.20) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 25% 70%, rgba(0,131,114,0.16) 0%, transparent 55%),
+      linear-gradient(165deg, var(--forest) 0%, var(--forest) 40%, #008344 70%, var(--deep-sea) 100%);
+    color: #fff; position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px; opacity: 0.32; mix-blend-mode: overlay;
+  }
+  .hero-map {
+    position: absolute; top: 0; right: -10%; height: 100%; width: 60%; opacity: 0.16;
+    background: url('assets/archipelago-map.png') center right / contain no-repeat;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 2; max-width: 900px; }
+  .hero-eyebrow {
+    display: inline-block; font-size: 0.75rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--sage); font-weight: 700;
+    margin-bottom: 18px;
+    padding: 7px 14px; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px;
+  }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2.8rem, 6vw, 4.6rem); line-height: 1.02;
+    color: #fff; margin: 0 0 22px; letter-spacing: -0.015em;
+  }
+  .hero h1 em { font-style: italic; font-weight: 400; color: var(--sage); }
+  .hero p.lead {
+    font-size: 1.2rem; color: rgba(255,255,255,0.85); font-weight: 300;
+    line-height: 1.7; max-width: 56ch; margin: 0 0 32px;
+  }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 36px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.18); }
+  .hero-meta div .l {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 600; margin-bottom: 6px;
+  }
+  .hero-meta div .v {
+    font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
+    color: #fff; line-height: 1.1;
+  }
+  .hero-meta div .v em { font-style: italic; font-weight: 400; color: var(--sage); }
+
+  /* ============================================================
+     COLOR CARDS
+     ============================================================ */
+  .swatch-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px; margin-bottom: 24px;
+  }
+  .swatch {
+    border-radius: 12px; overflow: hidden;
+    background: #fff; border: 1px solid rgba(30,93,0,0.08);
+  }
+  .swatch .chip { height: 100px; }
+  .swatch .meta { padding: 12px 14px 14px; }
+  .swatch .name { font-weight: 600; color: var(--ink); font-size: 0.92rem; }
+  .swatch .tok { font-family: var(--font-mono); font-size: 0.72rem; color: var(--slate); margin-top: 3px; letter-spacing: 0.02em; }
+  .swatch .hex { font-family: var(--font-mono); font-size: 0.72rem; color: var(--green-5); margin-top: 4px; font-weight: 600; }
+
+  .role-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .role {
+    background: #fff; border: 1px solid rgba(30,93,0,0.08); border-radius: 10px;
+    padding: 12px 14px; display: flex; align-items: center; gap: 14px;
+  }
+  .role .dot { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
+  .role .info { line-height: 1.3; }
+  .role .info b { font-size: 0.86rem; color: var(--ink); font-weight: 600; }
+  .role .info .tok { font-family: var(--font-mono); font-size: 0.72rem; color: var(--slate); }
+
+  /* Gradient sample card */
+  .gradient-card {
+    height: 200px; border-radius: 14px; position: relative; overflow: hidden;
+    background: linear-gradient(165deg, var(--forest) 0%, var(--forest) 35%, #008344 65%, #008344 80%, var(--deep-sea) 100%);
+  }
+  .gradient-card::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 30%, rgba(121,164,0,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 75% 70%, rgba(0,131,68,0.18) 0%, transparent 55%);
+  }
+  .gradient-card .code {
+    position: absolute; bottom: 14px; left: 14px;
+    font-family: var(--font-mono); font-size: 0.74rem;
+    color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.3);
+    padding: 4px 8px; border-radius: 4px; backdrop-filter: blur(4px);
+  }
+
+  /* ============================================================
+     TYPOGRAPHY
+     ============================================================ */
+  .type-row {
+    display: grid; grid-template-columns: 130px 1fr;
+    gap: 24px; padding: 14px 0;
+    border-bottom: 1px solid rgba(30,93,0,0.08); align-items: baseline;
+  }
+  .type-row .lbl {
+    font-family: var(--font-mono); font-size: 0.74rem; color: var(--slate);
+  }
+  .weight-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .weight-cell {
+    background: #fff; border: 1px solid rgba(30,93,0,0.08); border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .weight-cell .lbl {
+    font-family: var(--font-mono); font-size: 0.7rem; color: var(--green-5);
+    font-weight: 600; letter-spacing: 0.06em; margin-bottom: 8px;
+  }
+  .weight-cell .sample { font-size: 1.05rem; line-height: 1.3; color: var(--ink); }
+
+  /* ============================================================
+     COMPONENT CARDS
+     ============================================================ */
+  .demo-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .demo {
+    background: #fff; border: 1px solid rgba(30,93,0,0.08); border-radius: 12px;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .demo .stage {
+    padding: 28px 24px; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 120px; flex: 1;
+  }
+  .demo .stage.cream { background: var(--cream); }
+  .demo .stage.sand  { background: var(--sand); }
+  .demo .stage.dark  {
+    background: var(--forest); color: #fff; position: relative; overflow: hidden;
+  }
+  .demo .stage.dark::after {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px; opacity: 0.28; mix-blend-mode: overlay;
+  }
+  .demo .stage.tint  { background: var(--mist); }
+  .demo .stage > * { position: relative; z-index: 2; }
+  .demo .caption {
+    padding: 12px 16px; background: #f9f7f0;
+    border-top: 1px solid rgba(30,93,0,0.08);
+    font-size: 0.78rem; color: var(--slate);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .demo .caption b { color: var(--ink); font-weight: 600; }
+
+  /* Buttons (live) */
+  .btn-primary, .btn-light, .btn-pill {
+    font-family: var(--font-body); font-weight: 700; font-size: 0.85rem;
+    padding: 0.8rem 1.4rem; border-radius: 0.5rem; border: none; cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .btn-primary { background: var(--forest); color: #fff; }
+  .btn-primary:hover { background: var(--deep-green); }
+  .btn-light { background: #fff; color: var(--forest); }
+  .btn-light:hover { background: var(--mist); }
+  .btn-pill {
+    background: transparent; color: #fff; padding: 0.55rem 1.4rem;
+    border: 1px solid rgba(255,255,255,0.5); border-radius: 999px;
+    font-size: 0.8rem; font-weight: 500;
+  }
+  .btn-pill:hover { background: #fff; color: var(--forest); }
+
+  /* Labels */
+  .lbl-eyebrow { font-size:0.75rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--green-5); }
+  .lbl-meta { font-size:0.68rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--green-5); }
+  .venue-label-demo {
+    font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--forest);
+    background:rgba(255,255,255,0.92); padding:0.3rem 0.8rem; border-radius:1rem; backdrop-filter:blur(4px); font-weight:500;
+  }
+  .badge-demo {
+    font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase;
+    background: var(--sage); color: var(--forest);
+    padding:0.3rem 0.7rem; border-radius:0.3rem; font-weight:700;
+  }
+  .exp-theme-demo {
+    display:inline-block; padding:0.4rem 0.9rem; background:rgba(200,230,200,0.9);
+    border-radius:6px; font-size:0.7rem; font-weight:600; color:#1a3c28;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  /* Radius scale */
+  .radii { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .radii .r { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .radii .r .box { width: 64px; height: 64px; background: var(--mist); border: 1px solid rgba(30,93,0,0.15); }
+  .radii .r .nm { font-size:0.78rem; font-weight:600; color:var(--ink); }
+  .radii .r .v  { font-family: var(--font-mono); font-size:0.7rem; color:var(--slate); }
+
+  /* Shadow scale */
+  .sh-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .sh-cell {
+    background:#fff; border-radius: 14px; padding: 22px;
+    min-height: 110px; display:flex; flex-direction:column; justify-content:flex-end;
+    border: 1px solid rgba(30,93,0,0.04);
+  }
+  .sh-cell .nm { font-size:0.85rem; font-weight:600; color:var(--ink); }
+  .sh-cell .v  { font-family: var(--font-mono); font-size:0.72rem; color:var(--slate); margin-top:3px; }
+  .sh1 { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .sh2 { box-shadow: 0 12px 40px rgba(30,93,0,0.06); }
+  .sh3 { box-shadow: 0 20px 60px rgba(30,93,0,0.08); }
+  .sh4 { box-shadow: 0 12px 32px rgba(26,60,40,0.10); }
+
+  /* Spacing scale */
+  .space-row { display:flex; flex-direction:column; gap:8px; }
+  .space-row .bar {
+    background: var(--mist); height: 24px; border-radius: 4px;
+    display: flex; align-items: center; padding: 0 10px;
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--forest); font-weight: 600;
+  }
+
+  /* Brand assets */
+  .icons-strip {
+    background: #fff; border: 1px solid rgba(30,93,0,0.08); border-radius: 14px;
+    padding: 28px 32px; display: grid;
+    grid-template-columns: repeat(7, 1fr); gap: 22px; align-items: center;
+    margin-bottom: 14px;
+  }
+  .icons-strip .ic { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .icons-strip img { height: 64px; width: auto; object-fit: contain; }
+  .icons-strip .nm { font-size: 0.74rem; font-weight: 600; color: var(--ink); text-align: center; }
+  .icons-strip .meaning { font-size: 0.7rem; color: var(--slate); text-align: center; }
+
+  .logo-set { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .logo-pane {
+    border-radius: 12px; padding: 36px 28px;
+    display: flex; flex-direction: column; gap: 16px;
+    border: 1px solid rgba(30,93,0,0.08);
+  }
+  .logo-pane.dark { background: var(--forest); }
+  .logo-pane.light { background: var(--cream); }
+  .logo-pane .row { display:flex; align-items:center; gap:18px; }
+  .logo-pane img.lockup { height: 36px; width: auto; }
+  .logo-pane img.partner { height: 28px; width: auto; }
+  .logo-pane .label { font-size:0.55rem; letter-spacing:.16em; text-transform:uppercase; font-weight:600; }
+  .logo-pane.dark .label { color: rgba(255,255,255,.55); }
+  .logo-pane.light .label { color: var(--green-5); }
+  .logo-pane .meta { font-size: 0.78rem; }
+  .logo-pane.dark .meta { color: rgba(255,255,255,0.7); }
+  .logo-pane.light .meta { color: var(--slate); }
+
+  /* Voice section */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+  .voice-card {
+    background: #fff; border: 1px solid rgba(30,93,0,0.08); border-radius: 12px;
+    padding: 24px 26px;
+  }
+  .voice-card.good { border-left: 4px solid var(--moss); }
+  .voice-card.bad  { border-left: 4px solid #c74848; }
+  .voice-card h4 {
+    margin: 0 0 12px; font-family: var(--font-body); font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-5);
+  }
+  .voice-card.bad h4 { color: #c74848; }
+  .voice-card ul { margin: 0; padding-left: 18px; }
+  .voice-card li {
+    font-family: var(--font-display); font-style: italic; font-size: 1.05rem;
+    color: var(--ink); margin-bottom: 8px; line-height: 1.4;
+  }
+  .voice-card.bad li { color: #6a4a4a; }
+
+  .rule-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .rule {
+    background: #fff; border: 1px solid rgba(30,93,0,0.08); border-radius: 10px;
+    padding: 14px 18px; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .rule .n {
+    font-family: var(--font-display); font-style: italic; font-size: 1.5rem;
+    color: var(--sage); font-weight: 400; flex-shrink: 0; line-height: 1; min-width: 28px;
+  }
+  .rule .t b { font-weight: 600; color: var(--ink); }
+  .rule .t p { margin: 4px 0 0; font-size: 0.86rem; color: var(--slate); line-height: 1.55; }
+
+  /* UI kits gallery */
+  .kits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .kit-card {
+    background: #fff; border: 1px solid rgba(30,93,0,0.08); border-radius: 14px;
+    overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .kit-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(30,93,0,0.08); }
+  .kit-thumb {
+    aspect-ratio: 16/10; background: var(--cream); position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .kit-thumb iframe {
+    position: absolute; top: 0; left: 0; width: 200%; height: 200%;
+    transform: scale(0.5); transform-origin: top left;
+    border: 0; pointer-events: none;
+  }
+  .kit-body { padding: 18px 22px 22px; }
+  .kit-body .role-line {
+    font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--green-5); font-weight: 600; margin-bottom: 6px;
+  }
+  .kit-body h4 {
+    font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+    color: var(--forest); margin: 0 0 4px;
+  }
+  .kit-body p { margin: 0; font-size: 0.84rem; color: var(--slate); line-height: 1.5; }
+
+  /* Code block */
+  pre.code {
+    background: var(--green-7); color: #cce6e2;
+    padding: 22px 26px; border-radius: 12px; overflow-x: auto;
+    font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6;
+    margin: 0;
+  }
+  pre.code .k { color: var(--sage); }
+  pre.code .c { color: rgba(255,255,255,0.45); font-style: italic; }
+  pre.code .v { color: #ffd9a8; }
+  pre.code .p { color: #ffffff; }
+
+  /* Mini token table */
+  table.toks { width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 0.84rem; }
+  table.toks th { text-align: left; font-family: var(--font-mono); font-size: 0.7rem; color: var(--slate); font-weight: 600; padding: 8px 0; border-bottom: 1px solid rgba(30,93,0,0.08); }
+  table.toks td { padding: 10px 0; border-bottom: 1px solid rgba(30,93,0,0.05); color: var(--ink); vertical-align: top; }
+  table.toks td.tok { font-family: var(--font-mono); color: var(--green-5); font-weight: 600; }
+  table.toks td.v   { font-family: var(--font-mono); color: var(--slate); font-size: 0.78rem; }
+  table.toks td.desc { color: var(--slate); }
+
+  /* iconography wall */
+  .ico-tile {
+    background: #fff; border: 1px solid rgba(30,93,0,0.08); border-radius: 10px;
+    padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .ico-tile img { width: 38px; height: 38px; }
+  .ico-tile .nm { font-family: var(--font-mono); font-size: 0.7rem; color: var(--slate); }
+
+  /* Helpers */
+  .download-bar {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .download-bar a {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--forest); color: #fff; text-decoration: none;
+    padding: 10px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .download-bar a:hover { background: var(--deep-green); transform: translateY(-1px); }
+  .download-bar a.ghost { background: transparent; color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4); }
+  .download-bar a.ghost:hover { background: rgba(255,255,255,0.1); }
+
+  /* Section header layout */
+  .sec-head { max-width: 880px; }
+
+  /* Component preview (theme + venue + experience + day) */
+  .ex-theme-card {
+    background:#fff; border: 1px solid var(--mist); border-radius: 0.8rem;
+    padding: 24px 26px; position: relative; overflow: hidden; min-height: 230px;
+    max-width: 380px; width: 100%;
+  }
+  .ex-theme-card .bg { position:absolute; bottom:-15px; right:-15px; width:130px; height:130px; opacity:0.06; pointer-events:none; }
+  .ex-theme-card .ico { position:absolute; bottom:14px; right:14px; width:44px; height:44px; }
+  .ex-theme-card img { width:100%; height:100%; object-fit:contain; }
+  .ex-theme-card .day { font-size:0.68rem; letter-spacing:.15em; text-transform:uppercase; color:var(--green-5); font-weight:600; margin-bottom:.7rem; }
+  .ex-theme-card h3 { font-family: var(--font-display); font-size:1.2rem; color:var(--forest); margin:0 0 .7rem; font-weight:700; }
+  .ex-theme-card .q { font-weight:700; font-size:0.92rem; color:var(--deep-green); line-height:1.5; margin:0 3.5rem .8rem 0; }
+
+  .ex-venue {
+    background:#fff; border-radius: 1rem; overflow: hidden; max-width: 380px; width: 100%;
+    box-shadow: 0 12px 40px rgba(30,93,0,0.06);
+  }
+  .ex-venue .img { aspect-ratio: 16/10; position: relative; }
+  .ex-venue .img img { width:100%; height:100%; object-fit: cover; display: block; }
+  .ex-venue .lbl-pill {
+    position:absolute; bottom:1rem; left:1rem;
+    font-size:0.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--forest);
+    background:rgba(255,255,255,.92); padding:.3rem .9rem; border-radius:1rem; backdrop-filter:blur(4px); font-weight:500;
+  }
+  .ex-venue .body { padding: 20px 22px 22px; }
+  .ex-venue h3 { font-family: var(--font-display); font-size:1.3rem; color:var(--forest); margin:0 0 .6rem; font-weight:700; }
+  .ex-venue p { font-size:0.86rem; color:var(--slate); line-height:1.65; margin:0; }
+
+  .ex-exp {
+    position:relative; border-radius:12px; overflow:hidden;
+    aspect-ratio: 3/4; max-width: 220px; width: 100%;
+  }
+  .ex-exp img { width:100%; height:100%; object-fit: cover; }
+  .ex-exp::after { content:''; position:absolute; inset:auto 0 0 0; height:60%;
+    background: linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 100%); }
+  .ex-exp .body { position:absolute; bottom:0; left:0; right:0; padding:1.1rem; z-index:3;
+    display:flex; flex-direction:column; gap:.5rem; }
+  .ex-exp h4 { color:#fff; font-family: var(--font-body); font-size:0.95rem; font-weight:600; margin:0; line-height:1.35; }
+  .ex-exp .tag { display:inline-block; padding:.35rem .8rem; background: rgba(200,230,200,.9);
+    border-radius:6px; font-size:.68rem; font-weight:600; color:#1a3c28; align-self:flex-start; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .ex-day-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    background: var(--forest); color: #fff;
+    border-radius: 14px; overflow: hidden; position: relative;
+  }
+  .ex-day-grid::after {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px; opacity:.3; mix-blend-mode: overlay; z-index:1;
+  }
+  .ex-day { padding: 26px 24px; border-right: 1px solid rgba(255,255,255,0.15); position: relative; z-index: 2; }
+  .ex-day:last-child { border-right: none; }
+  .ex-day .n { font-family: var(--font-display); font-style: italic; font-size: 2.4rem; line-height: .9; color: var(--sage); opacity: .75; font-weight: 400; margin-bottom: .5rem; }
+  .ex-day .d { font-size:0.7rem; letter-spacing:.15em; text-transform:uppercase; color: var(--sage); font-weight: 600; margin-bottom: 1rem; }
+  .ex-day .t { font-weight: 700; font-size: 1rem; color: #fff; margin-bottom: .3rem; }
+  .ex-day .v { font-size: .8rem; color: var(--sage); }
+
+  /* Proposition list demo */
+  .prop-demo { list-style: none; padding: 0; margin: 0; }
+  .prop-demo li { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(30,93,0,0.08); }
+  .prop-demo li:last-child { border-bottom: none; }
+  .prop-demo .ico {
+    width: 44px; height: 44px; min-width: 44px; background: var(--mist);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .prop-demo .ico svg { width: 22px; height: 22px; stroke: var(--forest); fill: none; stroke-width: 2; }
+  .prop-demo h5 { font-family: var(--font-body); font-weight: 600; font-size: 0.98rem; color: var(--forest); margin: 0 0 0.2rem; }
+  .prop-demo p { font-size: 0.84rem; color: var(--slate); margin: 0; line-height: 1.55; }
+
+  /* Ticket demo */
+  .ticket-demo {
+    background:#fff; border:1px solid var(--mist); border-radius:1rem; padding: 24px 22px;
+    display: flex; flex-direction: column; position: relative; max-width: 280px; width: 100%;
+  }
+  .ticket-demo.featured { border: 2px solid var(--moss); background: var(--forest); color:#fff; }
+  .ticket-demo .badge {
+    position:absolute; top:-.7rem; left:50%; transform:translateX(-50%);
+    font-size:.65rem; letter-spacing:.14em; text-transform:uppercase;
+    background: var(--sage); color: var(--forest); padding:.3rem .8rem; border-radius:.3rem; font-weight:700;
+  }
+  .ticket-demo .name { font-weight:700; font-size:1.05rem; margin-bottom:.3rem; color: var(--forest); }
+  .ticket-demo.featured .name { color: #fff; }
+  .ticket-demo .price { font-family: var(--font-display); font-size:1.7rem; font-weight:700; color:var(--forest); margin-bottom:.2rem; line-height: 1.1; }
+  .ticket-demo.featured .price { color: var(--sage); }
+  .ticket-demo .note { font-size:.74rem; color: var(--slate); margin-bottom:1rem; }
+  .ticket-demo.featured .note { color: rgba(255,255,255,.55); }
+  .ticket-demo ul { list-style:none; padding:0; margin:0 0 1rem; flex-grow:1; }
+  .ticket-demo li { font-size:.8rem; color:var(--slate); padding:.35rem 0 .35rem 1.3rem; position:relative; line-height: 1.5; }
+  .ticket-demo li::before { content:'✓'; position:absolute; left:0; color:var(--green-3); font-weight:700; }
+  .ticket-demo.featured li { color: rgba(255,255,255,.75); }
+  .ticket-demo.featured li::before { color: var(--sage); }
+  .ticket-demo .btn {
+    display:block; padding:.75rem; border:none; border-radius:.5rem; font-family: var(--font-body); font-weight:700;
+    font-size:.82rem; text-align:center; text-decoration:none; cursor:pointer;
+    background: var(--forest); color:#fff; transition: background 0.25s ease;
+  }
+  .ticket-demo.featured .btn { background: #fff; color: var(--forest); }
+
+  /* Token reference */
+  .toks-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* responsive */
+  @media (max-width: 960px) {
+    .docs { grid-template-columns: 1fr; }
+    .docs-sb { position: relative; height: auto; flex-direction: row; flex-wrap: wrap; gap: 8px; padding: 18px; }
+    .docs-sb h5 { width: 100%; margin: 8px 0 4px; }
+    .docs-sb a { padding: 4px 8px; }
+    .docs-sb .foot { display: none; }
+    .icons-strip { grid-template-columns: repeat(4, 1fr); }
+    .toks-cols { grid-template-columns: 1fr; }
+    .voice-grid, .logo-set, .rule-list { grid-template-columns: 1fr; }
+    .radii { grid-template-columns: repeat(3, 1fr); }
+    .sh-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body class="campus">
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#1E5D00"/>
+    <circle cx="68" cy="80" r="18" fill="none" stroke="#79A400" stroke-width="6"/>
+    <rect x="100" y="62" width="36" height="36" fill="none" stroke="#79A400" stroke-width="6"/>
+    <path d="M62 130 L94 130 M114 130 L146 130" stroke="#79A400" stroke-width="6" stroke-linecap="round"/>
+    <text x="100" y="172" font-family="Georgia, serif" font-style="italic" font-size="22" fill="#fff" text-anchor="middle">CAMPUS</text>
+  </svg>
+</template>
+
+<div class="docs">
+
+  <!-- ============================================================
+       SIDEBAR NAV
+       ============================================================ -->
+  <aside class="docs-sb">
+    <div class="brand">
+      <img src="assets/logo-campus-white.png" alt="CAMPUS">
+    </div>
+    <div class="ver">Design System · v1.0 · May 2026</div>
+
+    <h5>Brand</h5>
+    <a href="#intro">Introduction</a>
+    <a href="#voice">Voice &amp; content</a>
+    <a href="#logos">Logos &amp; lockups</a>
+
+    <h5>Foundations</h5>
+    <a href="#color">Color</a>
+    <a href="#type">Typography</a>
+    <a href="#space">Spacing &amp; layout</a>
+    <a href="#radius">Radius</a>
+    <a href="#shadow">Shadows</a>
+    <a href="#motion">Motion</a>
+    <a href="#texture">Texture &amp; grain</a>
+
+    <h5>Iconography</h5>
+    <a href="#chunky">Chunky Icons</a>
+    <a href="#stroke">Stroke icons</a>
+
+    <h5>Components</h5>
+    <a href="#buttons">Buttons</a>
+    <a href="#labels">Labels &amp; badges</a>
+    <a href="#cards">Cards</a>
+    <a href="#tickets">Tickets</a>
+    <a href="#journey">Journey grid</a>
+
+    <h5>Surfaces</h5>
+    <a href="#kits">UI kits</a>
+
+    <h5>Reference</h5>
+    <a href="#tokens">Token catalogue</a>
+    <a href="#download">Downloads</a>
+
+    <div class="foot">
+      Digital Tourism Think Tank · 2026<br>
+      In partnership with Visit Turku Archipelago<br>
+      <a href="https://thinkdigital.travel">thinkdigital.travel</a>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       MAIN
+       ============================================================ -->
+  <main class="docs-main">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero" id="intro">
+      <div class="hero-map"></div>
+      <div class="hero-inner">
+        <span class="hero-eyebrow">CAMPUS · Design System · v1.0</span>
+        <h1>From pledges to practice, in <em>one design system</em>.</h1>
+        <p class="lead">The complete brand and product toolkit for CAMPUS — the Digital Tourism Think Tank's flagship sustainability programme. Built for marketing, product, communications and event teams to ship work that feels unmistakably CAMPUS, every time.</p>
+        <div class="hero-meta">
+          <div><div class="l">Event</div><div class="v">CAMPUS 2026</div></div>
+          <div><div class="l">Host partner</div><div class="v">Visit Turku Archipelago</div></div>
+          <div><div class="l">Dates</div><div class="v"><em>30 Sep — 3 Oct 2026</em></div></div>
+          <div><div class="l">Audience</div><div class="v">80–100 DMOs</div></div>
+        </div>
+        <div class="download-bar">
+          <a href="#kits">View UI kits →</a>
+          <a class="ghost" href="#tokens">Token catalogue</a>
+          <a class="ghost" href="#download">Downloads</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VOICE & CONTENT
+         ============================================================ -->
+    <section class="docs-section alt" id="voice">
+      <div class="sec-head">
+        <span class="sec-eyebrow">01 · Brand</span>
+        <h2 class="sec-title">Voice &amp; <em>content fundamentals</em>.</h2>
+        <p class="sec-lead">CAMPUS copy is assured but unhurried. It writes like a curated retreat brochure, not a tech-conference landing page. First-person plural, future tense, British English, no exclamation marks, no emoji.</p>
+      </div>
+
+      <h3 class="sub-h">Tonal guideposts</h3>
+      <div class="voice-grid">
+        <div class="voice-card good">
+          <h4>Do — write like this</h4>
+          <ul>
+            <li>"From pledges to practice. This is sustainability in the field."</li>
+            <li>"Every venue has been picked carefully to connect with each of the themes we are going to explore together."</li>
+            <li>"Travelling together from Helsinki to the Turku Archipelago will be our first opportunity to connect."</li>
+          </ul>
+        </div>
+        <div class="voice-card bad">
+          <h4>Don't — write like this</h4>
+          <ul>
+            <li>"Unlock the future of tourism! 🌿"</li>
+            <li>"Join 80+ industry leaders for the must-attend event of 2026."</li>
+            <li>"PROVEN frameworks. REAL results. Don't miss out."</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub-h">Casing &amp; punctuation rules</h3>
+      <div class="rule-list">
+        <div class="rule"><div class="n">01</div><div class="t"><b>Sentence case for headings.</b><p>Not Title Case. Capitalise only proper-noun-style brand terms — "Turku Manifesto", "Seven Strategic Themes".</p></div></div>
+        <div class="rule"><div class="n">02</div><div class="t"><b>Headings often end in a period.</b><p>Adds a calm, declarative finality. Match it.</p></div></div>
+        <div class="rule"><div class="n">03</div><div class="t"><b>Eyebrows ALL CAPS, tracked 0.2em.</b><p>Used for meta info: "DAY 1 WELCOME", "30 SEPTEMBER", "HOST PARTNER".</p></div></div>
+        <div class="rule"><div class="n">04</div><div class="t"><b>British English spelling.</b><p>Synthesise, organisation, programme, characterise. Ties us to our European DMO audience.</p></div></div>
+        <div class="rule"><div class="n">05</div><div class="t"><b>Real em dashes.</b><p>Use "—" not "-" or "--" for parenthetical asides. "80—100 Delegates."</p></div></div>
+        <div class="rule"><div class="n">06</div><div class="t"><b>No emoji. No exclamation marks.</b><p>Only special character used decoratively is "✓" for ticket-include bullets.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         LOGOS
+         ============================================================ -->
+    <section class="docs-section" id="logos">
+      <div class="sec-head">
+        <span class="sec-eyebrow">02 · Brand</span>
+        <h2 class="sec-title">Logos &amp; <em>lockups</em>.</h2>
+        <p class="sec-lead">The CAMPUS wordmark always pairs with a host-partner mark. The CAMPUS colour version sits on cream and warm surfaces; the white version sits on forest, sea and dark photography. The Turku partner mark mirrors the same light/dark logic.</p>
+      </div>
+
+      <div class="logo-set">
+        <div class="logo-pane dark">
+          <div class="row">
+            <img class="lockup" src="assets/logo-campus-white.png" alt="CAMPUS">
+            <span style="color:rgba(255,255,255,0.3)">·</span>
+            <div>
+              <div class="label">Host partner</div>
+              <img class="partner" src="assets/logo-turku-partner-alt.webp" alt="Visit Turku Archipelago" style="margin-top:6px;">
+            </div>
+          </div>
+          <div class="meta">On forest, sea, deep-sea and dark photography — white CAMPUS lockup with the lighter Visit Turku mark.</div>
+        </div>
+        <div class="logo-pane light">
+          <div class="row">
+            <img class="lockup" src="assets/logo-campus-color.png" alt="CAMPUS">
+            <span style="color:rgba(30,93,0,0.25)">·</span>
+            <div>
+              <div class="label">Host partner</div>
+              <img class="partner" src="assets/logo-turku-partner.png" alt="Visit Turku Archipelago" style="margin-top:6px;">
+            </div>
+          </div>
+          <div class="meta">On cream, sand and other light surfaces — full-colour CAMPUS lockup with the darker Visit Turku mark.</div>
+        </div>
+      </div>
+
+      <h3 class="sub-h">Clear space &amp; sizing</h3>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+        <div class="role"><div class="dot" style="background:var(--forest)"></div><div class="info"><b>Minimum height</b><div class="tok">24px digital · 12mm print</div></div></div>
+        <div class="role"><div class="dot" style="background:var(--moss)"></div><div class="info"><b>Clear space</b><div class="tok">≥ height of CAMPUS "C"</div></div></div>
+        <div class="role"><div class="dot" style="background:var(--sage)"></div><div class="info"><b>Co-brand spacing</b><div class="tok">36–60px from partner</div></div></div>
+        <div class="role"><div class="dot" style="background:var(--sea)"></div><div class="info"><b>Don't</b><div class="tok">Recolour, stretch, or skew</div></div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COLOR
+         ============================================================ -->
+    <section class="docs-section alt" id="color">
+      <div class="sec-head">
+        <span class="sec-eyebrow">03 · Foundations</span>
+        <h2 class="sec-title">Color: greens, neutrals, <em>one gradient</em>.</h2>
+        <p class="sec-lead">A seven-step primary green scale, a small set of cream and mist neutrals, and a single hero-only gradient. Sections alternate cream → forest → sand → forest. Only one green per section. Greens are flat, not gradient — except the hero.</p>
+      </div>
+
+      <h3 class="sub-h">Primary green scale</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#79A400"></div><div class="meta"><div class="name">Sage</div><div class="tok">--sage · --green-1</div><div class="hex">#79A400</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#4D7D00"></div><div class="meta"><div class="name">Deep green</div><div class="tok">--deep-green · --green-2</div><div class="hex">#4D7D00</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#4E9B01"></div><div class="meta"><div class="name">Moss</div><div class="tok">--moss · --green-3</div><div class="hex">#4E9B01</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1E5D00"></div><div class="meta"><div class="name">Forest</div><div class="tok">--forest · --green-4</div><div class="hex">#1E5D00</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#008344"></div><div class="meta"><div class="name">Charcoal green</div><div class="tok">--green-5</div><div class="hex">#008344</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#008172"></div><div class="meta"><div class="name">Sea</div><div class="tok">--sea · --green-6</div><div class="hex">#008172</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#005F65"></div><div class="meta"><div class="name">Deep sea</div><div class="tok">--deep-sea · --green-7</div><div class="hex">#005F65</div></div></div>
+      </div>
+
+      <h3 class="sub-h">Neutrals &amp; surfaces</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#f7f3ec"></div><div class="meta"><div class="name">Cream</div><div class="tok">--cream · page bg</div><div class="hex">#F7F3EC</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#f5f0e8"></div><div class="meta"><div class="name">Sand</div><div class="tok">--sand · warm sections</div><div class="hex">#F5F0E8</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#e2eeda"></div><div class="meta"><div class="name">Mist</div><div class="tok">--mist · card tint</div><div class="hex">#E2EEDA</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#a8c5b0"></div><div class="meta"><div class="name">Lichen</div><div class="tok">--lichen</div><div class="hex">#A8C5B0</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#4a5568"></div><div class="meta"><div class="name">Slate</div><div class="tok">--slate · secondary text</div><div class="hex">#4A5568</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1A1A1A"></div><div class="meta"><div class="name">Ink</div><div class="tok">--ink · primary text</div><div class="hex">#1A1A1A</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#ffffff; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);"></div><div class="meta"><div class="name">White</div><div class="tok">surfaces · text on dark</div><div class="hex">#FFFFFF</div></div></div>
+      </div>
+
+      <h3 class="sub-h">Semantic role map</h3>
+      <div class="role-grid">
+        <div class="role"><div class="dot" style="background:#1A1A1A"></div><div class="info"><b>fg-1 — primary text</b><div class="tok">--ink · #1A1A1A</div></div></div>
+        <div class="role"><div class="dot" style="background:#4a5568"></div><div class="info"><b>fg-2 — secondary text</b><div class="tok">--slate · #4A5568</div></div></div>
+        <div class="role"><div class="dot" style="background:#1E5D00"></div><div class="info"><b>fg-heading</b><div class="tok">--forest · #1E5D00</div></div></div>
+        <div class="role"><div class="dot" style="background:#008344"></div><div class="info"><b>fg-accent (eyebrow)</b><div class="tok">--green-5 · #008344</div></div></div>
+        <div class="role"><div class="dot" style="background:#f7f3ec"></div><div class="info"><b>bg-page</b><div class="tok">--cream</div></div></div>
+        <div class="role"><div class="dot" style="background:#f5f0e8"></div><div class="info"><b>bg-page-warm</b><div class="tok">--sand</div></div></div>
+        <div class="role"><div class="dot" style="background:#1E5D00"></div><div class="info"><b>bg-dark</b><div class="tok">--forest</div></div></div>
+        <div class="role"><div class="dot" style="background:#e2eeda"></div><div class="info"><b>bg-card-tint</b><div class="tok">--mist</div></div></div>
+      </div>
+
+      <h3 class="sub-h">The one gradient — hero only</h3>
+      <div class="gradient-card">
+        <div class="code">linear-gradient(165deg, forest 0% → forest 35% → green-5 65% → green-5 80% → deep-sea 100%)</div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TYPOGRAPHY
+         ============================================================ -->
+    <section class="docs-section" id="type">
+      <div class="sec-head">
+        <span class="sec-eyebrow">04 · Foundations</span>
+        <h2 class="sec-title">Typography — Playfair, <em>set against Effra</em>.</h2>
+        <p class="sec-lead">Two families. Playfair Display for headings, with italic 400 reserved for emphasis spans inside h1s — the brand's signature move. Effra (Dalton Maag) for body, UI, eyebrows. Both families are self-hosted from <code style="font-family: var(--font-mono); color: var(--green-5);">/fonts</code>. Body weight defaults to 300 (Light).</p>
+      </div>
+
+      <h3 class="sub-h">Display — Playfair Display</h3>
+      <div style="background:#fff; border:1px solid rgba(30,93,0,0.08); border-radius:14px; padding: 32px 36px;">
+        <div style="font-family: var(--font-display); font-weight:700; font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.02; color: var(--forest); letter-spacing: -0.01em;">
+          Sustainability strategies built <em style="font-style: italic; font-weight: 400; color: var(--deep-green);">around natural landscapes</em>.
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--slate); margin-top: 18px;">Playfair Display · 700 / italic 400 · clamp(3rem, 6vw, 5.5rem) · line-height 1.05</div>
+      </div>
+
+      <h3 class="sub-h">Display weights — all 6 + italics</h3>
+      <div class="weight-grid">
+        <div class="weight-cell"><div class="lbl">400 Regular</div><div class="sample" style="font-family: var(--font-display); font-weight: 400;">Five days, seven themes</div></div>
+        <div class="weight-cell"><div class="lbl">400 Italic</div><div class="sample" style="font-family: var(--font-display); font-weight: 400; font-style: italic;">Five days, seven themes</div></div>
+        <div class="weight-cell"><div class="lbl">500 Medium</div><div class="sample" style="font-family: var(--font-display); font-weight: 500;">Five days, seven themes</div></div>
+        <div class="weight-cell"><div class="lbl">600 SemiBold</div><div class="sample" style="font-family: var(--font-display); font-weight: 600;">Five days, seven themes</div></div>
+        <div class="weight-cell"><div class="lbl">700 Bold</div><div class="sample" style="font-family: var(--font-display); font-weight: 700;">Five days, seven themes</div></div>
+        <div class="weight-cell"><div class="lbl">700 Bold Italic</div><div class="sample" style="font-family: var(--font-display); font-weight: 700; font-style: italic;">Five days, seven themes</div></div>
+        <div class="weight-cell"><div class="lbl">800 ExtraBold</div><div class="sample" style="font-family: var(--font-display); font-weight: 800;">Five days, seven themes</div></div>
+        <div class="weight-cell"><div class="lbl">900 Black</div><div class="sample" style="font-family: var(--font-display); font-weight: 900;">Five days, seven themes</div></div>
+      </div>
+
+      <h3 class="sub-h">Body — Effra (Dalton Maag)</h3>
+      <div style="background:#fff; border:1px solid rgba(30,93,0,0.08); border-radius:14px; padding: 22px 28px;">
+        <div class="type-row"><div class="lbl">300 Light</div><div style="font-family: var(--font-body); font-weight: 300; font-size: 1.05rem; color: var(--ink);">From pledges to practice. In the field.</div></div>
+        <div class="type-row"><div class="lbl">400 Regular</div><div style="font-family: var(--font-body); font-weight: 400; font-size: 1.05rem; color: var(--ink);">From pledges to practice. In the field.</div></div>
+        <div class="type-row"><div class="lbl">500 Medium</div><div style="font-family: var(--font-body); font-weight: 500; font-size: 1.05rem; color: var(--ink);">From pledges to practice. In the field.</div></div>
+        <div class="type-row"><div class="lbl">600 SemiBold</div><div style="font-family: var(--font-body); font-weight: 600; font-size: 1.05rem; color: var(--ink);">From pledges to practice. In the field.</div></div>
+        <div class="type-row"><div class="lbl">700 Bold</div><div style="font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; color: var(--ink);">From pledges to practice. In the field.</div></div>
+        <div class="type-row"><div class="lbl">800 ExtraBold</div><div style="font-family: var(--font-body); font-weight: 800; font-size: 1.05rem; color: var(--ink);">From pledges to practice. In the field.</div></div>
+        <div class="type-row"><div class="lbl">900 Black</div><div style="font-family: var(--font-body); font-weight: 900; font-size: 1.05rem; color: var(--ink);">From pledges to practice. In the field.</div></div>
+      </div>
+
+      <h3 class="sub-h">Scale &amp; usage</h3>
+      <div style="background:#fff; border:1px solid rgba(30,93,0,0.08); border-radius:14px; padding: 22px 28px;">
+        <div class="type-row"><div class="lbl">Hero · 56–88px</div><div style="font-family:var(--font-display); font-weight:700; font-size:48px; line-height:1; color:var(--forest);">Hero heading</div></div>
+        <div class="type-row"><div class="lbl">H1 · 32–52px</div><div style="font-family:var(--font-display); font-weight:700; font-size:34px; line-height:1.05; color:var(--forest);">Section title</div></div>
+        <div class="type-row"><div class="lbl">H3 · 20px</div><div style="font-family:var(--font-display); font-weight:700; font-size:20px; color:var(--forest);">Card heading</div></div>
+        <div class="type-row"><div class="lbl">H4 · 16px</div><div style="font-family:var(--font-body); font-weight:600; font-size:16px; color:var(--forest);">Component label</div></div>
+        <div class="type-row"><div class="lbl">Lead · 17px</div><div style="font-family:var(--font-body); font-weight:300; font-size:17px; color:var(--ink);">Long-form lead body, light weight</div></div>
+        <div class="type-row"><div class="lbl">Body · 16px</div><div style="font-family:var(--font-body); font-weight:300; font-size:16px; color:var(--ink);">Standard paragraph copy</div></div>
+        <div class="type-row"><div class="lbl">Eyebrow · 12px</div><div style="font-size:12px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--green-5);">Five days, seven themes</div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SPACING & LAYOUT
+         ============================================================ -->
+    <section class="docs-section alt" id="space">
+      <div class="sec-head">
+        <span class="sec-eyebrow">05 · Foundations</span>
+        <h2 class="sec-title">Spacing, layout, <em>and rhythm</em>.</h2>
+        <p class="sec-lead">Sections breathe. 8rem of vertical padding on desktop, 4rem on mobile, with 6vw of horizontal air. Cards prefer 2–2.5rem padding inside. Grids on dark sections use internal borders, never gaps; light sections use real gaps. Body text wraps with text-wrap: pretty by default.</p>
+      </div>
+
+      <div class="toks-cols">
+        <div>
+          <h3 class="sub-h">Section padding</h3>
+          <div class="space-row">
+            <div class="bar" style="width: 100%">--space-section-y · 8rem (128px)</div>
+            <div class="bar" style="width: 75%">md · 6rem (96px)</div>
+            <div class="bar" style="width: 50%">sm · 4rem (64px)</div>
+            <div class="bar" style="width: 100%">--space-section-x · 6vw</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="sub-h">Card &amp; component spacing</h3>
+          <div class="space-row">
+            <div class="bar" style="width: 100%">Card padding · 2–2.5rem (32–40px)</div>
+            <div class="bar" style="width: 75%">Grid gap · 1.5–2.5rem</div>
+            <div class="bar" style="width: 50%">List item gap · 1.2rem</div>
+            <div class="bar" style="width: 36%">Inline pill padding · 0.3rem 0.8rem</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-h" id="radius">Corner radius</h3>
+      <div class="radii">
+        <div class="r"><div class="box" style="border-radius:0.3rem;"></div><div class="nm">xs · badge</div><div class="v">0.3rem · 5px</div></div>
+        <div class="r"><div class="box" style="border-radius:0.5rem;"></div><div class="nm">sm · button</div><div class="v">0.5rem · 8px</div></div>
+        <div class="r"><div class="box" style="border-radius:0.8rem;"></div><div class="nm">md · theme</div><div class="v">0.8rem · 13px</div></div>
+        <div class="r"><div class="box" style="border-radius:1rem;"></div><div class="nm">lg · card</div><div class="v">1rem · 16px</div></div>
+        <div class="r"><div class="box" style="border-radius:12px;"></div><div class="nm">image</div><div class="v">12px</div></div>
+        <div class="r"><div class="box" style="border-radius:999px;"></div><div class="nm">pill · nav cta</div><div class="v">999px</div></div>
+      </div>
+
+      <h3 class="sub-h" id="shadow">Shadows — always green-tinted, hover-only</h3>
+      <div class="sh-grid">
+        <div class="sh-cell sh1"><div class="nm">soft</div><div class="v">0 2 8 / black .04</div></div>
+        <div class="sh-cell sh2"><div class="nm">card-rise</div><div class="v">0 12 40 / forest .06</div></div>
+        <div class="sh-cell sh3"><div class="nm">card-hover</div><div class="v">0 20 60 / forest .08</div></div>
+        <div class="sh-cell sh4"><div class="nm">img-hover</div><div class="v">0 12 32 / forest .10</div></div>
+      </div>
+
+      <h3 class="sub-h" id="motion">Motion</h3>
+      <div class="rule-list">
+        <div class="rule"><div class="n">→</div><div class="t"><b>Default ease</b><p>ease-out · cubic-bezier(.2,.7,.2,1). No bounces, no springs, no overshoot.</p></div></div>
+        <div class="rule"><div class="n">↓</div><div class="t"><b>Standard durations</b><p>0.3s for hovers · 0.4s for image scale · 0.8s for entry / fadeUp.</p></div></div>
+        <div class="rule"><div class="n">⇡</div><div class="t"><b>Card lift on hover</b><p>translateY(-4px) + green-tinted shadow. Image scale to 1.05 on hover.</p></div></div>
+        <div class="rule"><div class="n">∿</div><div class="t"><b>Stagger entries</b><p>0.05s × index between sibling cards via IntersectionObserver.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TEXTURE
+         ============================================================ -->
+    <section class="docs-section dark" id="texture">
+      <div class="sec-head">
+        <span class="sec-eyebrow">06 · Foundations</span>
+        <h2 class="sec-title">Grain — applied to <em>every dark section</em>.</h2>
+        <p class="sec-lead">An inline SVG turbulence noise overlay at 30% opacity, mix-blend-mode overlay. Sits on top of forest, sea and deep-sea surfaces — the section you're reading right now uses it. This is essential to the brand's papery, "tactile retreat" feel. Don't ship a dark section without it.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+        <div style="background: #fff; color: var(--ink); border-radius: 14px; padding: 28px 32px;">
+          <h3 class="sub-h" style="color: var(--green-5); margin-top: 0;">CSS recipe</h3>
+<pre class="code"><span class="k">.grain</span> { <span class="k">position</span>: <span class="v">relative</span>; }
+<span class="k">.grain</span>::after {
+  <span class="k">content</span>: <span class="v">''</span>;
+  <span class="k">position</span>: <span class="v">absolute</span>; <span class="k">inset</span>: <span class="v">0</span>;
+  <span class="k">pointer-events</span>: <span class="v">none</span>;
+  <span class="k">z-index</span>: <span class="v">3</span>;
+  <span class="k">background-image</span>: <span class="v">url(&quot;data:image/svg+xml,…feTurbulence…&quot;)</span>;
+  <span class="k">background-size</span>: <span class="v">180px 180px</span>;
+  <span class="k">opacity</span>: <span class="v">0.3</span>;
+  <span class="k">mix-blend-mode</span>: <span class="v">overlay</span>;
+}</pre>
+        </div>
+        <div style="background: var(--deep-sea); border-radius: 14px; padding: 60px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+          <div style="position: absolute; inset: 0; background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;); background-size: 180px 180px; opacity: 0.4; mix-blend-mode: overlay;"></div>
+          <div style="position: relative; font-family: var(--font-display); font-size: 1.5rem; color: #fff; font-style: italic; text-align: center;">Sustainability in the field.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CHUNKY ICONS
+         ============================================================ -->
+    <section class="docs-section" id="chunky">
+      <div class="sec-head">
+        <span class="sec-eyebrow">07 · Iconography</span>
+        <h2 class="sec-title">Chunky Icons — the <em>seven theme glyphs</em>.</h2>
+        <p class="sec-lead">A hand-rendered set of seven PNG glyphs. One per strategic theme. Always raster — never recreate as flat SVG, the slight roughness is the point. Used three ways: a 44px slot in card corners, a 130px low-opacity watermark behind copy, and full-size icons on slides and social art.</p>
+      </div>
+
+      <div class="icons-strip">
+        <div class="ic"><img src="assets/icon-circle.png" alt=""><div class="nm">Circle</div><div class="meaning">Circular Economy</div></div>
+        <div class="ic"><img src="assets/icon-semi-circles.png" alt=""><div class="nm">Semi Circles</div><div class="meaning">Collaborative Progress</div></div>
+        <div class="ic"><img src="assets/icon-x.png" alt=""><div class="nm">X</div><div class="meaning">Climate Mitigation</div></div>
+        <div class="ic"><img src="assets/icon-lines.png" alt=""><div class="nm">Lines</div><div class="meaning">Regenerative Action</div></div>
+        <div class="ic"><img src="assets/icon-triangle.png" alt=""><div class="nm">Triangle</div><div class="meaning">Futures Thinking</div></div>
+        <div class="ic"><img src="assets/icon-squiggle.png" alt=""><div class="nm">Squiggle</div><div class="meaning">Visitor Flows</div></div>
+        <div class="ic"><img src="assets/icon-square.png" alt=""><div class="nm">Square</div><div class="meaning">Value &amp; Impact</div></div>
+      </div>
+      <p style="font-size: 0.86rem; color: var(--slate); margin: 18px 0 0; max-width: 64ch;">Drawn from a Figma library exported as <code style="font-family: var(--font-mono); color: var(--green-5);">Chunky Icons=&lt;Shape&gt;</code>. Don't tint them — the PNGs ship with their native palette.</p>
+
+      <h3 class="sub-h" id="stroke">Stroke icons — for UI metaphors</h3>
+      <p style="font-size: 0.95rem; color: var(--slate); margin: 0 0 18px; max-width: 64ch;">Lucide (Feather-family) stroke icons at 24×24, stroke-width 2, no fill. Inside a 48×48 mist-coloured circle. Used for proposition-list metaphors only — lightbulbs, gears, users, documents. Never mixed with chunky icons in the same composition.</p>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px;">
+        <div class="ico-tile"><svg viewBox="0 0 24 24" width="36" height="36" stroke="#1E5D00" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="10" y1="22" x2="14" y2="22"/></svg><div class="nm">lightbulb</div></div>
+        <div class="ico-tile"><svg viewBox="0 0 24 24" width="36" height="36" stroke="#1E5D00" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="nm">users</div></div>
+        <div class="ico-tile"><svg viewBox="0 0 24 24" width="36" height="36" stroke="#1E5D00" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg><div class="nm">file-text</div></div>
+        <div class="ico-tile"><svg viewBox="0 0 24 24" width="36" height="36" stroke="#1E5D00" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 .5 4 3 6 3s6-2.5 6-3v-5"/></svg><div class="nm">graduation</div></div>
+        <div class="ico-tile"><svg viewBox="0 0 24 24" width="36" height="36" stroke="#1E5D00" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div class="nm">calendar</div></div>
+        <div class="ico-tile"><svg viewBox="0 0 24 24" width="36" height="36" stroke="#1E5D00" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="nm">map-pin</div></div>
+        <div class="ico-tile"><svg viewBox="0 0 24 24" width="36" height="36" stroke="#1E5D00" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="nm">clock</div></div>
+        <div class="ico-tile"><svg viewBox="0 0 24 24" width="36" height="36" stroke="#1E5D00" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg><div class="nm">arrow-right</div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BUTTONS
+         ============================================================ -->
+    <section class="docs-section alt" id="buttons">
+      <div class="sec-head">
+        <span class="sec-eyebrow">08 · Components</span>
+        <h2 class="sec-title">Buttons.</h2>
+        <p class="sec-lead">Three button styles, mapped to three contexts. Primary forest button on light surfaces, white "light" button on photography/dark, and a pill-style nav CTA in nav bars over hero photography.</p>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo">
+          <div class="stage cream"><button class="btn-primary">Pre-register your place</button></div>
+          <div class="caption"><b>Primary</b><span>--forest → --deep-green on hover</span></div>
+        </div>
+        <div class="demo">
+          <div class="stage dark"><button class="btn-light">Discover Membership</button></div>
+          <div class="caption"><b>Light</b><span>white → mist on hover</span></div>
+        </div>
+        <div class="demo">
+          <div class="stage dark"><button class="btn-pill">Pre-register</button></div>
+          <div class="caption"><b>Pill / nav CTA</b><span>border → fill inverse on hover</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         LABELS & BADGES
+         ============================================================ -->
+    <section class="docs-section" id="labels">
+      <div class="sec-head">
+        <span class="sec-eyebrow">09 · Components</span>
+        <h2 class="sec-title">Labels, eyebrows &amp; <em>pill badges</em>.</h2>
+        <p class="sec-lead">Small typographic moves that earn their place. Eyebrows track 0.2em above titles. Meta labels mark dates and days. Pill badges live on top of photography. Theme tags live in card corners.</p>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo">
+          <div class="stage cream"><span class="lbl-eyebrow">Five days, seven themes</span></div>
+          <div class="caption"><b>Eyebrow</b><span>0.75rem · 0.2em · uppercase · green-5</span></div>
+        </div>
+        <div class="demo">
+          <div class="stage cream"><span class="lbl-meta">Day 1 · 30 September</span></div>
+          <div class="caption"><b>Meta</b><span>0.68rem · 0.15em · uppercase · green-5</span></div>
+        </div>
+        <div class="demo">
+          <div class="stage" style="background: linear-gradient(180deg, rgba(30,93,0,0.7) 0%, rgba(30,93,0,0.5) 100%), url('assets/venue-ruissalo.webp') center/cover; color:#fff;"><span class="venue-label-demo">Day 1 &amp; 2 Seminars</span></div>
+          <div class="caption"><b>Venue label</b><span>backdrop-blur pill on photo</span></div>
+        </div>
+        <div class="demo">
+          <div class="stage dark"><span class="badge-demo">Best Value</span></div>
+          <div class="caption"><b>Featured badge</b><span>sage on forest, ticket cards</span></div>
+        </div>
+        <div class="demo">
+          <div class="stage tint"><span class="exp-theme-demo">Circular Economy</span></div>
+          <div class="caption"><b>Theme tag</b><span>mint pill on experience cards</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CARDS
+         ============================================================ -->
+    <section class="docs-section alt" id="cards">
+      <div class="sec-head">
+        <span class="sec-eyebrow">10 · Components</span>
+        <h2 class="sec-title">Cards.</h2>
+        <p class="sec-lead">The workhorses. Venue cards (photo + capsule label + warm body). Theme cards (chunky icon corner + watermark + question). Experience cards (3:4 photo + gradient mask + theme tag). Proposition list rows (stroke icon in mist circle + heading + supporting line).</p>
+      </div>
+
+      <h3 class="sub-h">Venue card</h3>
+      <div class="ex-venue">
+        <div class="img">
+          <img src="assets/venue-ruissalo.webp" alt="">
+          <span class="venue-label-demo lbl-pill" style="position: absolute; bottom:1rem; left:1rem;">Day 1 &amp; 2 Seminars</span>
+        </div>
+        <div class="body">
+          <h3>Ruissalo Boatyard</h3>
+          <p>Founded in 1889 and once the largest boatyard in the Nordic countries, with beautifully preserved wooden halls, nestled on Ruissalo Island — home to Finland's oldest oak forests.</p>
+        </div>
+      </div>
+
+      <h3 class="sub-h">Theme card</h3>
+      <div class="ex-theme-card">
+        <div class="bg"><img src="assets/icon-circle.png" alt=""></div>
+        <div class="ico"><img src="assets/icon-circle.png" alt=""></div>
+        <div class="day">Day 1</div>
+        <h3>Circular Economy</h3>
+        <p class="q">How can we lay the groundwork for process change in tourism supply chains, whilst creating incentives and conditions to drive consumer demand?</p>
+      </div>
+
+      <h3 class="sub-h">Experience card</h3>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <div class="ex-exp">
+          <img src="assets/exp-sauna.jpg" alt="">
+          <div class="body">
+            <span class="tag">Regenerative</span>
+            <h4>Sauna Culture &amp; Wellbeing</h4>
+          </div>
+        </div>
+        <div class="ex-exp">
+          <img src="assets/exp-mushroom.jpg" alt="">
+          <div class="body">
+            <span class="tag">Circular</span>
+            <h4>Forest Foraging</h4>
+          </div>
+        </div>
+        <div class="ex-exp">
+          <img src="assets/exp-food.jpeg" alt="">
+          <div class="body">
+            <span class="tag">Circular</span>
+            <h4>Local Food Systems</h4>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-h">Proposition list</h3>
+      <ul class="prop-demo" style="max-width: 540px;">
+        <li>
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="10" y1="22" x2="14" y2="22"/></svg></div>
+          <div><h5>Experiential Learning</h5><p>Strategy sessions embedded in the landscape, not lecture halls.</p></div>
+        </li>
+        <li>
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div><h5>Peer-to-Peer Exchange</h5><p>Learn alongside fellow DMO professionals facing the same challenges.</p></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         TICKETS
+         ============================================================ -->
+    <section class="docs-section" id="tickets">
+      <div class="sec-head">
+        <span class="sec-eyebrow">11 · Components</span>
+        <h2 class="sec-title">Ticket cards.</h2>
+        <p class="sec-lead">The single place a 2px border appears in the system — the featured ticket gets a moss-green stroke. Standard ticket sits on white; featured swaps to forest with sage accents. Both use ✓ glyphs for include-bullets.</p>
+      </div>
+
+      <div style="display:flex; gap: 24px; flex-wrap: wrap;">
+        <div class="ticket-demo">
+          <div class="name">CAMPUS Pass</div>
+          <div class="price">£995 · €1,200</div>
+          <div class="note">Per delegate, excl. VAT</div>
+          <ul>
+            <li>Day 0 Welcome Evening</li>
+            <li>Day 1 – 4 full programme</li>
+            <li>All meals and transfers</li>
+            <li>Turku Manifesto + Playbook</li>
+          </ul>
+          <a class="btn">Pre-register</a>
+        </div>
+        <div class="ticket-demo featured" style="padding-top: 32px;">
+          <span class="badge">Best Value</span>
+          <div class="name">DTTT Membership</div>
+          <div class="price">from €1,450/yr</div>
+          <div class="note">Per organisation</div>
+          <ul>
+            <li>2 tickets to CAMPUS 2026</li>
+            <li>Full year-round benefits</li>
+            <li>All published research</li>
+            <li>Member-only briefings</li>
+          </ul>
+          <a class="btn">Discover Membership</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         JOURNEY GRID
+         ============================================================ -->
+    <section class="docs-section dark" id="journey">
+      <div class="sec-head">
+        <span class="sec-eyebrow">12 · Components</span>
+        <h2 class="sec-title">Journey grid — <em>internal borders, not gaps</em>.</h2>
+        <p class="sec-lead">On dark sections, day-cards and outcome-cards stitch together with 1px white-15% internal borders. No gap, no card-shadow at rest. Numerals are Playfair italic in sage at 0.75 opacity. Used for the five-day programme and the three outcomes grid.</p>
+      </div>
+
+      <div class="ex-day-grid">
+        <div class="ex-day"><div class="n">Day 0</div><div class="d">29 September</div><div class="t">Welcome &amp; Connect</div><div class="v">Forum Marinum</div></div>
+        <div class="ex-day"><div class="n">Day 1</div><div class="d">30 September</div><div class="t">Understanding Pressures</div><div class="v">Ruissalo Boatyard</div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         UI KITS
+         ============================================================ -->
+    <section class="docs-section alt" id="kits">
+      <div class="sec-head">
+        <span class="sec-eyebrow">13 · Surfaces</span>
+        <h2 class="sec-title">UI kits — the system, <em>in production</em>.</h2>
+        <p class="sec-lead">Six surfaces. Marketing website (the public CAMPUS 2026 page), member dashboard (the year-round DTTT portal), event companion app (the on-site mobile), email templates, slide template (16:9 keynote deck), and social UI kit (1080×1350 posts + 1080×1920 stories).</p>
+      </div>
+
+      <div class="kits-grid">
+        <a class="kit-card" href="ui_kits/marketing-website/index.html">
+          <div class="kit-thumb"><iframe src="ui_kits/marketing-website/index.html" loading="lazy"></iframe></div>
+          <div class="kit-body">
+            <div class="role-line">Marketing</div>
+            <h4>Event landing page</h4>
+            <p>The public CAMPUS 2026 site — nav, hero, themes, venues, experiences, outcomes, tickets, footer.</p>
+          </div>
+        </a>
+        <a class="kit-card" href="ui_kits/web-app/index.html">
+          <div class="kit-thumb"><iframe src="ui_kits/web-app/index.html" loading="lazy"></iframe></div>
+          <div class="kit-body">
+            <div class="role-line">Product</div>
+            <h4>Member dashboard</h4>
+            <p>DTTT member portal — countdown, theme progress rings, library, cohort directory.</p>
+          </div>
+        </a>
+        <a class="kit-card" href="ui_kits/mobile-app/index.html">
+          <div class="kit-thumb"><iframe src="ui_kits/mobile-app/index.html" loading="lazy"></iframe></div>
+          <div class="kit-body">
+            <div class="role-line">Product</div>
+            <h4>Event companion app</h4>
+            <p>Today · Programme · Map · Notes screens for delegates on-site.</p>
+          </div>
+        </a>
+        <a class="kit-card" href="ui_kits/email/index.html">
+          <div class="kit-thumb"><iframe src="ui_kits/email/index.html" loading="lazy"></iframe></div>
+          <div class="kit-body">
+            <div class="role-line">Communications</div>
+            <h4>Email templates</h4>
+            <p>Booking confirmation · pre-read weekly · Day 0 arrival.</p>
+          </div>
+        </a>
+        <a class="kit-card" href="slides/index.html">
+          <div class="kit-thumb"><iframe src="slides/index.html" loading="lazy"></iframe></div>
+          <div class="kit-body">
+            <div class="role-line">Presentation</div>
+            <h4>Slide template</h4>
+            <p>8 layouts: title, intro, agenda, theme, quote, photo, outcomes, closing.</p>
+          </div>
+        </a>
+        <a class="kit-card" href="ui_kits/social/index.html">
+          <div class="kit-thumb"><iframe src="ui_kits/social/index.html" loading="lazy"></iframe></div>
+          <div class="kit-body">
+            <div class="role-line">Social</div>
+            <h4>Social UI kit</h4>
+            <p>4 posts (1080×1350) and 4 stories (1080×1920) — theme, speaker, quote, save-the-date, diptych.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TOKEN CATALOGUE
+         ============================================================ -->
+    <section class="docs-section" id="tokens">
+      <div class="sec-head">
+        <span class="sec-eyebrow">14 · Reference</span>
+        <h2 class="sec-title">Token catalogue.</h2>
+        <p class="sec-lead">The full set of CSS custom properties exposed by <code style="font-family: var(--font-mono); color: var(--green-5);">colors_and_type.css</code>. Lift them into Tailwind, lift them into your component library, lift them into Figma variables.</p>
+      </div>
+
+      <div class="toks-cols">
+        <div>
+          <h3 class="sub-h">Color tokens</h3>
+          <table class="toks">
+            <thead><tr><th>Token</th><th>Value</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td class="tok">--forest</td><td class="v">#1E5D00</td><td class="desc">Primary green</td></tr>
+              <tr><td class="tok">--deep-green</td><td class="v">#4D7D00</td><td class="desc">Hover state</td></tr>
+              <tr><td class="tok">--moss</td><td class="v">#4E9B01</td><td class="desc">Featured stroke</td></tr>
+              <tr><td class="tok">--sage</td><td class="v">#79A400</td><td class="desc">Accent on dark</td></tr>
+              <tr><td class="tok">--green-5</td><td class="v">#008344</td><td class="desc">Eyebrow / label</td></tr>
+              <tr><td class="tok">--sea</td><td class="v">#008172</td><td class="desc">Hero gradient</td></tr>
+              <tr><td class="tok">--deep-sea</td><td class="v">#005F65</td><td class="desc">Hero gradient end</td></tr>
+              <tr><td class="tok">--cream</td><td class="v">#F7F3EC</td><td class="desc">bg-page</td></tr>
+              <tr><td class="tok">--sand</td><td class="v">#F5F0E8</td><td class="desc">bg-page-warm</td></tr>
+              <tr><td class="tok">--mist</td><td class="v">#E2EEDA</td><td class="desc">card tint</td></tr>
+              <tr><td class="tok">--slate</td><td class="v">#4A5568</td><td class="desc">fg-2</td></tr>
+              <tr><td class="tok">--ink</td><td class="v">#1A1A1A</td><td class="desc">fg-1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3 class="sub-h">Type tokens</h3>
+          <table class="toks">
+            <thead><tr><th>Token</th><th>Value</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td class="tok">--font-display</td><td class="v">Playfair Display</td><td class="desc">Headings</td></tr>
+              <tr><td class="tok">--font-body</td><td class="v">Effra</td><td class="desc">Body / UI</td></tr>
+              <tr><td class="tok">--font-mono</td><td class="v">SF Mono / Menlo</td><td class="desc">Code, meta</td></tr>
+              <tr><td class="tok">--fs-hero</td><td class="v">clamp(3, 6vw, 5.5rem)</td><td class="desc">Hero</td></tr>
+              <tr><td class="tok">--fs-h1</td><td class="v">clamp(2, 4vw, 3.2rem)</td><td class="desc">Section title</td></tr>
+              <tr><td class="tok">--fs-lead</td><td class="v">1.05rem</td><td class="desc">Lead paragraph</td></tr>
+              <tr><td class="tok">--fs-body</td><td class="v">1rem</td><td class="desc">Body</td></tr>
+              <tr><td class="tok">--fs-eyebrow</td><td class="v">0.75rem</td><td class="desc">Eyebrows</td></tr>
+              <tr><td class="tok">--tracking-eyebrow</td><td class="v">0.2em</td><td class="desc">Eyebrows</td></tr>
+              <tr><td class="tok">--tracking-meta</td><td class="v">0.15em</td><td class="desc">Meta</td></tr>
+              <tr><td class="tok">--lh-tight</td><td class="v">1.2</td><td class="desc">Headings</td></tr>
+              <tr><td class="tok">--lh-body</td><td class="v">1.7</td><td class="desc">Body</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3 class="sub-h">Radius &amp; surface</h3>
+          <table class="toks">
+            <thead><tr><th>Token</th><th>Value</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td class="tok">--radius-xs</td><td class="v">0.3rem</td><td class="desc">Badges</td></tr>
+              <tr><td class="tok">--radius-sm</td><td class="v">0.5rem</td><td class="desc">Buttons</td></tr>
+              <tr><td class="tok">--radius-md</td><td class="v">0.8rem</td><td class="desc">Theme cards</td></tr>
+              <tr><td class="tok">--radius-lg</td><td class="v">1rem</td><td class="desc">Venue, ticket</td></tr>
+              <tr><td class="tok">--radius-pill</td><td class="v">999px</td><td class="desc">Nav CTA</td></tr>
+              <tr><td class="tok">--border-soft</td><td class="v">rgba(30,93,0,0.10)</td><td class="desc">Dividers on light</td></tr>
+              <tr><td class="tok">--border-on-dark</td><td class="v">rgba(255,255,255,0.15)</td><td class="desc">Grid borders</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3 class="sub-h">Motion &amp; shadow</h3>
+          <table class="toks">
+            <thead><tr><th>Token</th><th>Value</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr><td class="tok">--ease-out</td><td class="v">cubic-bezier(.2,.7,.2,1)</td><td class="desc">Default ease</td></tr>
+              <tr><td class="tok">--t-fast</td><td class="v">0.3s</td><td class="desc">Hovers</td></tr>
+              <tr><td class="tok">--t-mid</td><td class="v">0.4s</td><td class="desc">Images</td></tr>
+              <tr><td class="tok">--t-slow</td><td class="v">0.8s</td><td class="desc">Entry</td></tr>
+              <tr><td class="tok">--shadow-soft</td><td class="v">0 2 8 / black .04</td><td class="desc">Hairline rise</td></tr>
+              <tr><td class="tok">--shadow-card-rise</td><td class="v">0 12 40 / forest .06</td><td class="desc">Card hover-light</td></tr>
+              <tr><td class="tok">--shadow-card-hover</td><td class="v">0 20 60 / forest .08</td><td class="desc">Card hover</td></tr>
+              <tr><td class="tok">--shadow-img-hover</td><td class="v">0 12 32 / forest .10</td><td class="desc">Image card hover</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DOWNLOADS
+         ============================================================ -->
+    <section class="docs-section dark" id="download">
+      <div class="sec-head">
+        <span class="sec-eyebrow">15 · Reference</span>
+        <h2 class="sec-title">Downloads &amp; <em>handoff</em>.</h2>
+        <p class="sec-lead">Everything in one place. Drop the stylesheet into a codebase, the font files into a project, or this whole document into a wiki. The system is built to travel.</p>
+      </div>
+
+      <div class="rule-list">
+        <div class="rule" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff;">
+          <div class="n" style="color: var(--sage);">01</div>
+          <div class="t" style="color: #fff;">
+            <b style="color: #fff;">colors_and_type.css</b>
+            <p style="color: rgba(255,255,255,0.7);">All tokens + @font-face for both families. Drop into any project; reference via <code style="color: var(--sage); font-family: var(--font-mono);">&lt;link rel="stylesheet"&gt;</code>.</p>
+          </div>
+        </div>
+        <div class="rule" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+          <div class="n" style="color: var(--sage);">02</div>
+          <div class="t" style="color: #fff;">
+            <b style="color: #fff;">/fonts</b>
+            <p style="color: rgba(255,255,255,0.7);">Effra (9 weights + italics) and Playfair Display (6 weights + italics). Self-host these — Effra is licensed.</p>
+          </div>
+        </div>
+        <div class="rule" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+          <div class="n" style="color: var(--sage);">03</div>
+          <div class="t" style="color: #fff;">
+            <b style="color: #fff;">/assets</b>
+            <p style="color: rgba(255,255,255,0.7);">Logos (white + colour CAMPUS · light + dark Turku), 7 chunky icons, venue + experience photography, archipelago map.</p>
+          </div>
+        </div>
+        <div class="rule" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+          <div class="n" style="color: var(--sage);">04</div>
+          <div class="t" style="color: #fff;">
+            <b style="color: #fff;">/ui_kits + /slides</b>
+            <p style="color: rgba(255,255,255,0.7);">Working HTML for all six surfaces. Clone, fork, or copy the markup directly into production.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-bar" style="margin-top: 28px;">
+        <a href="colors_and_type.css" download>↓ Download stylesheet</a>
+        <a class="ghost" href="README.md" download>↓ Download README.md</a>
+        <a class="ghost" href="SKILL.md" download>↓ Download SKILL.md</a>
+      </div>
+
+      <p style="margin: 40px 0 0; font-size: 0.86rem; color: rgba(255,255,255,0.6); max-width: 64ch;">
+        For a single self-contained file you can publish on a static site, ask Claude to bundle this page (and its referenced assets, fonts and styles) into a standalone HTML using the inline-html tooling. The output works offline and from any URL.
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // Highlight the active sidebar link as you scroll.
+  const links = document.querySelectorAll('.docs-sb a[href^="#"]');
+  const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+  function onScroll() {
+    const y = window.scrollY + 120;
+    let active = sections[0];
+    for (const s of sections) {
+      if (s.offsetTop <= y) active = s;
+    }
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + active.id));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Smooth scroll for anchor links
+  links.forEach(a => a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (!t) return;
+    e.preventDefault();
+    window.scrollTo({ top: t.offsetTop - 8, behavior: 'smooth' });
+  }));
+</script>
+
+</body>
+</html>

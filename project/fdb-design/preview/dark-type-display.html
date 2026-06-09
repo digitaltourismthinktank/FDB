@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Type · Display · Dark" -->
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .card { padding: 30px 36px 32px; }
+  .top { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.10); padding-bottom: 14px; margin-bottom: 22px; }
+  .family { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: var(--fdb-dark-fg); }
+  .family .meta { font-weight: 500; color: var(--fdb-dark-fg-muted); margin-left: 10px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .role { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-dark-fg-muted); }
+  .specimen { font-size: 96px; font-weight: 800; line-height: 1; letter-spacing: -0.04em; color: var(--fdb-dark-fg); margin-bottom: 22px; }
+  .specimen .accent { color: var(--fdb-dark-accent); }
+  .sample { font-size: 44px; font-weight: 800; line-height: 1.0; letter-spacing: -0.03em; color: var(--fdb-dark-fg); margin-bottom: 14px; }
+  .sample .accent { color: var(--fdb-dark-accent); }
+  .footer { display: flex; align-items: baseline; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.10); }
+  .ladder { display: flex; gap: 18px; align-items: baseline; }
+  .ladder span { color: var(--fdb-dark-fg-muted); font-size: 13px; letter-spacing: -0.005em; font-variant-numeric: tabular-nums; }
+  .ladder span.w1{font-weight:100}.ladder span.w2{font-weight:200}.ladder span.w3{font-weight:300}.ladder span.w4{font-weight:400}.ladder span.w5{font-weight:500}.ladder span.w6{font-weight:600}.ladder span.w7{font-weight:700}.ladder span.w8{font-weight:800}.ladder span.w9{font-weight:900}
+  .ladder span.active { color: var(--fdb-dark-accent); }
+  .spec { font-size: 10px; font-family: var(--fdb-font-mono); color: var(--fdb-dark-fg-muted); letter-spacing: 0.02em; }
+</style></head>
+<body class="fdb-dark">
+<div class="card">
+  <div class="top">
+    <div class="family">Geist <span class="meta">100 – 900</span></div>
+    <div class="role">Display · on dark</div>
+  </div>
+  <div class="specimen">Aa<span class="accent">Bb.</span></div>
+  <div class="sample">Leadership<br/>in the Age of <span class="accent">AI.</span></div>
+  <div class="footer">
+    <div class="ladder">
+      <span class="w1">100</span><span class="w2">200</span><span class="w3">300</span><span class="w4">400</span><span class="w5">500</span><span class="w6">600</span><span class="w7">700</span><span class="w8 active">800</span><span class="w9">900</span>
+    </div>
+    <div class="spec">96 / 1.0 · −0.04em · ExtraBold</div>
+  </div>
+</div>
+</body></html>

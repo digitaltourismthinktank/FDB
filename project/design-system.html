@@ -1,0 +1,3141 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Full design system showcase" subtitle="Complete documentation: voice, brand, foundations, iconography, components, surfaces, tokens" viewport="1280x1200" -->
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDB Design System · v1.0</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..700,0..1,-50..200">
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#F5F0E9"/>
+    <rect x="48" y="48" width="80" height="80" rx="8" fill="none" stroke="#8239C1" stroke-width="5"/>
+    <rect x="68" y="68" width="80" height="80" rx="8" fill="none" stroke="#9B6FE0" stroke-width="5"/>
+    <rect x="88" y="88" width="80" height="80" rx="8" fill="none" stroke="#C9AAEE" stroke-width="5"/>
+  </svg>
+</template>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--fdb-cream);
+    color: var(--fdb-ink);
+    font-family: var(--fdb-font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    line-height: 1.6;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  img { display: block; }
+  a { color: inherit; }
+
+  /* ── APP SHELL ─────────────────────────────────────────────────────────── */
+  .app {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-areas:
+      "banner banner"
+      "side   main";
+    min-height: 100vh;
+  }
+
+  /* ── INDEX BANNER ──────────────────────────────────────────────────────── */
+  .banner {
+    grid-area: banner;
+    background: var(--fdb-cream);
+    border-bottom: 1px solid var(--fdb-border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 92px;
+    position: sticky; top: 0; z-index: 50;
+  }
+  .banner-left { display: flex; align-items: center; gap: 18px; }
+  .banner-left img { height: 38px; width: auto; }
+  /* Generic light/dark image swap — applies anywhere on the page,
+     not just the banner. Imgs marked .light-mode show in cream mode;
+     imgs marked .dark-mode show in ink mode. */
+  body.fdb-dark img.light-mode { display: none; }
+  body:not(.fdb-dark) img.dark-mode { display: none; }
+  .banner-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--fdb-ink-muted);
+    border-left: 1px solid var(--fdb-border-strong);
+    padding-left: 16px; margin-left: 4px;
+  }
+  .banner-right {
+    display: flex; align-items: center; gap: 18px;
+    font-size: 11px; color: var(--fdb-ink-muted);
+    letter-spacing: 0.04em;
+  }
+  .banner-right .pill {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--fdb-purple);
+    border: 1px solid var(--fdb-purple-soft); background: var(--fdb-purple-tint);
+    padding: 5px 11px; border-radius: 2px;
+  }
+  .theme-toggle {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    border: 1px solid var(--fdb-border-strong);
+    color: var(--fdb-ink);
+    font-family: var(--fdb-font-sans);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 14px; border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .theme-toggle:hover { border-color: var(--fdb-purple); color: var(--fdb-purple); }
+  .theme-toggle svg { width: 13px; height: 13px; }
+  body.fdb-dark .theme-toggle .l-label { display: none; }
+  body:not(.fdb-dark) .theme-toggle .d-label { display: none; }
+  body.fdb-dark .theme-toggle .l-icon { display: none; }
+  body:not(.fdb-dark) .theme-toggle .d-icon { display: none; }
+
+  /* ── SIDEBAR ──────────────────────────────────────────────────────────── */
+  aside.side {
+    grid-area: side;
+    background: var(--fdb-cream);
+    border-right: 1px solid var(--fdb-border);
+    padding: 32px 0 60px;
+    position: sticky; top: 92px;
+    height: calc(100vh - 92px);
+    overflow-y: auto;
+  }
+  .side-section { padding: 0 28px 22px; }
+  .side-section + .side-section {
+    padding-top: 22px;
+    border-top: 1px solid var(--fdb-border);
+  }
+  .side-section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fdb-ink-faint);
+    margin-bottom: 12px;
+  }
+  .side-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 12px 8px 12px; gap: 12px;
+    font-size: 13px; font-weight: 500; color: var(--fdb-ink-mid);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -12px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    cursor: pointer;
+  }
+  .side-link:hover { color: var(--fdb-purple); }
+  .side-link.active {
+    color: var(--fdb-purple);
+    font-weight: 700;
+    border-left-color: var(--fdb-purple);
+    background: var(--fdb-purple-tint);
+  }
+  .side-link .count {
+    font-size: 11px; color: var(--fdb-ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .side-foot {
+    margin-top: 24px;
+    padding: 22px 28px 0;
+    border-top: 1px solid var(--fdb-border);
+    font-size: 11px; color: var(--fdb-ink-muted); line-height: 1.55;
+  }
+  .side-foot a {
+    color: var(--fdb-purple); text-decoration: none;
+    border-bottom: 1px solid var(--fdb-purple-soft);
+  }
+  body.fdb-dark .side-foot .hostplate { background: #fff; border-radius: 3px; padding: 4px 7px; }
+
+  /* ── MAIN ─────────────────────────────────────────────────────────────── */
+  main.content {
+    grid-area: main;
+    padding: 56px clamp(40px, 5vw, 72px) 96px;
+    max-width: 1280px;
+  }
+
+  section.tab { display: none; }
+  section.tab.active { display: block; }
+
+  section.tab .head {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--fdb-border);
+  }
+  section.tab .head .num {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+    color: var(--fdb-purple); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  section.tab .head h1 {
+    font-size: clamp(2rem, 3.4vw, 2.8rem);
+    font-weight: 800; letter-spacing: -0.025em;
+    color: var(--fdb-ink); line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  section.tab .head h1 em {
+    font-style: italic; font-weight: 400; color: var(--fdb-purple);
+  }
+  section.tab .head p.lead {
+    font-size: 16px; line-height: 1.7;
+    color: var(--fdb-ink-mid); max-width: 62ch;
+  }
+
+  .sub-h {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fdb-purple);
+    margin: 48px 0 18px;
+  }
+  .sub-h.muted { color: var(--fdb-ink-faint); }
+
+  /* ── GENERIC CARD ─────────────────────────────────────────────────────── */
+  .card {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--fdb-border-strong);
+    border-radius: 4px;
+    padding: 22px 24px;
+  }
+  body.fdb-dark .card {
+    background: var(--fdb-dark-bg-elev);
+  }
+
+  /* ── COLOUR SWATCH GRID ───────────────────────────────────────────────── */
+  .swatch-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+  }
+  .swatch {
+    border-radius: 4px; overflow: hidden;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--fdb-border);
+  }
+  body.fdb-dark .swatch { background: var(--fdb-dark-bg-elev); }
+  .swatch .chip { height: 92px; }
+  .swatch .meta { padding: 12px 14px 14px; }
+  .swatch .name { font-weight: 700; color: var(--fdb-ink); font-size: 13px; }
+  .swatch .tok { font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-ink-muted); margin-top: 3px; letter-spacing: 0.02em; }
+  .swatch .hex { font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-purple); margin-top: 4px; font-weight: 600; }
+
+  .role-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .role {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--fdb-border);
+    border-radius: 4px;
+    padding: 12px 14px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  body.fdb-dark .role { background: var(--fdb-dark-bg-elev); }
+  .role .dot { width: 32px; height: 32px; border-radius: 4px; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
+  .role .info { line-height: 1.3; }
+  .role .info b { font-size: 13px; color: var(--fdb-ink); font-weight: 700; display: block; }
+  .role .info .tok { font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-ink-muted); }
+
+  /* ── TYPE SPECIMENS ───────────────────────────────────────────────────── */
+  .type-row {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 24px; padding: 14px 0;
+    border-bottom: 1px solid var(--fdb-border); align-items: baseline;
+  }
+  .type-row .lbl {
+    font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-ink-muted);
+  }
+
+  .weight-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .weight-cell {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--fdb-border);
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  body.fdb-dark .weight-cell { background: var(--fdb-dark-bg-elev); }
+  .weight-cell .lbl {
+    font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-purple);
+    font-weight: 600; letter-spacing: 0.06em; margin-bottom: 8px;
+  }
+  .weight-cell .sample { font-size: 18px; line-height: 1.3; color: var(--fdb-ink); }
+
+  /* ── SPACING / RADII / NO-SHADOW ─────────────────────────────────────── */
+  .space-row { display: flex; flex-direction: column; gap: 8px; }
+  .space-row .bar {
+    background: var(--fdb-purple-tint);
+    color: var(--fdb-purple-deep);
+    height: 26px; border-radius: 2px;
+    display: flex; align-items: center; padding: 0 12px;
+    font-family: var(--fdb-font-mono); font-size: 11px; font-weight: 600;
+  }
+  body.fdb-dark .space-row .bar { background: var(--fdb-dark-accent-tint); color: var(--fdb-dark-accent); }
+
+  .radii { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .radii .r { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .radii .r .box { width: 72px; height: 72px; background: var(--fdb-purple); }
+  .radii .r .nm { font-size: 12px; font-weight: 700; color: var(--fdb-ink); }
+  .radii .r .v  { font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-ink-muted); }
+
+  /* ── VOICE CARDS ───────────────────────────────────────────────────────── */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .voice-card {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--fdb-border);
+    border-radius: 4px;
+    padding: 22px 24px;
+  }
+  body.fdb-dark .voice-card { background: var(--fdb-dark-bg-elev); }
+  .voice-card.good { border-left: 3px solid var(--fdb-purple); }
+  .voice-card.bad  { border-left: 3px solid var(--fdb-ink-faint); }
+  .voice-card h4 {
+    margin: 0 0 14px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fdb-purple);
+  }
+  .voice-card.bad h4 { color: var(--fdb-ink-faint); }
+  .voice-card ul { margin: 0; padding-left: 0; list-style: none; }
+  .voice-card li {
+    font-size: 15px; line-height: 1.55;
+    color: var(--fdb-ink); margin-bottom: 10px;
+    padding-left: 18px; position: relative;
+  }
+  .voice-card.good li::before {
+    content: '·'; position: absolute; left: 4px; top: -2px;
+    color: var(--fdb-purple); font-weight: 700; font-size: 22px;
+  }
+  .voice-card.bad li {
+    color: var(--fdb-ink-muted);
+  }
+  .voice-card.bad li::before {
+    content: '×'; position: absolute; left: 4px; top: 0;
+    color: var(--fdb-ink-faint); font-weight: 700;
+  }
+
+  /* ── RULES LIST ───────────────────────────────────────────────────────── */
+  .rule-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .rule {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--fdb-border);
+    border-radius: 4px;
+    padding: 14px 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  body.fdb-dark .rule { background: var(--fdb-dark-bg-elev); }
+  .rule .n {
+    font-size: 18px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--fdb-purple); flex-shrink: 0; line-height: 1.1; min-width: 30px;
+  }
+  .rule .t b { font-weight: 700; color: var(--fdb-ink); display: block; font-size: 14px; }
+  .rule .t p { margin: 4px 0 0; font-size: 13px; color: var(--fdb-ink-muted); line-height: 1.55; }
+
+  /* ── LOGO PANES ───────────────────────────────────────────────────────── */
+  .logo-set { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .logo-pane {
+    border-radius: 4px; padding: 32px 28px;
+    display: flex; flex-direction: column; gap: 24px;
+    border: 1px solid var(--fdb-border-strong);
+    min-height: 220px;
+    justify-content: space-between;
+  }
+  .logo-pane.cream { background: var(--fdb-cream); }
+  .logo-pane.ink   { background: #1A1A1A; border-color: rgba(255,255,255,0.18); }
+  .logo-pane .lockup-row { display: flex; align-items: center; gap: 18px; }
+  .logo-pane .lockup-row img { height: 56px; width: auto; }
+  .logo-pane .label {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
+  }
+  .logo-pane.cream .label { color: var(--fdb-purple); }
+  .logo-pane.ink .label   { color: var(--fdb-dark-accent); }
+  .logo-pane .meta {
+    font-size: 12px; line-height: 1.55;
+  }
+  .logo-pane.cream .meta { color: var(--fdb-ink-mid); }
+  .logo-pane.ink .meta   { color: var(--fdb-dark-fg-mid); }
+
+  /* ── COMPONENT STAGES ─────────────────────────────────────────────────── */
+  .stage-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .stage {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--fdb-border-strong);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  body.fdb-dark .stage { background: var(--fdb-dark-bg-elev); }
+  .stage .live {
+    padding: 32px 28px;
+    background: var(--fdb-cream);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 140px; flex: 1;
+    position: relative;
+  }
+  .stage .live.ink { background: #1A1A1A; }
+  .stage .live.tint { background: var(--fdb-purple-tint); }
+  body.fdb-dark .stage .live { background: var(--fdb-dark-bg); }
+  body.fdb-dark .stage .live.tint { background: var(--fdb-dark-accent-tint); }
+  .stage .cap {
+    padding: 12px 16px; border-top: 1px solid var(--fdb-border);
+    font-size: 12px; color: var(--fdb-ink-muted);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .stage .cap b { color: var(--fdb-ink); font-weight: 700; font-size: 13px; }
+
+  /* ── LIVE COMPONENTS ──────────────────────────────────────────────────── */
+  /* Buttons */
+  .btn-primary {
+    font-family: var(--fdb-font-sans);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--fdb-purple); color: #fff;
+    padding: 12px 22px; border: none; border-radius: 3px;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--fdb-purple-deep); }
+  body.fdb-dark .btn-primary { color: #1A1A1A; }
+
+  .btn-outline {
+    font-family: var(--fdb-font-sans);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: transparent; color: var(--fdb-purple);
+    border: 1px solid var(--fdb-purple);
+    padding: 11px 18px; border-radius: 3px;
+    cursor: pointer; transition: background 0.15s, color 0.15s;
+  }
+  .btn-outline:hover { background: var(--fdb-purple); color: #fff; }
+
+  .btn-ghost {
+    font-family: var(--fdb-font-sans);
+    font-size: 12px; font-weight: 600;
+    background: none; color: var(--fdb-ink-muted);
+    border: none; border-bottom: 1px solid var(--fdb-border-strong);
+    border-radius: 0; padding: 0 0 1px; cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .btn-ghost:hover { color: var(--fdb-purple); border-color: var(--fdb-purple); }
+
+  /* Tags / pills */
+  .tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--fdb-purple-tint); color: var(--fdb-purple-deep);
+    border-radius: 2px; padding: 4px 9px; margin: 2px;
+  }
+  .tag.outline { background: transparent; border: 1px solid var(--fdb-purple-soft); color: var(--fdb-purple); }
+  .tag.inverse { background: var(--fdb-ink); color: #fff; }
+  .pill {
+    display: inline-block;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--fdb-purple);
+    border: 1px solid var(--fdb-purple-soft);
+    background: var(--fdb-purple-tint);
+    padding: 5px 11px; border-radius: 2px; margin: 2px;
+  }
+  body.fdb-dark .tag.inverse { background: var(--fdb-dark-fg); color: var(--fdb-dark-bg); }
+
+  /* Callout — with offset frame echo */
+  .callout-wrap { position: relative; width: 100%; }
+  .callout-wrap .frame {
+    position: absolute; top: 10px; left: 10px; right: -10px; bottom: -10px;
+    border: 1px solid var(--fdb-purple-soft); border-radius: 4px;
+    opacity: 0.7; pointer-events: none;
+  }
+  .callout {
+    position: relative; z-index: 1;
+    background: var(--fdb-purple); border-radius: 4px;
+    padding: 18px 20px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px;
+    width: 100%;
+  }
+  body.fdb-dark .callout { background: var(--fdb-dark-accent-deep); }
+  .callout > div { color: rgba(255,255,255,0.92); }
+  .callout > div + div { padding-left: 22px; border-left: 1px solid rgba(255,255,255,0.18); }
+  .callout .lbl {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fdb-purple-soft); margin-bottom: 6px;
+  }
+  body.fdb-dark .callout .lbl { color: var(--fdb-dark-accent); }
+  .callout .txt { font-size: 12px; line-height: 1.5; }
+
+  /* Programme row */
+  .prog-row {
+    display: grid; grid-template-columns: 64px 1fr; gap: 22px;
+    padding: 14px 0;
+    border-top: 1px solid var(--fdb-border);
+    border-bottom: 1px solid var(--fdb-border);
+    align-items: start; width: 100%;
+  }
+  .prog-row .time {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--fdb-purple); padding-top: 2px;
+  }
+  .prog-row .title { font-size: 14px; font-weight: 700; color: var(--fdb-ink); margin-bottom: 4px; }
+  .prog-row .desc { font-size: 12px; line-height: 1.55; color: var(--fdb-ink-muted); margin-bottom: 8px; }
+  .prog-row .speaker {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600; color: var(--fdb-ink);
+  }
+  .prog-row .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--fdb-purple); }
+
+  /* Output items with stack-frame */
+  .output-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; }
+  .output-wrap { position: relative; }
+  .output-wrap .frame {
+    position: absolute; top: 10px; left: 10px; right: -10px; bottom: -10px;
+    border: 1px solid var(--fdb-purple-soft); border-radius: 4px;
+    opacity: 0.7; pointer-events: none;
+  }
+  .output {
+    position: relative; z-index: 1;
+    background: rgba(255,255,255,0.55);
+    border-top: 2px solid var(--fdb-purple);
+    padding: 16px 18px;
+  }
+  body.fdb-dark .output { background: var(--fdb-dark-bg-elev); }
+  .output .nm { font-size: 13px; font-weight: 700; color: var(--fdb-ink); margin-bottom: 6px; line-height: 1.3; }
+  .output .desc { font-size: 12px; line-height: 1.6; color: var(--fdb-ink-muted); }
+
+  /* Hero stage */
+  .hero-stage {
+    position: relative; overflow: hidden;
+    padding: 36px 36px 38px;
+    min-height: 280px;
+  }
+  .hero-stage .decor {
+    position: absolute; top: -90px; right: -120px;
+    width: 460px; height: 460px; pointer-events: none;
+  }
+  .hero-stage .decor .sq { position: absolute; border-radius: 8px; border-style: solid; }
+  .hero-stage .decor .s1 { width: 320px; height: 320px; top: 80px; left: 0;   border-width: 2px; border-color: var(--fdb-purple-soft); }
+  .hero-stage .decor .s2 { width: 320px; height: 320px; top: 40px; left: 40px; border-width: 2px; border-color: var(--fdb-purple-mid); }
+  .hero-stage .decor .s3 { width: 320px; height: 320px; top: 0;   left: 80px; border-width: 3px; border-color: var(--fdb-purple); }
+  .hero-stage .h {
+    position: relative; z-index: 2; max-width: 460px;
+  }
+  .hero-stage .h .eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--fdb-purple); margin-bottom: 14px;
+  }
+  .hero-stage .h .title {
+    font-size: 36px; font-weight: 800; line-height: 0.98; letter-spacing: -0.03em;
+    color: var(--fdb-ink); margin-bottom: 14px;
+  }
+  .hero-stage .h .title strong { color: var(--fdb-purple); font-weight: 800; }
+  .hero-stage .h .intro {
+    font-size: 12px; line-height: 1.6;
+    color: var(--fdb-ink-mid); max-width: 36ch;
+  }
+
+  /* Header / footer stages */
+  .demo-header {
+    background: var(--fdb-cream);
+    border-bottom: 1px solid var(--fdb-border);
+    padding: 0 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 96px; width: 100%;
+  }
+  body.fdb-dark .demo-header { background: var(--fdb-dark-bg); border-bottom-color: rgba(255,255,255,0.10); }
+  .demo-header .l { display: flex; align-items: center; gap: 16px; }
+  .demo-header .l img { height: 38px; width: auto; }
+  .demo-header .lbl {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--fdb-ink-muted);
+    border-left: 1px solid var(--fdb-border-strong);
+    padding-left: 14px; margin-left: 4px;
+  }
+  body.fdb-dark .demo-header .lbl { border-color: rgba(255,255,255,0.18); }
+  .demo-header .r { display: flex; align-items: center; gap: 14px; }
+
+  .demo-footer {
+    border-top: 1px solid var(--fdb-border);
+    padding: 18px 28px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    width: 100%;
+  }
+  body.fdb-dark .demo-footer { border-top-color: rgba(255,255,255,0.10); }
+  .demo-footer .l { display: flex; align-items: center; gap: 16px; }
+  .demo-footer .l img { height: 24px; width: auto; }
+  .demo-footer .txt { font-size: 11px; color: var(--fdb-ink-faint); line-height: 1.5; }
+  .demo-footer .txt strong { color: var(--fdb-ink-muted); font-weight: 600; }
+  .demo-footer .host { display: flex; align-items: center; gap: 10px; }
+  .demo-footer .host .hl { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint); white-space: nowrap; }
+  .demo-footer .host .plate { display: inline-flex; align-items: center; }
+  .demo-footer .host img { height: 22px; width: auto; display: block; }
+  body.fdb-dark .demo-footer .host .plate { background: #fff; border-radius: 3px; padding: 4px 8px; }
+  body.fdb-dark .demo-footer .host .hl { color: var(--fdb-dark-fg-faint); }
+
+  /* Speaker frame demo */
+  .speaker-demo { position: relative; width: 200px; height: 240px; }
+  .speaker-demo .photo {
+    position: absolute; inset: 0;
+    border: 2px solid var(--fdb-purple); border-radius: 2px;
+    background: #6F8FA8; overflow: hidden; z-index: 2;
+  }
+  body.fdb-dark .speaker-demo .photo { border-color: var(--fdb-dark-accent); }
+  .speaker-demo .photo svg {
+    position: absolute; bottom: -10px; left: 12%; width: 76%; height: 90%; opacity: 0.85;
+  }
+  .speaker-demo .frame-bg-1 {
+    position: absolute; top: 18px; left: 18px; width: 100%; height: 100%;
+    border: 1px solid var(--fdb-purple-soft); border-radius: 2px; z-index: 1;
+  }
+  .speaker-demo .frame-bg-2 {
+    position: absolute; top: 36px; left: 36px; width: 100%; height: 100%;
+    border: 1px solid var(--fdb-purple-soft); border-radius: 2px; opacity: 0.55; z-index: 0;
+  }
+
+  /* Participants grid demo */
+  .pgrid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: var(--fdb-border-strong);
+    border: 1px solid var(--fdb-border-strong);
+    border-radius: 4px; overflow: hidden; width: 100%;
+  }
+  .pgrid .c {
+    background: var(--fdb-cream); padding: 12px 14px;
+  }
+  body.fdb-dark .pgrid .c { background: var(--fdb-dark-bg); }
+  .pgrid .c.tint { background: var(--fdb-purple-tint); grid-column: span 3; }
+  body.fdb-dark .pgrid .c.tint { background: var(--fdb-dark-accent-tint); }
+  .pgrid .type {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--fdb-purple); margin-bottom: 4px;
+  }
+  .pgrid .nm { font-size: 12px; font-weight: 700; color: var(--fdb-ink); }
+  .pgrid .nm.tbc { color: var(--fdb-ink-muted); font-style: italic; font-weight: 500; }
+  .pgrid .org { font-size: 10px; color: var(--fdb-ink-muted); margin-top: 2px; }
+  .pgrid .long { font-size: 11px; color: var(--fdb-ink-mid); font-weight: 500; }
+
+  /* Session cards */
+  .session-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+  .session-wrap { position: relative; }
+  .session-wrap .frame {
+    position: absolute; top: 10px; left: 10px; right: -10px; bottom: -10px;
+    border: 1px solid var(--fdb-purple-soft); border-radius: 4px;
+    opacity: 0.7; pointer-events: none;
+  }
+  .session {
+    position: relative; z-index: 1;
+    border: 1px solid var(--fdb-border-strong); border-radius: 4px;
+    padding: 12px 14px; background: rgba(255,255,255,0.6);
+  }
+  body.fdb-dark .session { background: var(--fdb-dark-bg-elev); }
+  .session .lbl {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--fdb-purple); margin-bottom: 4px;
+  }
+  .session .t { font-size: 12px; font-weight: 700; color: var(--fdb-ink); margin-bottom: 3px; }
+  .session .d { font-size: 11px; color: var(--fdb-ink-muted); line-height: 1.5; }
+
+  /* ── TEMPLATE CARDS ───────────────────────────────────────────────────── */
+  .template-card {
+    border: 1px solid var(--fdb-border-strong);
+    border-radius: 4px; overflow: hidden;
+    background: var(--fdb-cream);
+    margin-bottom: 28px;
+  }
+  body.fdb-dark .template-card { background: var(--fdb-dark-bg-elev); }
+  .template-card .hd {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 22px; border-bottom: 1px solid var(--fdb-border);
+    background: rgba(255,255,255,0.4);
+  }
+  body.fdb-dark .template-card .hd { background: rgba(255,255,255,0.03); }
+  .template-card .hd .n { font-size: 14px; font-weight: 700; color: var(--fdb-ink); }
+  .template-card .hd .s { font-size: 11px; color: var(--fdb-ink-muted); letter-spacing: 0.04em; }
+  .template-card iframe { display: block; width: 100%; border: none; background: var(--fdb-cream); }
+
+  /* Material Symbols icon wall */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 32px;
+    color: var(--fdb-ink);
+  }
+  .icon-wall {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+  }
+  .icon-tile {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding: 16px 12px; background: var(--fdb-cream); border-radius: 4px;
+    border: 1px solid var(--fdb-border);
+  }
+  body.fdb-dark .icon-tile { background: var(--fdb-dark-bg); border-color: var(--fdb-dark-border); }
+  .icon-tile .nm {
+    font-family: var(--fdb-font-mono); font-size: 10px; color: var(--fdb-ink-muted);
+    text-align: center; line-height: 1.3;
+  }
+
+  /* Social posts — raw, no chrome */
+  .social-bare {
+    margin-bottom: 28px;
+    background: transparent;
+    border: none;
+  }
+  .social-bare iframe {
+    display: block; width: 100%; border: none; background: transparent;
+  }
+  table.toks {
+    width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 13px;
+  }
+  table.toks th {
+    text-align: left;
+    font-family: var(--fdb-font-mono); font-size: 11px;
+    color: var(--fdb-ink-muted); font-weight: 600;
+    padding: 8px 14px 8px 0;
+    border-bottom: 1px solid var(--fdb-border-strong);
+  }
+  table.toks td {
+    padding: 10px 14px 10px 0;
+    border-bottom: 1px solid var(--fdb-border);
+    color: var(--fdb-ink); vertical-align: top;
+  }
+  table.toks td.tok { font-family: var(--fdb-font-mono); color: var(--fdb-purple); font-weight: 600; }
+  table.toks td.v   { font-family: var(--fdb-font-mono); color: var(--fdb-ink-muted); font-size: 11px; }
+  table.toks td.desc { color: var(--fdb-ink-mid); }
+
+  /* ════════════════════════════════════════════════════════════════════════
+     EXTENDED COMPONENT LIBRARY — added v1.1
+     ════════════════════════════════════════════════════════════════════════ */
+
+  /* ── FORM FIELDS ─────────────────────────────────────────────────────── */
+  .field { display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 340px; }
+  .field .field-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fdb-ink-faint);
+  }
+  .field-input,
+  .field-textarea,
+  .field-select {
+    font-family: var(--fdb-font-sans); font-size: 13px;
+    color: var(--fdb-ink); background: var(--fdb-cream);
+    border: 1px solid var(--fdb-border-strong); border-radius: 3px;
+    padding: 10px 12px;
+    transition: border-color 0.15s, background 0.15s;
+    outline: none; width: 100%;
+  }
+  .field-input::placeholder, .field-textarea::placeholder { color: var(--fdb-ink-faint); }
+  .field-input:focus, .field-textarea:focus, .field-select:focus { border-color: var(--fdb-purple); background: #fff; }
+  body.fdb-dark .field-input,
+  body.fdb-dark .field-textarea,
+  body.fdb-dark .field-select { background: var(--fdb-dark-bg-elev); color: var(--fdb-dark-fg); border-color: var(--fdb-dark-border-strong); }
+  body.fdb-dark .field-input:focus, body.fdb-dark .field-textarea:focus, body.fdb-dark .field-select:focus { border-color: var(--fdb-dark-accent); }
+  .field-help { font-size: 11px; color: var(--fdb-ink-muted); }
+  .field-error { font-size: 11px; color: var(--fdb-purple-deep); font-weight: 600; }
+  .field-textarea { resize: vertical; min-height: 80px; line-height: 1.55; }
+  .field-select {
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%237A7A7A' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 30px;
+  }
+
+  /* Checkbox / radio */
+  .check { display: inline-flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 13px; color: var(--fdb-ink); user-select: none; }
+  .check input { appearance: none; -webkit-appearance: none; margin: 0; }
+  .check .box {
+    width: 16px; height: 16px; border: 1.5px solid var(--fdb-border-strong); border-radius: 2px;
+    background: var(--fdb-cream); flex-shrink: 0; margin-top: 1px;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  body.fdb-dark .check .box { background: var(--fdb-dark-bg-elev); border-color: var(--fdb-dark-border-strong); }
+  .check input:checked + .box { background: var(--fdb-purple); border-color: var(--fdb-purple); }
+  .check input:checked + .box::after {
+    content: ''; width: 8px; height: 4px; border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+    transform: rotate(-45deg); margin-top: -3px;
+  }
+  .check.radio .box { border-radius: 50%; }
+  .check.radio input:checked + .box { background: var(--fdb-cream); }
+  body.fdb-dark .check.radio input:checked + .box { background: var(--fdb-dark-bg-elev); }
+  .check.radio input:checked + .box::after {
+    content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--fdb-purple);
+    transform: none; margin: 0; border: none;
+  }
+
+  /* Switch / toggle */
+  .switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13px; color: var(--fdb-ink); }
+  .switch input { display: none; }
+  .switch .track {
+    width: 32px; height: 18px; background: var(--fdb-cream-deep); border: 1px solid var(--fdb-border-strong);
+    border-radius: 10px; position: relative; transition: background 0.15s, border-color 0.15s;
+  }
+  body.fdb-dark .switch .track { background: var(--fdb-dark-bg-elev); border-color: var(--fdb-dark-border-strong); }
+  .switch .track::after {
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 12px; height: 12px; border-radius: 50%; background: var(--fdb-ink-muted);
+    transition: left 0.15s, background 0.15s;
+  }
+  .switch input:checked + .track { background: var(--fdb-purple); border-color: var(--fdb-purple); }
+  .switch input:checked + .track::after { left: 16px; background: #fff; }
+
+  /* ── AVATARS ─────────────────────────────────────────────────────────── */
+  .avatar {
+    width: 40px; height: 40px; border-radius: 2px; overflow: hidden;
+    background: var(--fdb-cream-deep);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--fdb-ink);
+    border: 1px solid var(--fdb-border-strong);
+    flex-shrink: 0;
+  }
+  .avatar.purple { background: var(--fdb-purple-tint); color: var(--fdb-purple-deep); border-color: var(--fdb-purple-soft); }
+  .avatar.ink { background: var(--fdb-ink); color: #fff; border-color: var(--fdb-ink); }
+  .avatar.sm { width: 28px; height: 28px; font-size: 10px; }
+  .avatar.lg { width: 56px; height: 56px; font-size: 18px; }
+  body.fdb-dark .avatar { background: var(--fdb-dark-bg-elev); color: var(--fdb-dark-fg); border-color: var(--fdb-dark-border-strong); }
+  body.fdb-dark .avatar.purple { background: var(--fdb-dark-accent-tint); color: var(--fdb-dark-accent); }
+
+  .avatar-stack { display: inline-flex; }
+  .avatar-stack .avatar + .avatar { margin-left: -10px; }
+
+  /* ── STAT / METRIC ───────────────────────────────────────────────────── */
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px; width: 100%; }
+  .metric .lbl {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fdb-ink-faint); margin-bottom: 10px;
+  }
+  .metric .num {
+    font-size: 48px; font-weight: 800; line-height: 1; letter-spacing: -0.03em;
+    color: var(--fdb-ink); margin-bottom: 8px;
+  }
+  .metric .num strong, .metric .num em { color: var(--fdb-purple); font-style: normal; font-weight: 800; }
+  .metric .cap { font-size: 12px; color: var(--fdb-ink-muted); line-height: 1.5; }
+  .metric.bordered { border-left: 2px solid var(--fdb-purple); padding-left: 16px; }
+
+  /* ── QUOTE / TESTIMONIAL ─────────────────────────────────────────────── */
+  .quote {
+    position: relative; padding-left: 28px;
+    border-left: 2px solid var(--fdb-purple);
+    max-width: 580px;
+  }
+  .quote .q {
+    font-size: 20px; font-weight: 700; line-height: 1.4; letter-spacing: -0.02em;
+    color: var(--fdb-ink); margin-bottom: 14px;
+  }
+  .quote .q strong { color: var(--fdb-purple); font-weight: 800; }
+  .quote .by { display: flex; align-items: center; gap: 12px; }
+  .quote .by .nm { font-size: 13px; font-weight: 700; color: var(--fdb-ink); }
+  .quote .by .org { font-size: 11px; color: var(--fdb-ink-muted); margin-top: 1px; }
+
+  /* ── ALERT / BANNER ──────────────────────────────────────────────────── */
+  .alert {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--fdb-purple-tint); border: 1px solid var(--fdb-purple-soft);
+    border-radius: 3px; padding: 12px 16px; width: 100%; max-width: 580px;
+  }
+  body.fdb-dark .alert { background: var(--fdb-dark-accent-tint); border-color: var(--fdb-dark-accent-soft); }
+  .alert .icon { color: var(--fdb-purple); flex-shrink: 0; margin-top: 1px; }
+  .alert .body .t { font-size: 13px; font-weight: 700; color: var(--fdb-ink); margin-bottom: 3px; }
+  .alert .body .d { font-size: 12px; color: var(--fdb-ink-mid); line-height: 1.55; }
+  .alert.neutral { background: rgba(255,255,255,0.5); border-color: var(--fdb-border-strong); }
+  .alert.neutral .icon { color: var(--fdb-ink-muted); }
+  body.fdb-dark .alert.neutral { background: var(--fdb-dark-bg-elev); border-color: var(--fdb-dark-border-strong); }
+  .alert.ink { background: var(--fdb-ink); border-color: var(--fdb-ink); }
+  .alert.ink .icon { color: var(--fdb-purple-soft); }
+  .alert.ink .body .t { color: #fff; }
+  .alert.ink .body .d { color: rgba(255,255,255,0.78); }
+
+  /* ── DATA TABLE ──────────────────────────────────────────────────────── */
+  table.data {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+    background: rgba(255,255,255,0.5); border: 1px solid var(--fdb-border-strong); border-radius: 4px;
+    overflow: hidden;
+  }
+  body.fdb-dark table.data { background: var(--fdb-dark-bg-elev); border-color: var(--fdb-dark-border-strong); }
+  table.data thead th {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fdb-ink-faint);
+    text-align: left; padding: 11px 16px;
+    background: rgba(0,0,0,0.02); border-bottom: 1px solid var(--fdb-border-strong);
+  }
+  body.fdb-dark table.data thead th { background: rgba(255,255,255,0.03); }
+  table.data tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--fdb-border);
+    color: var(--fdb-ink-mid); vertical-align: middle;
+  }
+  table.data tbody tr:last-child td { border-bottom: none; }
+  table.data tbody td:first-child { color: var(--fdb-ink); font-weight: 600; }
+  table.data tbody td.num { font-family: var(--fdb-font-mono); font-variant-numeric: tabular-nums; color: var(--fdb-purple); font-weight: 600; }
+
+  /* ── FAQ ACCORDION ───────────────────────────────────────────────────── */
+  .faq { width: 100%; max-width: 560px; }
+  .faq details {
+    border-top: 1px solid var(--fdb-border);
+    padding: 14px 0;
+  }
+  .faq details:last-child { border-bottom: 1px solid var(--fdb-border); }
+  .faq details summary {
+    cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 14px; font-weight: 700; color: var(--fdb-ink);
+    transition: color 0.15s;
+  }
+  .faq details summary::-webkit-details-marker { display: none; }
+  .faq details summary::after {
+    content: '+'; font-weight: 400; font-size: 18px; color: var(--fdb-purple); line-height: 1; transition: transform 0.15s;
+  }
+  .faq details[open] summary::after { content: '−'; }
+  .faq details summary:hover { color: var(--fdb-purple); }
+  .faq details .ans {
+    margin-top: 10px; font-size: 13px; line-height: 1.7; color: var(--fdb-ink-mid); max-width: 60ch;
+  }
+
+  /* ── MODAL / DIALOG (static demo) ───────────────────────────────────── */
+  .modal-scrim {
+    position: relative; width: 100%; height: 320px; border-radius: 4px;
+    background: rgba(26,26,26,0.5);
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(0); overflow: hidden;
+  }
+  .modal-scrim::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(var(--fdb-cream-deep) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--fdb-cream-deep) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.3; pointer-events: none;
+  }
+  .modal {
+    position: relative; z-index: 1;
+    background: var(--fdb-cream); border: 1px solid var(--fdb-border-strong);
+    border-radius: 4px; box-shadow: var(--fdb-shadow-2);
+    max-width: 420px; width: calc(100% - 48px);
+    padding: 24px 24px 22px;
+  }
+  body.fdb-dark .modal { background: var(--fdb-dark-bg-elev); border-color: var(--fdb-dark-border-strong); }
+  .modal .head-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 14px; gap: 16px;
+  }
+  .modal .head-row .lbl {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fdb-purple);
+  }
+  .modal .head-row .x {
+    background: none; border: none; cursor: pointer; padding: 0;
+    color: var(--fdb-ink-muted); font-size: 18px; line-height: 1;
+  }
+  .modal h3 {
+    font-size: 20px; font-weight: 800; letter-spacing: -0.02em;
+    margin: 0 0 8px; color: var(--fdb-ink); line-height: 1.2;
+  }
+  .modal p {
+    font-size: 13px; line-height: 1.65; color: var(--fdb-ink-mid); margin: 0 0 18px;
+  }
+  .modal .actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+  /* ── EMPTY STATE ─────────────────────────────────────────────────────── */
+  .empty {
+    text-align: center; padding: 32px 24px;
+    border: 1px dashed var(--fdb-border-strong); border-radius: 4px;
+    background: rgba(255,255,255,0.4);
+    width: 100%; max-width: 420px;
+  }
+  body.fdb-dark .empty { background: var(--fdb-dark-bg-elev); border-color: var(--fdb-dark-border-strong); }
+  .empty .mark { margin: 0 auto 14px; opacity: 0.85; }
+  .empty .lbl {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fdb-ink-faint); margin-bottom: 8px;
+  }
+  .empty .t { font-size: 15px; font-weight: 700; color: var(--fdb-ink); margin-bottom: 6px; }
+  .empty .d { font-size: 12px; color: var(--fdb-ink-muted); line-height: 1.6; max-width: 36ch; margin: 0 auto 16px; }
+
+  /* ── BREADCRUMB ──────────────────────────────────────────────────────── */
+  .crumb { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.04em; }
+  .crumb a {
+    color: var(--fdb-ink-muted); text-decoration: none; font-weight: 500;
+    transition: color 0.15s;
+  }
+  .crumb a:hover { color: var(--fdb-purple); }
+  .crumb .sep { color: var(--fdb-ink-faint); font-size: 10px; }
+  .crumb .here { color: var(--fdb-ink); font-weight: 700; }
+
+  /* ── PAGINATION ──────────────────────────────────────────────────────── */
+  .pager { display: inline-flex; align-items: center; gap: 2px; }
+  .pager a, .pager span {
+    width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; color: var(--fdb-ink-muted);
+    border: 1px solid transparent; border-radius: 3px;
+    text-decoration: none; cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .pager a:hover { color: var(--fdb-purple); border-color: var(--fdb-purple-soft); }
+  .pager .here { color: var(--fdb-purple); background: var(--fdb-purple-tint); border-color: var(--fdb-purple-soft); }
+  .pager .arrow { font-family: var(--fdb-font-mono); }
+  .pager .ell { border: none; cursor: default; color: var(--fdb-ink-faint); }
+
+  /* ── TOOLTIP (static demo) ───────────────────────────────────────────── */
+  .tooltip-stage { position: relative; padding: 36px 0 20px; }
+  .tooltip-anchor {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; color: var(--fdb-ink);
+    border-bottom: 1px dotted var(--fdb-border-strong); padding-bottom: 2px;
+  }
+  .tooltip-anchor .badge {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--fdb-purple-tint); color: var(--fdb-purple);
+    font-size: 9px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+  }
+  .tooltip {
+    position: absolute; bottom: 100%; left: 50%; transform: translate(-50%, -8px);
+    background: var(--fdb-ink); color: #fff;
+    font-size: 11px; line-height: 1.5; font-weight: 500;
+    padding: 8px 11px; border-radius: 3px;
+    white-space: nowrap;
+    box-shadow: var(--fdb-shadow-2);
+  }
+  body.fdb-dark .tooltip { background: var(--fdb-dark-fg); color: var(--fdb-dark-bg); }
+  .tooltip::after {
+    content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0; border: 4px solid transparent; border-top-color: var(--fdb-ink);
+  }
+  body.fdb-dark .tooltip::after { border-top-color: var(--fdb-dark-fg); }
+
+  /* ── SPONSOR / PARTNER STRIP ─────────────────────────────────────────── */
+  .sponsors {
+    display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+    padding: 24px 0; width: 100%;
+    border-top: 1px solid var(--fdb-border); border-bottom: 1px solid var(--fdb-border);
+  }
+  .sponsors .lbl {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fdb-ink-faint);
+    padding-right: 24px; border-right: 1px solid var(--fdb-border); flex-shrink: 0;
+  }
+  .sponsors .logo-slot {
+    height: 28px; min-width: 64px; padding: 0 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--fdb-font-mono); font-size: 10px; font-weight: 600;
+    color: var(--fdb-ink-muted); letter-spacing: 0.04em;
+    background: rgba(0,0,0,0.025); border: 1px dashed var(--fdb-border-strong);
+    border-radius: 2px;
+  }
+  body.fdb-dark .sponsors .logo-slot { background: rgba(255,255,255,0.03); border-color: var(--fdb-dark-border-strong); color: var(--fdb-dark-fg-muted); }
+
+  /* ── NEWSLETTER ──────────────────────────────────────────────────────── */
+  .signup {
+    background: rgba(255,255,255,0.5); border: 1px solid var(--fdb-border-strong);
+    border-radius: 4px; padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    width: 100%; max-width: 460px;
+  }
+  body.fdb-dark .signup { background: var(--fdb-dark-bg-elev); border-color: var(--fdb-dark-border-strong); }
+  .signup .lbl {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fdb-purple);
+  }
+  .signup h4 { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; margin: 0; color: var(--fdb-ink); line-height: 1.25; }
+  .signup h4 strong { color: var(--fdb-purple); }
+  .signup p { font-size: 12px; color: var(--fdb-ink-mid); line-height: 1.6; margin: 0; }
+  .signup .row { display: flex; gap: 8px; }
+  .signup .row .field-input { flex: 1; max-width: none; }
+
+  /* ── PHOTO FRAME / IMAGE WITH CAPTION ────────────────────────────────── */
+  .photo-block { display: flex; flex-direction: column; gap: 14px; max-width: 340px; }
+  .photo-block .photo-wrap { position: relative; padding: 0 0 14px 14px; }
+  .photo-block .photo-wrap::before {
+    content: ''; position: absolute; top: 14px; left: 0; right: 14px; bottom: 0;
+    border: 1px solid var(--fdb-purple-soft); border-radius: 2px; pointer-events: none;
+  }
+  .photo-block .photo-wrap .img {
+    position: relative; z-index: 1; aspect-ratio: 4/5;
+    background: #6F8FA8;
+    border: 2px solid var(--fdb-purple); border-radius: 2px;
+    overflow: hidden;
+  }
+  body.fdb-dark .photo-block .photo-wrap .img { border-color: var(--fdb-dark-accent); }
+  .photo-block .photo-wrap .img.landscape { aspect-ratio: 16/9; }
+  .photo-block .photo-wrap .img .placeholder {
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.10) 0, rgba(255,255,255,0.10) 1px, transparent 1px, transparent 14px),
+      linear-gradient(135deg, #6F8FA8, #4F6F88);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.7); font-family: var(--fdb-font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.04em; text-align: center; padding: 12px;
+  }
+  .photo-block .photo-wrap .img .placeholder.tall::before {
+    content: ''; position: absolute; bottom: 0; left: 10%; right: 10%; height: 90%;
+    background-image: radial-gradient(ellipse at 50% 30%, #2A3F50 18%, transparent 22%),
+                      linear-gradient(180deg, transparent 35%, #2A3F50 38%);
+    opacity: 0.7;
+  }
+  .photo-block .cap {
+    font-size: 11px; line-height: 1.6; color: var(--fdb-ink-muted);
+    border-top: 1px solid var(--fdb-border); padding-top: 10px;
+  }
+  .photo-block .cap b { color: var(--fdb-ink); font-weight: 700; }
+
+  /* ── CONTENT CARDS ───────────────────────────────────────────────────── */
+  .content-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; width: 100%; }
+  .content-card {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--fdb-border-strong);
+    border-radius: 4px; padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  body.fdb-dark .content-card { background: var(--fdb-dark-bg-elev); border-color: var(--fdb-dark-border-strong); }
+  .content-card:hover { border-color: var(--fdb-purple); }
+  .content-card .lbl {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fdb-purple);
+  }
+  .content-card h3 { font-size: 16px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; margin: 0; color: var(--fdb-ink); }
+  .content-card p { font-size: 12px; line-height: 1.6; color: var(--fdb-ink-mid); margin: 0; }
+  .content-card .more {
+    margin-top: auto; padding-top: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--fdb-purple); display: inline-flex; align-items: center; gap: 6px;
+  }
+  .content-card .more::after { content: '→'; font-size: 13px; }
+
+  /* ── KEY-VALUE / DEFINITION LIST ─────────────────────────────────────── */
+  .kv {
+    display: grid; grid-template-columns: 110px 1fr;
+    width: 100%; max-width: 480px;
+    border-top: 1px solid var(--fdb-border-strong);
+  }
+  .kv > * {
+    padding: 10px 0; border-bottom: 1px solid var(--fdb-border);
+    font-size: 13px; line-height: 1.5;
+  }
+  .kv > dt {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fdb-ink-faint);
+    padding-top: 13px;
+  }
+  .kv > dd { color: var(--fdb-ink); margin: 0; font-weight: 600; }
+
+  /* ── COUNTDOWN / DATE STRIP ──────────────────────────────────────────── */
+  .countdown { display: flex; align-items: stretch; gap: 0; }
+  .countdown .seg {
+    text-align: center; padding: 10px 18px;
+    border-right: 1px solid var(--fdb-border);
+  }
+  .countdown .seg:last-child { border-right: none; }
+  .countdown .seg .n {
+    font-size: 30px; font-weight: 800; letter-spacing: -0.03em;
+    color: var(--fdb-ink); line-height: 1; margin-bottom: 4px;
+  }
+  .countdown .seg .l {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fdb-ink-faint);
+  }
+
+  /* ── INLINE PRESS ROW ────────────────────────────────────────────────── */
+  .press-row {
+    display: grid; grid-template-columns: 90px 1fr auto; gap: 24px;
+    padding: 18px 0; border-top: 1px solid var(--fdb-border);
+    align-items: center; width: 100%;
+  }
+  .press-row:last-child { border-bottom: 1px solid var(--fdb-border); }
+  .press-row .date {
+    font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-purple);
+    letter-spacing: 0.04em; font-weight: 600;
+  }
+  .press-row .ttl { font-size: 14px; font-weight: 700; color: var(--fdb-ink); line-height: 1.4; }
+  .press-row .src { font-size: 11px; color: var(--fdb-ink-muted); margin-top: 3px; letter-spacing: 0.04em; }
+
+  /* ── PATTERN BLOCKS (Patterns tab) ────────────────────────────────────── */
+  .pattern {
+    background: var(--fdb-cream);
+    border: 1px solid var(--fdb-border-strong); border-radius: 4px;
+    margin-bottom: 32px; overflow: hidden;
+  }
+  body.fdb-dark .pattern { background: var(--fdb-dark-bg); border-color: var(--fdb-dark-border-strong); }
+  .pattern .hd {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; padding: 16px 24px;
+    border-bottom: 1px solid var(--fdb-border);
+    background: rgba(255,255,255,0.4);
+  }
+  body.fdb-dark .pattern .hd { background: rgba(255,255,255,0.03); }
+  .pattern .hd .n { font-size: 14px; font-weight: 700; color: var(--fdb-ink); letter-spacing: -0.01em; }
+  .pattern .hd .s { font-size: 11px; color: var(--fdb-ink-muted); }
+  .pattern .body { padding: 40px clamp(20px, 4vw, 56px); }
+
+  /* ── DOWNLOADS BAR ─────────────────────────────────────────────────────── */
+  .dl-bar { display: flex; gap: 12px; flex-wrap: wrap; }
+  .dl-bar a {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--fdb-purple); color: #fff; text-decoration: none;
+    padding: 11px 18px; border-radius: 3px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.15s;
+  }
+  .dl-bar a:hover { background: var(--fdb-purple-deep); }
+  .dl-bar a.ghost {
+    background: transparent; color: var(--fdb-purple);
+    border: 1px solid var(--fdb-purple);
+  }
+  .dl-bar a.ghost:hover { background: var(--fdb-purple); color: #fff; }
+  body.fdb-dark .dl-bar a { color: #1A1A1A; }
+
+  /* ── DOWNLOADS ────────────────────────────────────────────────────────── */
+  .overview-hero {
+    padding: 32px 0 56px;
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 64px;
+    align-items: center;
+  }
+  .overview-hero .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fdb-purple); margin-bottom: 24px;
+  }
+  .overview-hero h1 {
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-weight: 800; line-height: 0.95; letter-spacing: -0.035em;
+    color: var(--fdb-ink); margin-bottom: 24px;
+  }
+  .overview-hero h1 em {
+    font-style: italic; font-weight: 400; color: var(--fdb-purple);
+  }
+  .overview-hero p.lead {
+    font-size: 17px; line-height: 1.6;
+    color: var(--fdb-ink-mid); max-width: 50ch; margin-bottom: 28px;
+  }
+  .overview-hero .squares { position: relative; width: 280px; height: 280px; margin: 0 auto; }
+  .overview-hero .sq {
+    position: absolute; border-radius: 14px; border-style: solid; border-width: 4px;
+  }
+  .overview-hero .sq.s1 { width: 180px; height: 180px; top: 0;   left: 0;   border-color: var(--fdb-purple); }
+  .overview-hero .sq.s2 { width: 180px; height: 180px; top: 50px; left: 50px; border-color: var(--fdb-purple-mid); }
+  .overview-hero .sq.s3 { width: 180px; height: 180px; top: 100px; left: 100px; border-color: var(--fdb-purple-soft); }
+
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--fdb-border); border: 1px solid var(--fdb-border);
+    border-radius: 4px; overflow: hidden; margin-top: 28px;
+  }
+  .stat-cell { background: var(--fdb-cream); padding: 22px 22px; }
+  body.fdb-dark .stat-cell { background: var(--fdb-dark-bg); }
+  .stat-cell .n {
+    font-size: 36px; font-weight: 800; letter-spacing: -0.03em;
+    color: var(--fdb-purple); line-height: 1;
+  }
+  .stat-cell .l {
+    font-size: 12px; color: var(--fdb-ink-muted); margin-top: 8px; line-height: 1.4;
+  }
+
+  .principle-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 18px;
+  }
+  .principle {
+    border-top: 2px solid var(--fdb-purple); padding: 14px 0 4px;
+  }
+  .principle .name {
+    font-size: 14px; font-weight: 800; letter-spacing: -0.01em;
+    color: var(--fdb-ink); margin-bottom: 6px;
+  }
+  .principle .desc {
+    font-size: 13px; color: var(--fdb-ink-muted); line-height: 1.6;
+  }
+
+  /* ── HELPERS ──────────────────────────────────────────────────────────── */
+  code.tok-inline {
+    font-family: var(--fdb-font-mono); font-size: 0.9em;
+    color: var(--fdb-purple); background: var(--fdb-purple-tint);
+    padding: 1px 6px; border-radius: 2px;
+  }
+  body.fdb-dark code.tok-inline { color: var(--fdb-dark-accent); background: var(--fdb-dark-accent-tint); }
+
+  /* Mobile */
+  @media (max-width: 960px) {
+    .app { grid-template-columns: 1fr; grid-template-areas: "banner" "main"; }
+    aside.side { display: none; }
+    .overview-hero { grid-template-columns: 1fr; gap: 32px; }
+    .stat-grid, .voice-grid, .logo-set, .rule-list, .output-grid, .session-grid { grid-template-columns: 1fr; }
+    .principle-grid { grid-template-columns: 1fr; }
+    .radii { grid-template-columns: repeat(3, 1fr); }
+    main.content { padding: 32px 24px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ─── BANNER ─────────────────────────────────────────────────────────── -->
+  <header class="banner">
+    <div class="banner-left">
+      <img class="light-mode" src="assets/logos/fdb-banner.png" alt="Future Destination Brand.">
+      <img class="dark-mode"  src="assets/logos/dark/fdb-banner-dark.png" alt="Future Destination Brand.">
+      <span class="banner-label">Design System · v1.0</span>
+    </div>
+    <div class="banner-right">
+      <span class="pill">May 2026</span>
+      <span>Dublin · December 2026</span>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="d-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="l-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+        <span class="d-label">Dark</span>
+        <span class="l-label">Light</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── SIDEBAR ────────────────────────────────────────────────────────── -->
+  <aside class="side">
+    <div class="side-section">
+      <div class="side-section-label">Get started</div>
+      <a class="side-link active" data-tab="overview">Overview<span class="count">—</span></a>
+    </div>
+
+    <div class="side-section">
+      <div class="side-section-label">Brand</div>
+      <a class="side-link" data-tab="voice">Voice &amp; content<span class="count">6</span></a>
+      <a class="side-link" data-tab="logos">Logos &amp; lockups<span class="count">5</span></a>
+    </div>
+
+    <div class="side-section">
+      <div class="side-section-label">Foundations</div>
+      <a class="side-link" data-tab="colour">Colour<span class="count">14</span></a>
+      <a class="side-link" data-tab="type">Typography<span class="count">9+</span></a>
+      <a class="side-link" data-tab="space">Spacing &amp; layout<span class="count">9</span></a>
+      <a class="side-link" data-tab="radii">Corner radii<span class="count">5</span></a>
+      <a class="side-link" data-tab="motion">Motion &amp; elevation<span class="count">—</span></a>
+    </div>
+
+    <div class="side-section">
+      <div class="side-section-label">Iconography</div>
+      <a class="side-link" data-tab="iconography">The mark &amp; UI glyphs<span class="count">—</span></a>
+    </div>
+
+    <div class="side-section">
+      <div class="side-section-label">Components</div>
+      <a class="side-link" data-tab="components">Library<span class="count">30+</span></a>
+      <a class="side-link" data-tab="patterns">Patterns &amp; scenarios<span class="count">10</span></a>
+    </div>
+
+    <div class="side-section">
+      <div class="side-section-label">Surfaces</div>
+      <a class="side-link" data-tab="templates">Templates<span class="count">2</span></a>
+      <a class="side-link" data-tab="social">Social posts<span class="count">6+</span></a>
+    </div>
+
+    <div class="side-section">
+      <div class="side-section-label">Reference</div>
+      <a class="side-link" data-tab="tokens">Token catalogue<span class="count">—</span></a>
+      <a class="side-link" data-tab="downloads">Downloads<span class="count">—</span></a>
+    </div>
+
+    <div class="side-foot">
+      Digital Tourism Think Tank · 2026<br>
+      <a href="https://thinkdigital.travel">thinkdigital.travel</a>
+      <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--fdb-border);">
+        <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint); margin-bottom: 8px;">Host partner</div>
+        <span class="hostplate" style="display: inline-flex; align-items: center;">
+          <img src="assets/logos/failte-ireland.png" alt="Fáilte Ireland" style="height: 26px; width: auto; display: block;">
+        </span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ───────────────────────────────────────────────────────────── -->
+  <main class="content">
+
+    <!-- ════════════════ OVERVIEW ════════════════ -->
+    <section class="tab active" id="tab-overview">
+      <div class="overview-hero">
+        <div>
+          <div class="eyebrow">Future Destination Brand · v1.0</div>
+          <h1>The design system for <em>FDB 2026.</em></h1>
+          <p class="lead">Editorial, restrained, declarative. One typeface, one accent colour, a stacked-square mark and a tight set of components used consistently across the marketing site, slide decks, social posts and the X. Awards programme.</p>
+          <p class="lead" style="font-size: 14px; color: var(--fdb-ink-muted);">Written in British English. The cream canvas is the default treatment; an alternate ink treatment is available for evening, X. Awards and contrast moments.</p>
+        </div>
+        <div class="squares">
+          <div class="sq s1"></div>
+          <div class="sq s2"></div>
+          <div class="sq s3"></div>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-cell"><div class="n">11</div><div class="l">Documentation tabs</div></div>
+        <div class="stat-cell"><div class="n">9</div><div class="l">Geist weights, Thin to Black</div></div>
+        <div class="stat-cell"><div class="n">12</div><div class="l">Component patterns</div></div>
+        <div class="stat-cell"><div class="n">2</div><div class="l">Modes — cream &amp; ink</div></div>
+      </div>
+
+      <div class="sub-h">Principles</div>
+      <div class="principle-grid">
+        <div class="principle">
+          <div class="name">Editorial, not promotional</div>
+          <div class="desc">Short, declarative sentences. Full stops carry weight. No exclamation marks, no aspirational filler. The page reads like a private memo to a knowledgeable peer.</div>
+        </div>
+        <div class="principle">
+          <div class="name">One purple, no second hue</div>
+          <div class="desc">Brand purple <code class="tok-inline">#8239C1</code> for emphasis. Magenta-pink on ink. Everything else is greyscale on cream.</div>
+        </div>
+        <div class="principle">
+          <div class="name">Cream is the default</div>
+          <div class="desc">The ink treatment (<code class="tok-inline">.fdb-dark</code>) is a selective alternate, used for evening, the X. Awards moment, and high-contrast accents — not the everyday surface.</div>
+        </div>
+        <div class="principle">
+          <div class="name">Stacked-square DNA</div>
+          <div class="desc">Three offset squares are the brand's signature gesture, used at every scale: 30 px header mark, 700 px hero decoration, and the single offset frame behind component cards.</div>
+        </div>
+      </div>
+
+      <div class="sub-h">What's in here</div>
+      <div class="stage-grid">
+        <a class="stage" data-jump="voice" style="cursor: pointer; text-decoration: none;">
+          <div class="live"><div style="text-align: center;"><div style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--fdb-purple);">Brand.</div><div style="font-size: 12px; color: var(--fdb-ink-muted); margin-top: 6px;">Voice &amp; logos</div></div></div>
+          <div class="cap"><b>Brand</b><span>Voice · content rules · lockups</span></div>
+        </a>
+        <a class="stage" data-jump="colour" style="cursor: pointer; text-decoration: none;">
+          <div class="live"><div style="display: flex; gap: 6px;"><div style="width: 30px; height: 60px; background: #EDE5F8; border-radius: 2px;"></div><div style="width: 30px; height: 60px; background: #C9AAEE; border-radius: 2px;"></div><div style="width: 30px; height: 60px; background: #9B6FE0; border-radius: 2px;"></div><div style="width: 30px; height: 60px; background: #8239C1; border-radius: 2px;"></div><div style="width: 30px; height: 60px; background: #5B1FBF; border-radius: 2px;"></div></div></div>
+          <div class="cap"><b>Foundations</b><span>Colour · type · spacing · motion</span></div>
+        </a>
+        <a class="stage" data-jump="iconography" style="cursor: pointer; text-decoration: none;">
+          <div class="live">
+            <svg width="100" height="100" viewBox="0 0 144 144" fill="none">
+              <rect x="2" y="2" width="80" height="80" rx="6" stroke="#8239C1" stroke-width="2"/>
+              <rect x="30" y="30" width="80" height="80" rx="6" stroke="#9B6FE0" stroke-width="2"/>
+              <rect x="58" y="58" width="80" height="80" rx="6" stroke="#C9AAEE" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="cap"><b>Iconography</b><span>The mark · UI glyphs</span></div>
+        </a>
+        <a class="stage" data-jump="components" style="cursor: pointer; text-decoration: none;">
+          <div class="live">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <button class="btn-primary" style="pointer-events: none;">Get in touch</button>
+              <div><span class="tag">Programme</span><span class="tag outline">Day One</span></div>
+            </div>
+          </div>
+          <div class="cap"><b>Components</b><span>12 patterns</span></div>
+        </a>
+        <a class="stage" data-jump="templates" style="cursor: pointer; text-decoration: none;">
+          <div class="live"><div style="text-align: center;"><div style="font-size: 14px; font-weight: 700; color: var(--fdb-ink);">Marketing site</div><div style="font-size: 11px; color: var(--fdb-ink-muted); margin-top: 4px;">+ slide templates</div></div></div>
+          <div class="cap"><b>Templates</b><span>Site · deck</span></div>
+        </a>
+        <a class="stage" data-jump="social" style="cursor: pointer; text-decoration: none;">
+          <div class="live"><div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;"><div style="width: 40px; height: 52px; background: var(--fdb-cream-deep); border-radius: 2px;"></div><div style="width: 40px; height: 52px; background: var(--fdb-purple-tint); border-radius: 2px;"></div><div style="width: 40px; height: 52px; background: var(--fdb-purple-soft); border-radius: 2px;"></div><div style="width: 40px; height: 52px; background: var(--fdb-purple); border-radius: 2px;"></div></div></div>
+          <div class="cap"><b>Social posts</b><span>Instagram 4:5 kit</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ════════════════ VOICE & CONTENT ════════════════ -->
+    <section class="tab" id="tab-voice">
+      <div class="head">
+        <div class="num">01 · Brand</div>
+        <h1>Voice &amp; <em>content fundamentals</em>.</h1>
+        <p class="lead">FDB copy is editorial, restrained, declarative. It writes like a private memo to a knowledgeable peer, not a conference landing page. British English, sentence case, full stops that carry weight, no emoji, no exclamation marks.</p>
+      </div>
+
+      <div class="sub-h">Tonal guideposts</div>
+      <div class="voice-grid">
+        <div class="voice-card good">
+          <h4>Do — write like this</h4>
+          <ul>
+            <li>"The question is <strong style="color: var(--fdb-purple);">not whether to engage.</strong> It is whether leadership is ready."</li>
+            <li>"The format is a meeting, not a conference. Boardroom arrangement, no stage, no panels, no commercial agenda."</li>
+            <li>"What participants bring to this table does not stay in the room."</li>
+            <li>"Places are by personal invitation only. To discuss participation, please get in touch."</li>
+          </ul>
+        </div>
+        <div class="voice-card bad">
+          <h4>Don't — write like this</h4>
+          <ul>
+            <li>"Unlock the future of destination marketing!"</li>
+            <li>"Join 100+ industry leaders for the must-attend AI summit of 2026."</li>
+            <li>"PROVEN frameworks. REAL results. Don't miss out."</li>
+            <li>"We're so excited to announce 🎉"</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub-h">Casing &amp; punctuation rules</div>
+      <div class="rule-list">
+        <div class="rule"><div class="n">01</div><div class="t"><b>Sentence case for headings.</b><p>Not Title Case. Capitalise only proper nouns and the brand's own programme names — "X. Awards", "Future. Destination. Brand."</p></div></div>
+        <div class="rule"><div class="n">02</div><div class="t"><b>Headings often end in a full stop.</b><p>Adds a calm, declarative finality. The brand's wordmark itself ends "Brand." Match it.</p></div></div>
+        <div class="rule"><div class="n">03</div><div class="t"><b>UPPERCASE eyebrows tracked 0.12em.</b><p>Used for meta info: "DAY ONE · LEADERSHIP PROGRAMME", "DATE", "FORMAT", "POLICY OUTPUT".</p></div></div>
+        <div class="rule"><div class="n">04</div><div class="t"><b>British English spelling.</b><p>Programme, organisation, colour, behaviour, recognise, centre. Ties FDB to its European audience.</p></div></div>
+        <div class="rule"><div class="n">05</div><div class="t"><b>Middle dot as separator.</b><p>"Dublin · December 2026" — use <code class="tok-inline">·</code> (U+00B7) for breadcrumbs and meta lines. Never the pipe character.</p></div></div>
+        <div class="rule"><div class="n">06</div><div class="t"><b>No emoji. No exclamation marks.</b><p>The only punctuation flourish is the trailing full stop on the wordmark "Brand." and on hero titles.</p></div></div>
+      </div>
+
+      <div class="sub-h">Emphasis &amp; pronouns</div>
+      <div class="rule-list">
+        <div class="rule"><div class="n">A</div><div class="t"><b>One purple emphasis per paragraph, at most.</b><p>Inline emphasis is <strong style="color: var(--fdb-purple);">bold + purple</strong> on a 2–5-word fragment. Never italic for emphasis.</p></div></div>
+        <div class="rule"><div class="n">B</div><div class="t"><b>Almost no first-person plural.</b><p>Avoid "we". Name the sector or audience directly — "the sector", "destinations", "the room", "participants".</p></div></div>
+        <div class="rule"><div class="n">C</div><div class="t"><b>Italic is reserved.</b><p>Used only for TBC placeholder names ("<em>Senior representative · TBC</em>") and the X. Awards italic <em>x.</em> glyph. Not for ordinary emphasis.</p></div></div>
+        <div class="rule"><div class="n">D</div><div class="t"><b>Numbers — spell short, digitise dates and times.</b><p>"eight to ten active contributors" in flowing prose; "08:30", "30 to 40 participants" for ranges and timetables.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ════════════════ LOGOS ════════════════ -->
+    <section class="tab" id="tab-logos">
+      <div class="head">
+        <div class="num">02 · Brand</div>
+        <h1>Logos &amp; <em>lockups</em>.</h1>
+        <p class="lead">The FDB wordmark sits beside its stacked-square mark. The colour version appears on cream; the white version appears on ink, including the X. Awards evening. X. Awards is a sub-brand using the same brand purple as FDB, not a separate visual identity.</p>
+      </div>
+
+      <div class="logo-set">
+        <div class="logo-pane cream">
+          <div>
+            <div class="label" style="margin-bottom: 18px;">Default · Cream</div>
+            <div class="lockup-row">
+              <img src="assets/logos/fdb-banner.png" alt="Future Destination Brand." style="height: 44px;">
+            </div>
+          </div>
+          <div class="meta">On cream, sand and other light surfaces — the horizontal banner is the primary lockup for headers, footers and document chrome.</div>
+        </div>
+        <div class="logo-pane ink">
+          <div>
+            <div class="label" style="margin-bottom: 18px;">Alternate · Ink</div>
+            <div class="lockup-row">
+              <img src="assets/logos/dark/fdb-banner-dark.png" alt="Future Destination Brand." style="height: 44px;">
+            </div>
+          </div>
+          <div class="meta">On ink — the white-text horizontal banner with the magenta-pink "Brand." accent. Used for the X. Awards evening and contrast moments.</div>
+        </div>
+      </div>
+
+      <div class="sub-h">Lockup variants</div>
+      <div class="stage-grid">
+        <div class="stage">
+          <div class="live" style="padding: 38px 40px;">
+            <img class="light-mode" src="assets/logos/fdb-banner.png" alt="" style="height: 38px; max-width: 100%;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-banner-dark.png" alt="" style="height: 38px; max-width: 100%;">
+          </div>
+          <div class="cap"><b>Horizontal banner</b><span>Primary lockup · headers · footers</span></div>
+        </div>
+        <div class="stage">
+          <div class="live">
+            <img class="light-mode" src="assets/logos/fdb-logo-full.png" alt="" style="height: 90px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-logo-full-dark.png" alt="" style="height: 90px;">
+          </div>
+          <div class="cap"><b>Stacked lockup</b><span>Posters · cover slides · square crops</span></div>
+        </div>
+        <div class="stage">
+          <div class="live">
+            <img class="light-mode" src="assets/logos/fdb-logo-wordmark.png" alt="" style="height: 60px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-logo-wordmark-dark.png" alt="" style="height: 60px;">
+          </div>
+          <div class="cap"><b>Wordmark only</b><span>Tighter horizontal contexts</span></div>
+        </div>
+        <div class="stage">
+          <div class="live">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 90px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 90px;">
+          </div>
+          <div class="cap"><b>Mark only</b><span>Favicon · footer · social grid</span></div>
+        </div>
+        <div class="stage">
+          <div class="live">
+            <img class="light-mode" src="assets/logos/x-awards-wordmark.png" alt="" style="height: 64px;">
+            <img class="dark-mode"  src="assets/logos/dark/x-awards-wordmark-dark.png" alt="" style="height: 64px;">
+          </div>
+          <div class="cap"><b>X. Awards</b><span>Sub-brand lockup</span></div>
+        </div>
+      </div>
+
+      <div class="sub-h">Clear-space &amp; minimum sizing</div>
+      <div class="role-grid">
+        <div class="role"><div class="dot" style="background: var(--fdb-purple);"></div><div class="info"><b>Minimum height</b><div class="tok">24px on screen · 12mm in print</div></div></div>
+        <div class="role"><div class="dot" style="background: var(--fdb-purple-mid);"></div><div class="info"><b>Clear space</b><div class="tok">Height of one mark square on all sides</div></div></div>
+        <div class="role"><div class="dot" style="background: var(--fdb-purple-soft);"></div><div class="info"><b>Mark-only sizing</b><div class="tok">20px footer · 30px UI · 72px card · 180px hero</div></div></div>
+        <div class="role"><div class="dot" style="background: var(--fdb-ink-faint);"></div><div class="info"><b>Don't</b><div class="tok">Recolour, stretch, rotate or recompose the squares</div></div></div>
+      </div>
+
+      <div class="sub-h">Mark scales in use</div>
+      <div class="stage" style="margin-bottom: 24px;">
+        <div class="live" style="gap: 56px; min-height: 220px;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 180px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 180px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint);">Hero · 180px</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 72px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 72px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint);">Card · 72px</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 30px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 30px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint);">UI · 30px</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 20px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 20px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint);">Footer · 20px</span>
+          </div>
+        </div>
+        <div class="cap"><b>The stacked-square motif</b><span>Dark behind · mid · light in front</span></div>
+      </div>
+    </section>
+
+    <!-- ════════════════ COLOUR ════════════════ -->
+    <section class="tab" id="tab-colour">
+      <div class="head">
+        <div class="num">03 · Foundations</div>
+        <h1>Colour: one purple, <em>everything else greyscale</em>.</h1>
+        <p class="lead">A five-step purple, a four-step ink scale, three canvas tones. No second hue. On the ink treatment the purple shifts to a hot magenta-pink so the brand stays vivid against ink.</p>
+      </div>
+
+      <div class="sub-h">Purple scale — the brand</div>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#EDE5F8"></div><div class="meta"><div class="name">Purple Tint</div><div class="tok">--fdb-purple-tint</div><div class="hex">#EDE5F8</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#C9AAEE"></div><div class="meta"><div class="name">Purple Soft</div><div class="tok">--fdb-purple-soft</div><div class="hex">#C9AAEE</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#9B6FE0"></div><div class="meta"><div class="name">Purple Mid</div><div class="tok">--fdb-purple-mid</div><div class="hex">#9B6FE0</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#8239C1"></div><div class="meta"><div class="name">Purple</div><div class="tok">--fdb-purple</div><div class="hex">#8239C1</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#5B1FBF"></div><div class="meta"><div class="name">Purple Deep</div><div class="tok">--fdb-purple-deep</div><div class="hex">#5B1FBF</div></div></div>
+      </div>
+
+      <div class="sub-h">Ink scale — greyscale text</div>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#1A1A1A"></div><div class="meta"><div class="name">Ink</div><div class="tok">--fdb-ink · headlines</div><div class="hex">#1A1A1A</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#3A3A3A"></div><div class="meta"><div class="name">Ink Mid</div><div class="tok">--fdb-ink-mid · body</div><div class="hex">#3A3A3A</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#7A7A7A"></div><div class="meta"><div class="name">Ink Muted</div><div class="tok">--fdb-ink-muted · captions</div><div class="hex">#7A7A7A</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#B0B0B0"></div><div class="meta"><div class="name">Ink Faint</div><div class="tok">--fdb-ink-faint · labels · TBC</div><div class="hex">#B0B0B0</div></div></div>
+      </div>
+
+      <div class="sub-h">Canvas — backgrounds</div>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#F5F0E9"></div><div class="meta"><div class="name">Cream</div><div class="tok">--fdb-cream · default canvas</div><div class="hex">#F5F0E9</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E6E2DA"></div><div class="meta"><div class="name">Cream Deep</div><div class="tok">--fdb-cream-deep</div><div class="hex">#E6E2DA</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);"></div><div class="meta"><div class="name">White</div><div class="tok">on purple · raised cards</div><div class="hex">#FFFFFF</div></div></div>
+      </div>
+
+      <div class="sub-h">Ink treatment — alternate</div>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#E070F0"></div><div class="meta"><div class="name">Accent</div><div class="tok">--fdb-dark-accent</div><div class="hex">#E070F0</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#9040A0"></div><div class="meta"><div class="name">Accent Mid</div><div class="tok">--fdb-dark-accent-mid</div><div class="hex">#9040A0</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#502070"></div><div class="meta"><div class="name">Accent Deep</div><div class="tok">--fdb-dark-accent-deep</div><div class="hex">#502070</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1A1A1A"></div><div class="meta"><div class="name">Ink BG</div><div class="tok">--fdb-dark-bg · page</div><div class="hex">#1A1A1A</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#242424"></div><div class="meta"><div class="name">Ink BG Elev</div><div class="tok">--fdb-dark-bg-elev · cards</div><div class="hex">#242424</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#0E0E0E"></div><div class="meta"><div class="name">Ink BG Deep</div><div class="tok">--fdb-dark-bg-deep · footer</div><div class="hex">#0E0E0E</div></div></div>
+      </div>
+
+      <div class="sub-h">Semantic role map</div>
+      <div class="role-grid">
+        <div class="role"><div class="dot" style="background:#1A1A1A"></div><div class="info"><b>fg-1 — primary text</b><div class="tok">--fdb-ink · #1A1A1A</div></div></div>
+        <div class="role"><div class="dot" style="background:#3A3A3A"></div><div class="info"><b>fg-2 — body text</b><div class="tok">--fdb-ink-mid · #3A3A3A</div></div></div>
+        <div class="role"><div class="dot" style="background:#7A7A7A"></div><div class="info"><b>fg-3 — captions</b><div class="tok">--fdb-ink-muted · #7A7A7A</div></div></div>
+        <div class="role"><div class="dot" style="background:#B0B0B0"></div><div class="info"><b>fg-4 — labels · TBC</b><div class="tok">--fdb-ink-faint · #B0B0B0</div></div></div>
+        <div class="role"><div class="dot" style="background:#8239C1"></div><div class="info"><b>fg-accent · CTA</b><div class="tok">--fdb-purple · #8239C1</div></div></div>
+        <div class="role"><div class="dot" style="background:#F5F0E9"></div><div class="info"><b>bg-page</b><div class="tok">--fdb-cream</div></div></div>
+        <div class="role"><div class="dot" style="background:#1A1A1A"></div><div class="info"><b>bg-ink (alt)</b><div class="tok">--fdb-dark-bg</div></div></div>
+        <div class="role"><div class="dot" style="background:#EDE5F8"></div><div class="info"><b>bg-tint · chips</b><div class="tok">--fdb-purple-tint</div></div></div>
+      </div>
+    </section>
+
+    <!-- ════════════════ TYPE ════════════════ -->
+    <section class="tab" id="tab-type">
+      <div class="head">
+        <div class="num">04 · Foundations</div>
+        <h1>Typography — <em>Geist, every weight</em>.</h1>
+        <p class="lead">One typeface: Geist, weights 100 through 900. Tight tracking on display, generous leading on body. Self-hosted from <code class="tok-inline">/fonts</code>. Display reaches for 800 (ExtraBold) at hero scale; body sits at 400 (Regular). Micro-labels are 700 (Bold) UPPERCASE with 0.10em–0.14em tracking — they do an enormous amount of structural work on the page.</p>
+      </div>
+
+      <div class="sub-h">Hero specimen</div>
+      <div class="card" style="padding: 36px 40px;">
+        <div style="font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.035em; color: var(--fdb-ink);">
+          Leadership<br>in the Age of <span style="color: var(--fdb-purple);">AI.</span>
+        </div>
+        <div style="font-family: var(--fdb-font-mono); font-size: 12px; color: var(--fdb-ink-muted); margin-top: 20px;">Geist · 800 ExtraBold · clamp(2.8rem, 5.5vw, 4.2rem) · line-height 1.0 · letter-spacing −0.035em</div>
+      </div>
+
+      <div class="sub-h">All nine weights</div>
+      <div class="weight-grid">
+        <div class="weight-cell"><div class="lbl">100 Thin</div><div class="sample" style="font-weight: 100;">Future Destination Brand.</div></div>
+        <div class="weight-cell"><div class="lbl">200 ExtraLight</div><div class="sample" style="font-weight: 200;">Future Destination Brand.</div></div>
+        <div class="weight-cell"><div class="lbl">300 Light</div><div class="sample" style="font-weight: 300;">Future Destination Brand.</div></div>
+        <div class="weight-cell"><div class="lbl">400 Regular</div><div class="sample" style="font-weight: 400;">Future Destination Brand.</div></div>
+        <div class="weight-cell"><div class="lbl">500 Medium</div><div class="sample" style="font-weight: 500;">Future Destination Brand.</div></div>
+        <div class="weight-cell"><div class="lbl">600 SemiBold</div><div class="sample" style="font-weight: 600;">Future Destination Brand.</div></div>
+        <div class="weight-cell"><div class="lbl">700 Bold</div><div class="sample" style="font-weight: 700;">Future Destination Brand.</div></div>
+        <div class="weight-cell"><div class="lbl">800 ExtraBold</div><div class="sample" style="font-weight: 800;">Future Destination Brand.</div></div>
+        <div class="weight-cell"><div class="lbl">900 Black</div><div class="sample" style="font-weight: 900;">Future Destination Brand.</div></div>
+      </div>
+
+      <div class="sub-h">Scale &amp; usage</div>
+      <div class="card" style="padding: 24px 28px;">
+        <div class="type-row"><div class="lbl">Display · 48–68px</div><div style="font-weight: 800; font-size: 48px; line-height: 1; letter-spacing: -0.03em; color: var(--fdb-ink);">Hero heading.</div></div>
+        <div class="type-row"><div class="lbl">H1 · 36px</div><div style="font-weight: 800; font-size: 36px; line-height: 1.05; letter-spacing: -0.03em; color: var(--fdb-ink);">Section title.</div></div>
+        <div class="type-row"><div class="lbl">H2 · 26px</div><div style="font-weight: 700; font-size: 26px; line-height: 1.15; letter-spacing: -0.02em; color: var(--fdb-ink);">Subsection title.</div></div>
+        <div class="type-row"><div class="lbl">H3 · 20px</div><div style="font-weight: 700; font-size: 20px; line-height: 1.3; color: var(--fdb-ink);">Card heading.</div></div>
+        <div class="type-row"><div class="lbl">Statement · 22px</div><div style="font-weight: 700; font-size: 22px; line-height: 1.35; letter-spacing: -0.02em; color: var(--fdb-ink);">The question is <span style="color: var(--fdb-purple); font-weight: 800;">not whether to engage.</span></div></div>
+        <div class="type-row"><div class="lbl">Body · 14px</div><div style="font-weight: 400; font-size: 14px; line-height: 1.75; color: var(--fdb-ink-mid);">A meeting, not a conference. Boardroom arrangement, no stage, no panels.</div></div>
+        <div class="type-row"><div class="lbl">Small · 12px</div><div style="font-weight: 400; font-size: 12px; line-height: 1.55; color: var(--fdb-ink-muted);">Seated, hosted, informal. The conversation continues.</div></div>
+        <div class="type-row"><div class="lbl">Eyebrow · 12px</div><div style="font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fdb-purple);">Day One · Leadership Programme</div></div>
+        <div class="type-row" style="border-bottom: none;"><div class="lbl">Micro · 10px</div><div style="font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint);">About the day</div></div>
+      </div>
+    </section>
+
+    <!-- ════════════════ SPACING & LAYOUT ════════════════ -->
+    <section class="tab" id="tab-space">
+      <div class="head">
+        <div class="num">05 · Foundations</div>
+        <h1>Spacing, layout, <em>and rhythm</em>.</h1>
+        <p class="lead">Sections breathe. Long-form pages use a 1000px max-width, centred, with generous vertical rhythm — hero padding at 5rem, section labels with 2.5rem of air above. Density comes from internal hierarchy, never from cramming content into the canvas.</p>
+      </div>
+
+      <div class="sub-h">Spacing scale — 4 / 8 px base</div>
+      <div class="space-row">
+        <div class="bar" style="width: 4%">4 · --fdb-space-1</div>
+        <div class="bar" style="width: 8%">8 · --fdb-space-2</div>
+        <div class="bar" style="width: 12%">12 · --fdb-space-3</div>
+        <div class="bar" style="width: 16%">16 · --fdb-space-4</div>
+        <div class="bar" style="width: 24%">24 · --fdb-space-5</div>
+        <div class="bar" style="width: 32%">32 · --fdb-space-6</div>
+        <div class="bar" style="width: 48%">48 · --fdb-space-7</div>
+        <div class="bar" style="width: 64%">64 · --fdb-space-8</div>
+        <div class="bar" style="width: 96%">96 · --fdb-space-9</div>
+      </div>
+
+      <div class="sub-h">Layout rules</div>
+      <div class="rule-list">
+        <div class="rule"><div class="n">01</div><div class="t"><b>Page max-width 1000px.</b><p>Editorial reading width, centred. Marketing site, slide chrome and programme tables all respect this.</p></div></div>
+        <div class="rule"><div class="n">02</div><div class="t"><b>Hero padding 5rem / 3rem.</b><p>Vertical breathing room is generous. Hero blocks aren't cramped — they hold the page open.</p></div></div>
+        <div class="rule"><div class="n">03</div><div class="t"><b>Section labels add 2.5rem above.</b><p>The uppercase eyebrow sits high in its own air, never crowding the body copy below.</p></div></div>
+        <div class="rule"><div class="n">04</div><div class="t"><b>Card padding 1rem–2rem.</b><p>Most cards use 1rem–2rem padding inside. The canvas does the heavy lifting on whitespace.</p></div></div>
+        <div class="rule"><div class="n">05</div><div class="t"><b>Twelve-column thinking, two-column delivery.</b><p>Most layouts are 1-col or 50/50 splits with a 2–4rem gutter. Heavier grids are reserved for the participants table and stat rows.</p></div></div>
+        <div class="rule"><div class="n">06</div><div class="t"><b>text-wrap: pretty by default.</b><p>Long-form body uses pretty wrap so orphans don't dangle at the end of paragraphs.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ════════════════ RADII ════════════════ -->
+    <section class="tab" id="tab-radii">
+      <div class="head">
+        <div class="num">06 · Foundations</div>
+        <h1>Corner radii — <em>small, almost square</em>.</h1>
+        <p class="lead">No fully-rounded shapes anywhere. The only circle in the system is the dot on the X. Awards <em>x.</em> glyph. Buttons, cards, callouts all live between 2px and 6px.</p>
+      </div>
+
+      <div class="sub-h">Radius scale</div>
+      <div class="radii">
+        <div class="r"><div class="box" style="border-radius: 0;"></div><div class="nm">0 · photo frame</div><div class="v">0px</div></div>
+        <div class="r"><div class="box" style="border-radius: 2px;"></div><div class="nm">xs · tags · pills</div><div class="v">2px · --radius-xs</div></div>
+        <div class="r"><div class="box" style="border-radius: 3px;"></div><div class="nm">sm · buttons</div><div class="v">3px · --radius-sm</div></div>
+        <div class="r"><div class="box" style="border-radius: 4px;"></div><div class="nm">md · cards</div><div class="v">4px · --radius-md</div></div>
+        <div class="r"><div class="box" style="border-radius: 6px;"></div><div class="nm">lg · mark squares</div><div class="v">6px · --radius-lg</div></div>
+      </div>
+
+      <div class="sub-h">Border weights &amp; treatments</div>
+      <div class="role-grid">
+        <div class="role"><div class="dot" style="background: rgba(26,26,26,0.10); border: 1px solid rgba(26,26,26,0.2);"></div><div class="info"><b>Border</b><div class="tok">rgba(26,26,26,0.10) · dividers</div></div></div>
+        <div class="role"><div class="dot" style="background: rgba(26,26,26,0.18); border: 1px solid rgba(26,26,26,0.3);"></div><div class="info"><b>Border Strong</b><div class="tok">rgba(26,26,26,0.18) · card outline</div></div></div>
+        <div class="role"><div class="dot" style="background: var(--fdb-purple-soft);"></div><div class="info"><b>Border Purple</b><div class="tok">--fdb-purple-soft · decorative frame</div></div></div>
+        <div class="role"><div class="dot" style="background: var(--fdb-purple);"></div><div class="info"><b>Top-rule accent</b><div class="tok">2px solid --fdb-purple · output items</div></div></div>
+      </div>
+    </section>
+
+    <!-- ════════════════ MOTION ════════════════ -->
+    <section class="tab" id="tab-motion">
+      <div class="head">
+        <div class="num">07 · Foundations</div>
+        <h1>Motion &amp; <em>elevation</em>.</h1>
+        <p class="lead">The brand is intentionally still. No bounces, no springs, no overshoot. Hover states swap colours and borders; press states do nothing. Elevation is almost never used — the brand is flat. Shadows are reserved for floating overlays only.</p>
+      </div>
+
+      <div class="sub-h">Motion principles</div>
+      <div class="rule-list">
+        <div class="rule"><div class="n">→</div><div class="t"><b>Default ease</b><p>Plain <code class="tok-inline">ease</code> on <code class="tok-inline">color</code>, <code class="tok-inline">border-color</code>, <code class="tok-inline">background</code>. Never on transform.</p></div></div>
+        <div class="rule"><div class="n">↓</div><div class="t"><b>Duration · 0.15s</b><p>Hover and focus colour changes resolve in 150ms. Fast enough to feel direct, slow enough to register.</p></div></div>
+        <div class="rule"><div class="n">·</div><div class="t"><b>No transform on press</b><p>Buttons do not scale down. Cards do not lift. The brand is editorial, not playful.</p></div></div>
+        <div class="rule"><div class="n">∅</div><div class="t"><b>No entry animations</b><p>No fade-up, no stagger, no scroll-triggered reveals. Content arrives composed.</p></div></div>
+      </div>
+
+      <div class="sub-h">Elevation — used sparingly</div>
+      <div class="stage-grid">
+        <div class="stage">
+          <div class="live" style="background: #fff;">
+            <div style="background: var(--fdb-cream); border: 1px solid var(--fdb-border-strong); border-radius: 4px; padding: 18px 24px; font-size: 13px; font-weight: 700; color: var(--fdb-ink);">Hairline · default</div>
+          </div>
+          <div class="cap"><b>Hairline</b><span>1px border, no shadow</span></div>
+        </div>
+        <div class="stage">
+          <div class="live" style="background: #fff;">
+            <div style="background: #fff; box-shadow: var(--fdb-shadow-1); padding: 18px 24px; border-radius: 4px; font-size: 13px; font-weight: 700; color: var(--fdb-ink);">Subtle · forms only</div>
+          </div>
+          <div class="cap"><b>--fdb-shadow-1</b><span>0 1px 2px / .05 — inputs</span></div>
+        </div>
+        <div class="stage">
+          <div class="live" style="background: #fff;">
+            <div style="background: #fff; box-shadow: var(--fdb-shadow-2); padding: 18px 24px; border-radius: 4px; font-size: 13px; font-weight: 700; color: var(--fdb-ink);">Floating · overlays</div>
+          </div>
+          <div class="cap"><b>--fdb-shadow-2</b><span>0 6px 24px / .12 — modals</span></div>
+        </div>
+      </div>
+
+      <p style="font-size: 13px; color: var(--fdb-ink-muted); margin-top: 18px; max-width: 62ch;">
+        On cards, programme rows, and most surfaces, the answer is <strong style="color: var(--fdb-purple);">no shadow at all</strong>. Use a hairline border or a faint tint instead. Reach for elevation only when an element genuinely floats above the page.
+      </p>
+    </section>
+
+    <!-- ════════════════ ICONOGRAPHY ════════════════ -->
+    <section class="tab" id="tab-iconography">
+      <div class="head">
+        <div class="num">08 · Iconography</div>
+        <h1>The mark, and <em>a tight UI set</em>.</h1>
+        <p class="lead">FDB uses very few icons. The stacked-square mark is the signature glyph, used at four scales. For functional UI metaphors we use Lucide stroke icons at 2px weight — chat bubble, arrows, calendar, map pin. No emoji, no unicode pictograms. The middle dot <code class="tok-inline">·</code> is the only typographic ornament.</p>
+      </div>
+
+      <div class="sub-h">The brand mark — at four scales</div>
+      <div class="stage" style="margin-bottom: 28px;">
+        <div class="live" style="gap: 56px; min-height: 240px;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 180px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 180px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint);">Hero · 180px</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 72px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 72px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint);">Card · 72px</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 30px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 30px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint);">UI · 30px</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 20px;">
+            <img class="dark-mode"  src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 20px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint);">Footer · 20px</span>
+          </div>
+        </div>
+        <div class="cap"><b>Stacked-square mark</b><span>Dark behind · mid · light in front</span></div>
+      </div>
+
+      <div class="sub-h">UI icons — Google Material Symbols</div>
+      <p style="font-size: 13px; color: var(--fdb-ink-muted); margin: 0 0 18px; max-width: 64ch;">
+        Functional UI glyphs are drawn from <strong style="color: var(--fdb-purple);">Google Material Symbols (Outlined)</strong>. Weight 400, optical size 24, fill 0. Stroke matches the brand's hairline border weight; <code class="tok-inline">currentColor</code> lets the icon flow with the parent text colour.
+      </p>
+      <div class="card">
+        <div class="icon-wall">
+          <div class="icon-tile"><span class="material-symbols-outlined">arrow_forward</span><div class="nm">arrow_forward</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">arrow_back</span><div class="nm">arrow_back</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">arrow_outward</span><div class="nm">arrow_outward</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">north_east</span><div class="nm">north_east</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">chat_bubble</span><div class="nm">chat_bubble</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">mail</span><div class="nm">mail</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">call</span><div class="nm">call</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">event</span><div class="nm">event</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">schedule</span><div class="nm">schedule</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">location_on</span><div class="nm">location_on</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">public</span><div class="nm">public</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">flight</span><div class="nm">flight</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">group</span><div class="nm">group</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">person</span><div class="nm">person</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">account_circle</span><div class="nm">account_circle</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">badge</span><div class="nm">badge</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">description</span><div class="nm">description</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">article</span><div class="nm">article</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">file_present</span><div class="nm">file_present</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">download</span><div class="nm">download</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">share</span><div class="nm">share</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">link</span><div class="nm">link</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">search</span><div class="nm">search</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">tune</span><div class="nm">tune</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">menu</span><div class="nm">menu</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">close</span><div class="nm">close</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">check</span><div class="nm">check</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">add</span><div class="nm">add</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">remove</span><div class="nm">remove</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">expand_more</span><div class="nm">expand_more</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">play_arrow</span><div class="nm">play_arrow</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">pause</span><div class="nm">pause</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">live_tv</span><div class="nm">live_tv</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">mic</span><div class="nm">mic</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">headset_mic</span><div class="nm">headset_mic</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">language</span><div class="nm">language</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">translate</span><div class="nm">translate</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">workspaces</span><div class="nm">workspaces</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">business</span><div class="nm">business</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">stars</span><div class="nm">stars</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">bookmark</span><div class="nm">bookmark</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">visibility</span><div class="nm">visibility</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">lock</span><div class="nm">lock</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">key</span><div class="nm">key</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">notifications</span><div class="nm">notifications</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">forum</span><div class="nm">forum</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">chat</span><div class="nm">chat</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">campaign</span><div class="nm">campaign</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">analytics</span><div class="nm">analytics</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">trending_up</span><div class="nm">trending_up</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">insights</span><div class="nm">insights</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">bar_chart</span><div class="nm">bar_chart</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">pie_chart</span><div class="nm">pie_chart</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">map</span><div class="nm">map</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">tour</span><div class="nm">tour</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">apartment</span><div class="nm">apartment</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">museum</span><div class="nm">museum</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">eco</span><div class="nm">eco</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">recycling</span><div class="nm">recycling</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">smart_toy</span><div class="nm">smart_toy</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">auto_awesome</span><div class="nm">auto_awesome</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">policy</span><div class="nm">policy</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">gavel</span><div class="nm">gavel</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">handshake</span><div class="nm">handshake</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">verified</span><div class="nm">verified</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">military_tech</span><div class="nm">military_tech</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">workspace_premium</span><div class="nm">workspace_premium</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">trophy</span><div class="nm">trophy</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">lightbulb</span><div class="nm">lightbulb</div></div>
+          <div class="icon-tile"><span class="material-symbols-outlined">flag</span><div class="nm">flag</div></div>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: var(--fdb-ink-muted); margin-top: 18px; max-width: 64ch;">
+        Load the font at the top of any page: <code class="tok-inline">&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"&gt;</code>. Then use <code class="tok-inline">&lt;span class="material-symbols-outlined"&gt;event&lt;/span&gt;</code>. Size with <code class="tok-inline">font-size</code>, colour with <code class="tok-inline">color</code>.
+      </p>
+
+      <div class="sub-h">Rules</div>
+      <div class="rule-list">
+        <div class="rule"><div class="n">A</div><div class="t"><b>No emoji, no unicode pictograms.</b><p>The middle dot <code class="tok-inline">·</code> (U+00B7) is the only ornament used. Apply it freely as a separator.</p></div></div>
+        <div class="rule"><div class="n">B</div><div class="t"><b>Never recolour the mark squares.</b><p>The three purple steps are fixed. Don't tint, don't gradient, don't add a fourth.</p></div></div>
+        <div class="rule"><div class="n">C</div><div class="t"><b>UI icons sit inline with text.</b><p>Match the cap height of the surrounding label. Never wrap in a coloured circle — that's not the FDB language.</p></div></div>
+        <div class="rule"><div class="n">D</div><div class="t"><b>The X. Awards <em>x.</em> dot is the only circle.</b><p>Every other shape in the system is square or square-with-tiny-radius.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ════════════════ COMPONENTS ════════════════ -->
+    <section class="tab" id="tab-components">
+      <div class="head">
+        <div class="num">09 · Components</div>
+        <h1>Component <em>library</em>.</h1>
+        <p class="lead">Twelve patterns used across the marketing site, slide decks, and social posts. Each shown live below. Toggle the theme in the banner to see the ink alternate.</p>
+      </div>
+
+      <div class="sub-h">Buttons</div>
+      <div class="stage">
+        <div class="live">
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center;">
+            <button class="btn-primary">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" style="display: inline-block; vertical-align: middle; margin-right: 6px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              Get in touch
+            </button>
+            <button class="btn-primary">Apply now</button>
+            <button class="btn-outline">View programme</button>
+            <button class="btn-ghost">Get in touch</button>
+          </div>
+        </div>
+        <div class="cap"><b>Buttons</b><span>Primary · Outline · Ghost</span></div>
+      </div>
+
+      <div class="sub-h">Tags &amp; pills</div>
+      <div class="stage">
+        <div class="live">
+          <div style="display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; max-width: 460px;">
+            <span class="tag">Provocation</span>
+            <span class="tag">Framework</span>
+            <span class="tag">Peer testimony</span>
+            <span class="tag">Policy output</span>
+            <span class="pill">Invite Only</span>
+            <span class="tag outline">Day One</span>
+            <span class="tag inverse">FDB 2026</span>
+          </div>
+        </div>
+        <div class="cap"><b>Tags &amp; pills</b><span>Fill · outline · inverse · border-pill</span></div>
+      </div>
+
+      <div class="sub-h">Purple callout bar</div>
+      <div class="stage">
+        <div class="live" style="padding: 24px 28px 38px;">
+          <div class="callout-wrap">
+            <div class="frame"></div>
+            <div class="callout">
+              <div>
+                <div class="lbl">For destinations</div>
+                <div class="txt">A mechanism for the sector to speak with one voice on AI policy.</div>
+              </div>
+              <div>
+                <div class="lbl">For technology leaders</div>
+                <div class="txt">Direct engagement with leaders responsible for tourism at national scale.</div>
+              </div>
+              <div>
+                <div class="lbl">For EU institutions</div>
+                <div class="txt">A structured, expert contribution to the AI and digital policy agenda.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Callout bar</b><span>Three-up policy block with offset frame</span></div>
+      </div>
+
+      <div class="sub-h">Programme row</div>
+      <div class="stage">
+        <div class="live" style="padding: 0 28px;">
+          <div class="prog-row">
+            <div class="time">10:00</div>
+            <div>
+              <div class="title">Opening provocation</div>
+              <div class="desc">Twenty minutes, no slides. A further twenty minutes of open response from participants.</div>
+              <span class="tag">Provocation</span>
+              <div class="speaker" style="margin-top: 8px;"><span class="dot"></span>Oliver Csendes · Former CEO, Visit Hungary</div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Programme row</b><span>Time · title · description · tags · speaker</span></div>
+      </div>
+
+      <div class="sub-h">Session cards — with offset frame</div>
+      <div class="stage">
+        <div class="live" style="padding: 24px 28px 38px;">
+          <div class="session-grid">
+            <div class="session-wrap">
+              <div class="frame"></div>
+              <div class="session">
+                <div class="lbl">Session A</div>
+                <div class="t">AI readiness and organisational leadership</div>
+                <div class="d">What AI actually requires of an NTO leadership team. Where the gaps are.</div>
+              </div>
+            </div>
+            <div class="session-wrap">
+              <div class="frame"></div>
+              <div class="session">
+                <div class="lbl">Session B</div>
+                <div class="t">AI and destination competitiveness</div>
+                <div class="d">How AI is reshaping where visitors go and how they choose.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Session cards</b><span>Two-up with offset purple-soft frame</span></div>
+      </div>
+
+      <div class="sub-h">Output items — purple top-rule</div>
+      <div class="stage">
+        <div class="live" style="padding: 24px 28px 38px;">
+          <div class="output-grid">
+            <div class="output-wrap">
+              <div class="frame"></div>
+              <div class="output">
+                <div class="nm">State of Destination AI Report</div>
+                <div class="desc">A comprehensive synthesis of insights from the leadership day, submitted to EU institutions.</div>
+              </div>
+            </div>
+            <div class="output-wrap">
+              <div class="frame"></div>
+              <div class="output">
+                <div class="nm">Executive Briefing Summary</div>
+                <div class="desc">A structured summary of the day's conclusions, designed to be read by policy audiences.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Output items</b><span>2px purple top-rule + offset frame</span></div>
+      </div>
+
+      <div class="sub-h">Participants grid</div>
+      <div class="stage">
+        <div class="live" style="padding: 24px;">
+          <div class="pgrid">
+            <div class="c">
+              <div class="type">Host</div>
+              <div class="nm">Caroline Bocquel</div>
+              <div class="org">CEO · Fáilte Ireland</div>
+            </div>
+            <div class="c">
+              <div class="type">Provocation</div>
+              <div class="nm">Oliver Csendes</div>
+              <div class="org">Former CEO · Visit Hungary</div>
+            </div>
+            <div class="c">
+              <div class="type">Technology briefing</div>
+              <div class="nm tbc">Senior representative</div>
+              <div class="org">Google / Microsoft / OpenAI · TBC</div>
+            </div>
+            <div class="c tint">
+              <div class="type">Further participants</div>
+              <div class="long">20 to 30 additional NTO and DMO chief executives, by personal invitation.</div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Participants grid</b><span>Hairline cells with TBC italics</span></div>
+      </div>
+
+      <div class="sub-h">Hero block</div>
+      <div class="stage">
+        <div class="live" style="padding: 0;">
+          <div class="hero-stage" style="background: var(--fdb-cream); width: 100%;">
+            <div class="decor">
+              <div class="sq s1"></div>
+              <div class="sq s2"></div>
+              <div class="sq s3"></div>
+            </div>
+            <div class="h">
+              <div class="eyebrow">Day One · Leadership Programme</div>
+              <div class="title">Leadership<br>in the Age<br>of <strong>AI.</strong></div>
+              <div class="intro">A global leadership day for national tourism organisation CEOs, senior government ministers and the technology leaders shaping AI's role.</div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Hero block</b><span>Title left + bleeding stacked-square motif right</span></div>
+      </div>
+
+      <div class="sub-h">Header</div>
+      <div class="stage">
+        <div class="live" style="padding: 0; min-height: 0;">
+          <div class="demo-header">
+            <div class="l">
+              <img class="light-mode" src="assets/logos/fdb-banner.png" alt="">
+              <img class="dark-mode" src="assets/logos/dark/fdb-banner-dark.png" alt="">
+              <span class="lbl">Dublin · December 2026</span>
+            </div>
+            <div class="r">
+              <span class="pill">Invite Only</span>
+              <button class="btn-ghost">Get in touch</button>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Header</b><span>96px tall, full lockup, pill + ghost CTA</span></div>
+      </div>
+
+      <div class="sub-h">Footer</div>
+      <div class="stage">
+        <div class="live" style="padding: 0; min-height: 0;">
+          <div class="demo-footer">
+            <div class="l">
+              <img class="light-mode" src="assets/logos/fdb-banner.png" alt="">
+              <img class="dark-mode" src="assets/logos/dark/fdb-banner-dark.png" alt="">
+              <span class="txt"><strong>2026 Edition</strong> · DTTT</span>
+            </div>
+            <div class="host">
+              <span class="hl">Host partner</span>
+              <span class="plate"><img src="assets/logos/failte-ireland.png" alt="Fáilte Ireland"></span>
+            </div>
+            <span class="txt">Ireland EU Council Presidency · H2 2026</span>
+          </div>
+        </div>
+        <div class="cap"><b>Footer</b><span>End-of-page bar</span></div>
+      </div>
+
+      <div class="sub-h">Speaker frame</div>
+      <div class="stage">
+        <div class="live" style="padding: 32px 28px; min-height: 320px;">
+          <div class="speaker-demo">
+            <div class="frame-bg-2"></div>
+            <div class="frame-bg-1"></div>
+            <div class="photo">
+              <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMax meet">
+                <ellipse cx="50" cy="32" rx="18" ry="22" fill="#2A3F50"/>
+                <path d="M14 100 Q20 56 50 56 Q80 56 86 100 Z" fill="#2A3F50"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Speaker frame</b><span>Portrait inside purple frame + offset outlines</span></div>
+      </div>
+
+      <!-- ─────────────── EXTENDED COMPONENTS · v1.1 ─────────────── -->
+
+      <div class="sub-h">Form fields</div>
+      <div class="stage-grid">
+        <div class="stage">
+          <div class="live" style="padding: 24px 28px; align-items: flex-start; justify-content: flex-start;">
+            <div style="display: flex; flex-direction: column; gap: 18px; width: 100%; max-width: 340px;">
+              <div class="field">
+                <label class="field-label">Email address</label>
+                <input class="field-input" type="email" placeholder="name@example.com" value="caroline.bocquel@failteireland.ie">
+                <div class="field-help">Used only for invitation correspondence.</div>
+              </div>
+              <div class="field">
+                <label class="field-label">Organisation</label>
+                <select class="field-select">
+                  <option>National Tourism Organisation</option>
+                  <option>Destination Marketing Org.</option>
+                  <option>Government · Ministry</option>
+                  <option>Technology partner</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="cap"><b>Input · select</b><span>Cream fill · purple focus ring</span></div>
+        </div>
+
+        <div class="stage">
+          <div class="live" style="padding: 24px 28px; align-items: flex-start; justify-content: flex-start;">
+            <div class="field">
+              <label class="field-label">Why you're attending</label>
+              <textarea class="field-textarea" placeholder="A short note on what you'd like the room to consider.">AI is reshaping how destinations are discovered. We want a structured way to engage with that as a national body.</textarea>
+              <div class="field-help">Two or three sentences. The room reads ahead.</div>
+            </div>
+          </div>
+          <div class="cap"><b>Textarea</b><span>Resizable · field-help below</span></div>
+        </div>
+
+        <div class="stage">
+          <div class="live" style="padding: 24px 28px; align-items: flex-start; justify-content: flex-start; gap: 24px;">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <label class="check"><input type="checkbox" checked><span class="box"></span><span>Attending Day One · Leadership</span></label>
+              <label class="check"><input type="checkbox" checked><span class="box"></span><span>Attending Day Two · Summit</span></label>
+              <label class="check"><input type="checkbox"><span class="box"></span><span>Attending X. Awards evening</span></label>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px; border-left: 1px solid var(--fdb-border); padding-left: 22px;">
+              <label class="check radio"><input type="radio" name="role"><span class="box"></span><span>CEO · NTO/DMO</span></label>
+              <label class="check radio"><input type="radio" name="role" checked><span class="box"></span><span>Minister · Senior official</span></label>
+              <label class="check radio"><input type="radio" name="role"><span class="box"></span><span>Technology partner</span></label>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px; border-left: 1px solid var(--fdb-border); padding-left: 22px;">
+              <label class="switch"><input type="checkbox" checked><span class="track"></span><span>Public bio</span></label>
+              <label class="switch"><input type="checkbox"><span class="track"></span><span>Press list</span></label>
+              <label class="switch"><input type="checkbox" checked><span class="track"></span><span>Photo release</span></label>
+            </div>
+          </div>
+          <div class="cap"><b>Checkbox · radio · switch</b><span>Brand-purple selected state</span></div>
+        </div>
+      </div>
+
+      <div class="sub-h">Avatars</div>
+      <div class="stage-grid">
+        <div class="stage">
+          <div class="live">
+            <div style="display: flex; align-items: center; gap: 18px;">
+              <span class="avatar sm">OC</span>
+              <span class="avatar">CB</span>
+              <span class="avatar purple">MR</span>
+              <span class="avatar ink">XA</span>
+              <span class="avatar lg">JD</span>
+            </div>
+          </div>
+          <div class="cap"><b>Avatars</b><span>Square · 28/40/56 · purple · ink</span></div>
+        </div>
+        <div class="stage">
+          <div class="live">
+            <div class="avatar-stack">
+              <span class="avatar">CB</span>
+              <span class="avatar purple">OC</span>
+              <span class="avatar ink">MR</span>
+              <span class="avatar">JD</span>
+              <span class="avatar purple">+8</span>
+            </div>
+          </div>
+          <div class="cap"><b>Avatar stack</b><span>Overlapped, 4 + count</span></div>
+        </div>
+      </div>
+
+      <div class="sub-h">Stats &amp; metrics</div>
+      <div class="stage">
+        <div class="live" style="padding: 28px; align-items: stretch;">
+          <div class="metric-grid">
+            <div class="metric bordered">
+              <div class="lbl">Participants</div>
+              <div class="num"><strong>30–40</strong></div>
+              <div class="cap">NTO/DMO CEOs, ministers, technology leaders.</div>
+            </div>
+            <div class="metric bordered">
+              <div class="lbl">Outputs</div>
+              <div class="num"><strong>2</strong></div>
+              <div class="cap">State of Destination AI Report. Executive Briefing.</div>
+            </div>
+            <div class="metric bordered">
+              <div class="lbl">Sessions</div>
+              <div class="num"><strong>75</strong>min</div>
+              <div class="cap">Two concurrent structured working sessions.</div>
+            </div>
+            <div class="metric bordered">
+              <div class="lbl">Press</div>
+              <div class="num">No.</div>
+              <div class="cap">Chatham House rule. Room is small by design.</div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Stat grid</b><span>Eyebrow · large number with purple emphasis · caption</span></div>
+      </div>
+
+      <div class="sub-h">Quote / pull-quote</div>
+      <div class="stage">
+        <div class="live" style="padding: 36px 36px; align-items: flex-start; justify-content: flex-start;">
+          <div class="quote">
+            <div class="q">AI is reshaping how destinations are discovered. The question is <strong>not whether to engage.</strong> It is whether leadership is ready.</div>
+            <div class="by">
+              <span class="avatar purple">OC</span>
+              <div>
+                <div class="nm">Oliver Csendes</div>
+                <div class="org">Former CEO · Visit Hungary</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Pull quote</b><span>Purple rule + avatar attribution</span></div>
+      </div>
+
+      <div class="sub-h">Alerts &amp; banners</div>
+      <div class="stage-grid">
+        <div class="stage">
+          <div class="live" style="padding: 24px;">
+            <div class="alert">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <div class="body">
+                <div class="t">Attendance is by personal invitation.</div>
+                <div class="d">Places are not opened to general application. To enquire, use the form below.</div>
+              </div>
+            </div>
+          </div>
+          <div class="cap"><b>Purple alert</b><span>Tint + soft border + leading icon</span></div>
+        </div>
+        <div class="stage">
+          <div class="live" style="padding: 24px;">
+            <div class="alert neutral">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div class="body">
+                <div class="t">Your invitation has been recorded.</div>
+                <div class="d">Logistics, dietary and accommodation requests will follow by email.</div>
+              </div>
+            </div>
+          </div>
+          <div class="cap"><b>Neutral alert</b><span>Cream / hairline border</span></div>
+        </div>
+        <div class="stage">
+          <div class="live ink" style="padding: 24px;">
+            <div class="alert ink">
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <div class="body">
+                <div class="t">X. Awards · evening programme.</div>
+                <div class="d">Black-tie reception. Doors 19:30. Programme begins promptly at 20:00.</div>
+              </div>
+            </div>
+          </div>
+          <div class="cap"><b>Ink alert</b><span>Evening / X. Awards moments</span></div>
+        </div>
+      </div>
+
+      <div class="sub-h">Data table</div>
+      <div class="stage">
+        <div class="live" style="padding: 24px 28px;">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Chair</th>
+                <th>Entries</th>
+                <th>Finalists</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Brand of the Year</td><td>Caroline Bocquel</td><td class="num">142</td><td class="num">6</td></tr>
+              <tr><td>Digital Innovation</td><td>Oliver Csendes</td><td class="num">98</td><td class="num">5</td></tr>
+              <tr><td>Sustainability</td><td>TBC</td><td class="num">73</td><td class="num">4</td></tr>
+              <tr><td>Regenerative Tourism</td><td>TBC</td><td class="num">61</td><td class="num">4</td></tr>
+              <tr><td>People &amp; Talent</td><td>TBC</td><td class="num">47</td><td class="num">3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cap"><b>Data table</b><span>Uppercase headers · tabular-num purple values</span></div>
+      </div>
+
+      <div class="sub-h">FAQ accordion</div>
+      <div class="stage">
+        <div class="live" style="padding: 24px 28px; align-items: stretch; justify-content: flex-start;">
+          <div class="faq">
+            <details open>
+              <summary>How are participants selected?</summary>
+              <div class="ans">Participants are nominated by the FDB programme board and confirmed by the host destination. Selection criteria are public; the list is not.</div>
+            </details>
+            <details>
+              <summary>Is the room press-friendly?</summary>
+              <div class="ans">Day One operates under the Chatham House rule. Day Two and the X. Awards evening are press-accessible by invitation.</div>
+            </details>
+            <details>
+              <summary>What outputs are produced?</summary>
+              <div class="ans">A State of Destination AI Report and an Executive Briefing Summary, both submitted to EU institutions.</div>
+            </details>
+            <details>
+              <summary>Are travel and accommodation covered?</summary>
+              <div class="ans">For invited speakers and ministerial delegations, yes. Other participants make their own arrangements; the host destination supports with logistics.</div>
+            </details>
+          </div>
+        </div>
+        <div class="cap"><b>FAQ accordion</b><span>Hairline rule rows · plus/minus glyph</span></div>
+      </div>
+
+      <div class="sub-h">Modal / dialog</div>
+      <div class="stage">
+        <div class="live" style="padding: 0; min-height: 320px;">
+          <div class="modal-scrim">
+            <div class="modal">
+              <div class="head-row">
+                <div class="lbl">Confirm invitation</div>
+                <button class="x" aria-label="Close">✕</button>
+              </div>
+              <h3>Are these details correct?</h3>
+              <p>We'll use these to issue your formal invitation and brief the host destination. You can revise anything before December.</p>
+              <div class="actions">
+                <button class="btn-ghost">Cancel</button>
+                <button class="btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Modal</b><span>Scrim · uppercase eyebrow · ghost + primary actions</span></div>
+      </div>
+
+      <div class="sub-h">Empty state</div>
+      <div class="stage">
+        <div class="live" style="padding: 32px 28px;">
+          <div class="empty">
+            <svg class="mark" width="60" height="60" viewBox="0 0 30 30" fill="none">
+              <rect x="1" y="1" width="18" height="18" rx="2" stroke="#C9AAEE" stroke-width="1.5"/>
+              <rect x="6" y="6" width="18" height="18" rx="2" stroke="#9B6FE0" stroke-width="1.5"/>
+              <rect x="11" y="11" width="18" height="18" rx="2" stroke="#8239C1" stroke-width="1.5"/>
+            </svg>
+            <div class="lbl">Speakers</div>
+            <div class="t">No speakers confirmed yet.</div>
+            <div class="d">The programme board is in conversation. Final list confirmed by September.</div>
+            <button class="btn-ghost">Notify me when announced</button>
+          </div>
+        </div>
+        <div class="cap"><b>Empty state</b><span>Mark · eyebrow · explanation · ghost CTA</span></div>
+      </div>
+
+      <div class="sub-h">Breadcrumb &amp; pagination</div>
+      <div class="stage-grid">
+        <div class="stage">
+          <div class="live">
+            <nav class="crumb">
+              <a href="#">FDB 2026</a>
+              <span class="sep">/</span>
+              <a href="#">Programme</a>
+              <span class="sep">/</span>
+              <a href="#">Day One · Leadership</a>
+              <span class="sep">/</span>
+              <span class="here">Opening provocation</span>
+            </nav>
+          </div>
+          <div class="cap"><b>Breadcrumb</b><span>Slash separators · last bold</span></div>
+        </div>
+        <div class="stage">
+          <div class="live">
+            <nav class="pager">
+              <a class="arrow">←</a>
+              <a>1</a>
+              <span class="here">2</span>
+              <a>3</a>
+              <a>4</a>
+              <span class="ell">…</span>
+              <a>12</a>
+              <a class="arrow">→</a>
+            </nav>
+          </div>
+          <div class="cap"><b>Pagination</b><span>Tinted current · purple-soft border</span></div>
+        </div>
+      </div>
+
+      <div class="sub-h">Tooltip</div>
+      <div class="stage">
+        <div class="live" style="padding: 36px 28px; min-height: 120px;">
+          <div class="tooltip-stage">
+            <span class="tooltip">Chatham House rule — not for attribution</span>
+            <span class="tooltip-anchor">Off-record session<span class="badge">i</span></span>
+          </div>
+        </div>
+        <div class="cap"><b>Tooltip</b><span>Ink fill · arrow below · always-visible demo</span></div>
+      </div>
+
+      <div class="sub-h">Sponsor / partner strip</div>
+      <div class="stage">
+        <div class="live" style="padding: 0 28px;">
+          <div class="sponsors">
+            <span class="lbl">Hosted by</span>
+            <span class="logo-slot">Fáilte Ireland</span>
+            <span class="logo-slot">DTTT</span>
+            <span class="logo-slot">EU Council · IE</span>
+            <span class="logo-slot">Technology partner</span>
+            <span class="logo-slot">Knowledge partner</span>
+          </div>
+        </div>
+        <div class="cap"><b>Sponsor strip</b><span>Eyebrow label · hairline-bordered logo slots</span></div>
+      </div>
+
+      <div class="sub-h">Newsletter signup</div>
+      <div class="stage">
+        <div class="live" style="padding: 24px 28px;">
+          <div class="signup">
+            <div class="lbl">Programme updates</div>
+            <h4>The room is small by design. <strong>Stay close.</strong></h4>
+            <p>Quarterly briefings from the programme board. No marketing, no logistics chatter.</p>
+            <div class="row">
+              <input class="field-input" type="email" placeholder="name@example.com">
+              <button class="btn-primary">Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Newsletter</b><span>Eyebrow + statement + input row</span></div>
+      </div>
+
+      <div class="sub-h">Photo frame · caption</div>
+      <div class="stage-grid">
+        <div class="stage">
+          <div class="live" style="padding: 24px 28px;">
+            <div class="photo-block">
+              <div class="photo-wrap">
+                <div class="img"><div class="placeholder tall">Portrait · chest crop · blue-grey backdrop</div></div>
+              </div>
+              <div class="cap"><b>Oliver Csendes</b> · Former CEO, Visit Hungary. Image by Léa Gabbiani, 2025.</div>
+            </div>
+          </div>
+          <div class="cap"><b>Portrait</b><span>4:5 · purple frame + offset outline</span></div>
+        </div>
+        <div class="stage">
+          <div class="live" style="padding: 24px 28px;">
+            <div class="photo-block" style="max-width: 420px;">
+              <div class="photo-wrap">
+                <div class="img landscape"><div class="placeholder">Cool blue-grey location · daylight · contained, not bled</div></div>
+              </div>
+              <div class="cap"><b>Convention Centre Dublin</b> · Liffey-side, walking distance from city centre hotels.</div>
+            </div>
+          </div>
+          <div class="cap"><b>Landscape</b><span>16:9 · same frame system</span></div>
+        </div>
+      </div>
+
+      <div class="sub-h">Content cards</div>
+      <div class="stage">
+        <div class="live" style="padding: 24px 28px; align-items: stretch;">
+          <div class="content-card-grid">
+            <article class="content-card">
+              <div class="lbl">Programme</div>
+              <h3>Day One · Leadership in the Age of AI</h3>
+              <p>Boardroom format. No stage, no panels. Two structured 75-minute sessions, ahead of policy submission.</p>
+              <a class="more">Read the programme</a>
+            </article>
+            <article class="content-card">
+              <div class="lbl">Output</div>
+              <h3>State of Destination AI Report</h3>
+              <p>Submitted to EU institutions in H2 2026. Authored from the leadership-day discussion.</p>
+              <a class="more">Read the report</a>
+            </article>
+            <article class="content-card">
+              <div class="lbl">Recognition</div>
+              <h3>X. Awards · Categories</h3>
+              <p>The industry's most respected recognition of destination branding, transformation and digital innovation.</p>
+              <a class="more">View categories</a>
+            </article>
+          </div>
+        </div>
+        <div class="cap"><b>Content cards</b><span>Hover lifts purple border · arrow CTA</span></div>
+      </div>
+
+      <div class="sub-h">Key-value list</div>
+      <div class="stage">
+        <div class="live" style="padding: 28px; align-items: flex-start;">
+          <dl class="kv">
+            <dt>Format</dt>             <dd>Invite-only · 30 to 40 participants</dd>
+            <dt>Dates</dt>              <dd>Day One · 1 December 2026</dd>
+            <dt>Venue</dt>              <dd>Convention Centre Dublin</dd>
+            <dt>Output</dt>             <dd>Submitted to EU institutions · H2 2026</dd>
+            <dt>Press</dt>              <dd>Chatham House rule · off-record</dd>
+          </dl>
+        </div>
+        <div class="cap"><b>Key-value list</b><span>Uppercase labels · ink values</span></div>
+      </div>
+
+      <div class="sub-h">Countdown</div>
+      <div class="stage">
+        <div class="live" style="padding: 28px;">
+          <div class="countdown">
+            <div class="seg"><div class="n">194</div><div class="l">Days</div></div>
+            <div class="seg"><div class="n">11</div><div class="l">Hours</div></div>
+            <div class="seg"><div class="n">42</div><div class="l">Minutes</div></div>
+            <div class="seg"><div class="n">07</div><div class="l">Seconds</div></div>
+          </div>
+        </div>
+        <div class="cap"><b>Countdown</b><span>Tabular numerals · hairline dividers</span></div>
+      </div>
+
+      <div class="sub-h">Press / newsroom rows</div>
+      <div class="stage">
+        <div class="live" style="padding: 16px 28px 30px; align-items: stretch;">
+          <div style="width: 100%;">
+            <div class="press-row">
+              <div class="date">15 May 2026</div>
+              <div><div class="ttl">Ireland to host inaugural Future. Destination. Brand. summit</div><div class="src">Irish Times · Tourism</div></div>
+              <a class="btn-ghost">Read</a>
+            </div>
+            <div class="press-row">
+              <div class="date">02 Apr 2026</div>
+              <div><div class="ttl">X. Awards categories announced for 2026 edition</div><div class="src">Skift</div></div>
+              <a class="btn-ghost">Read</a>
+            </div>
+            <div class="press-row">
+              <div class="date">12 Mar 2026</div>
+              <div><div class="ttl">Caroline Bocquel: "The room is small by design"</div><div class="src">TTG · interview</div></div>
+              <a class="btn-ghost">Read</a>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Press rows</b><span>Date · title + source · ghost CTA</span></div>
+      </div>
+    </section>
+
+    <!-- ════════════════ PATTERNS ════════════════ -->
+    <section class="tab" id="tab-patterns">
+      <div class="head">
+        <div class="num">10 · Components</div>
+        <h1>Patterns &amp; <em>scenarios</em>.</h1>
+        <p class="lead">How the primitives compose into real surfaces. Each pattern below is a self-contained scene the brand actually needs — the marketing-site sections, the conversational moments, the X. Awards rituals. Switch the banner theme to see the ink alternate.</p>
+      </div>
+
+      <!-- ── PATTERN 01 · Split hero with CTA pair ─────────────────────── -->
+      <div class="pattern">
+        <div class="hd"><span class="n">01 · Split hero · CTA pair</span><span class="s">Page-opener with primary + ghost actions</span></div>
+        <div class="body">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+            <div>
+              <div class="eyebrow-l" style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 18px;">Future. Destination. Brand. · 2026</div>
+              <h2 style="font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; color: var(--fdb-ink); margin: 0 0 22px;">A summit for the sector,<br>built in the <strong style="color: var(--fdb-purple);">open.</strong></h2>
+              <p style="font-size: 15px; line-height: 1.7; color: var(--fdb-ink-mid); max-width: 44ch; margin: 0 0 26px;">Two days in Dublin. One leadership working day, one summit, one X. Awards evening. Hosted by Fáilte Ireland under Ireland's EU Council Presidency.</p>
+              <div style="display: flex; gap: 14px; align-items: center;">
+                <button class="btn-primary">Get in touch</button>
+                <button class="btn-ghost">Read the programme</button>
+              </div>
+            </div>
+            <div style="position: relative; padding-left: 32px;">
+              <div class="hero-stage" style="background: var(--fdb-cream); border: 1px solid var(--fdb-border-strong); border-radius: 4px; min-height: 320px; padding: 36px 36px 38px;">
+                <div class="decor"><div class="sq s1"></div><div class="sq s2"></div><div class="sq s3"></div></div>
+                <div class="h">
+                  <div class="eyebrow">Dublin · December 2026</div>
+                  <div class="title">Two days.<br>One <strong>room.</strong></div>
+                  <div class="intro">Senior tourism leaders, ministers, and the technology leaders shaping AI in tourism.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATTERN 02 · Statement section ───────────────────────────── -->
+      <div class="pattern">
+        <div class="hd"><span class="n">02 · Statement · supporting metrics</span><span class="s">Editorial pull-quote anchoring a stat row</span></div>
+        <div class="body">
+          <div style="max-width: 720px; margin: 0 auto;">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fdb-ink-faint); margin-bottom: 24px;">What we're building</div>
+            <p style="font-size: 1.55rem; font-weight: 700; line-height: 1.35; letter-spacing: -0.02em; color: var(--fdb-ink); margin: 0 0 40px;">AI is reshaping where destinations are discovered, how tourism is managed and how national bodies are led. The question is <strong style="color: var(--fdb-purple); font-weight: 800;">not whether to engage.</strong> It is whether leadership is ready.</p>
+            <div class="metric-grid">
+              <div class="metric bordered">
+                <div class="lbl">Participants</div>
+                <div class="num"><strong>30–40</strong></div>
+                <div class="cap">CEOs, ministers, technology leaders.</div>
+              </div>
+              <div class="metric bordered">
+                <div class="lbl">Working sessions</div>
+                <div class="num">2 × <strong>75</strong>min</div>
+                <div class="cap">Concurrent, pre-assigned, structured.</div>
+              </div>
+              <div class="metric bordered">
+                <div class="lbl">Policy outputs</div>
+                <div class="num"><strong>2</strong></div>
+                <div class="cap">Report + Executive Briefing.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATTERN 03 · Programme schedule ──────────────────────────── -->
+      <div class="pattern">
+        <div class="hd"><span class="n">03 · Programme schedule</span><span class="s">Time-anchored rows with speaker and tag</span></div>
+        <div class="body">
+          <div style="max-width: 760px; margin: 0 auto;">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 8px;">Day One · 1 December 2026</div>
+            <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.025em; color: var(--fdb-ink); margin: 0 0 28px;">Leadership <em style="color: var(--fdb-purple); font-style: italic; font-weight: 400;">programme.</em></h3>
+            <div class="prog-row">
+              <div class="time">09:00</div>
+              <div>
+                <div class="title">Arrivals &amp; opening remarks</div>
+                <div class="desc">Caroline Bocquel sets the day's frame. No press present from this point on.</div>
+                <div class="speaker"><span class="dot"></span>Caroline Bocquel · CEO, Fáilte Ireland</div>
+              </div>
+            </div>
+            <div class="prog-row">
+              <div class="time">10:00</div>
+              <div>
+                <div class="title">Opening provocation</div>
+                <div class="desc">Twenty minutes, no slides. Twenty minutes of open response from participants.</div>
+                <span class="tag">Provocation</span>
+                <div class="speaker" style="margin-top: 8px;"><span class="dot"></span>Oliver Csendes · Former CEO, Visit Hungary</div>
+              </div>
+            </div>
+            <div class="prog-row">
+              <div class="time">11:30</div>
+              <div>
+                <div class="title">Concurrent working sessions</div>
+                <div class="desc">Two structured 75-minute sessions. Participants pre-assigned.</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">
+                  <div class="session"><div class="lbl">Session A</div><div class="t">AI readiness &amp; organisational leadership</div><div class="d">What AI requires of an NTO leadership team.</div></div>
+                  <div class="session"><div class="lbl">Session B</div><div class="t">AI &amp; destination competitiveness</div><div class="d">How AI is reshaping where visitors go and how they choose.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="prog-row">
+              <div class="time">14:30</div>
+              <div>
+                <div class="title">Technology briefing</div>
+                <div class="desc">Direct engagement with a senior technology partner. Format: roundtable.</div>
+                <span class="tag">Framework</span>
+                <div class="speaker" style="margin-top: 8px;"><span class="dot" style="background: var(--fdb-ink-faint);"></span><em style="color: var(--fdb-ink-muted); font-style: italic;">Senior representative · Google / Microsoft / OpenAI · TBC</em></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATTERN 04 · Speaker spotlight panel ─────────────────────── -->
+      <div class="pattern">
+        <div class="hd"><span class="n">04 · Speaker spotlight</span><span class="s">Portrait + framed bio + quote</span></div>
+        <div class="body">
+          <div style="display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: flex-start; max-width: 880px; margin: 0 auto;">
+            <div class="speaker-demo" style="width: 240px; height: 300px; align-self: start;">
+              <div class="frame-bg-2"></div>
+              <div class="frame-bg-1"></div>
+              <div class="photo">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMax meet">
+                  <ellipse cx="50" cy="32" rx="18" ry="22" fill="#2A3F50"/>
+                  <path d="M14 100 Q20 56 50 56 Q80 56 86 100 Z" fill="#2A3F50"/>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 12px;">Provocation · Day One</div>
+              <h3 style="font-size: 30px; font-weight: 800; letter-spacing: -0.025em; color: var(--fdb-ink); margin: 0 0 6px; line-height: 1.1;">Oliver Csendes</h3>
+              <div style="font-size: 14px; color: var(--fdb-ink-mid); margin-bottom: 22px;">Former CEO, Visit Hungary · Independent advisor</div>
+              <p style="font-size: 14px; line-height: 1.75; color: var(--fdb-ink-mid); max-width: 56ch; margin: 0 0 22px;">Oliver led Visit Hungary through its digital transformation between 2018 and 2024. He now advises ministries and DMOs across central Europe on AI policy and organisational readiness.</p>
+              <div class="quote">
+                <div class="q" style="font-size: 17px;">AI doesn't reshape the destination. It reshapes <strong>who is allowed to know it.</strong></div>
+              </div>
+              <div style="margin-top: 22px; display: flex; gap: 10px;">
+                <span class="tag">Provocation</span>
+                <span class="tag outline">AI policy</span>
+                <span class="tag outline">Leadership</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATTERN 05 · X. Awards categories grid ───────────────────── -->
+      <div class="pattern">
+        <div class="hd"><span class="n">05 · X. Awards · categories grid</span><span class="s">Numbered tiles with description and finalist count</span></div>
+        <div class="body">
+          <div style="max-width: 800px; margin: 0 auto;">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 10px;">X. Awards · 2026</div>
+            <h3 style="font-size: 30px; font-weight: 800; letter-spacing: -0.025em; color: var(--fdb-ink); margin: 0 0 32px;">The industry's most respected <em style="color: var(--fdb-purple); font-style: italic; font-weight: 400;">recognition.</em></h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--fdb-border-strong); border: 1px solid var(--fdb-border-strong); border-radius: 4px; overflow: hidden;">
+              <div style="background: var(--fdb-cream); padding: 22px 24px;"><div style="font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-purple); margin-bottom: 6px;">01</div><div style="font-size: 15px; font-weight: 800; color: var(--fdb-ink); margin-bottom: 6px;">Brand of the Year</div><div style="font-size: 12px; color: var(--fdb-ink-muted); line-height: 1.6;">For the destination brand making the most meaningful work in the calendar year. <span style="color: var(--fdb-purple); font-weight: 700;">6 finalists.</span></div></div>
+              <div style="background: var(--fdb-cream); padding: 22px 24px;"><div style="font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-purple); margin-bottom: 6px;">02</div><div style="font-size: 15px; font-weight: 800; color: var(--fdb-ink); margin-bottom: 6px;">Digital Innovation</div><div style="font-size: 12px; color: var(--fdb-ink-muted); line-height: 1.6;">For the most considered use of digital across the visitor experience. <span style="color: var(--fdb-purple); font-weight: 700;">5 finalists.</span></div></div>
+              <div style="background: var(--fdb-cream); padding: 22px 24px;"><div style="font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-purple); margin-bottom: 6px;">03</div><div style="font-size: 15px; font-weight: 800; color: var(--fdb-ink); margin-bottom: 6px;">Sustainability</div><div style="font-size: 12px; color: var(--fdb-ink-muted); line-height: 1.6;">For tangible reductions in the destination's environmental impact. <span style="color: var(--fdb-purple); font-weight: 700;">4 finalists.</span></div></div>
+              <div style="background: var(--fdb-cream); padding: 22px 24px;"><div style="font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-purple); margin-bottom: 6px;">04</div><div style="font-size: 15px; font-weight: 800; color: var(--fdb-ink); margin-bottom: 6px;">Regenerative Tourism</div><div style="font-size: 12px; color: var(--fdb-ink-muted); line-height: 1.6;">For programmes that leave the place stronger than they found it. <span style="color: var(--fdb-purple); font-weight: 700;">4 finalists.</span></div></div>
+              <div style="background: var(--fdb-cream); padding: 22px 24px;"><div style="font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-purple); margin-bottom: 6px;">05</div><div style="font-size: 15px; font-weight: 800; color: var(--fdb-ink); margin-bottom: 6px;">People &amp; Talent</div><div style="font-size: 12px; color: var(--fdb-ink-muted); line-height: 1.6;">For the team and culture work that makes the brand possible. <span style="color: var(--fdb-purple); font-weight: 700;">3 finalists.</span></div></div>
+              <div style="background: var(--fdb-purple-tint); padding: 22px 24px;"><div style="font-family: var(--fdb-font-mono); font-size: 11px; color: var(--fdb-purple-deep); margin-bottom: 6px;">06</div><div style="font-size: 15px; font-weight: 800; color: var(--fdb-purple-deep); margin-bottom: 6px;">Chair's Award</div><div style="font-size: 12px; color: var(--fdb-purple-deep); line-height: 1.6; opacity: 0.85;">Awarded by the programme chair. Not entered. <em>Announced on the night.</em></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATTERN 06 · Apply / contact form ────────────────────────── -->
+      <div class="pattern">
+        <div class="hd"><span class="n">06 · Application form</span><span class="s">Form fields composed with editorial framing</span></div>
+        <div class="body">
+          <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: flex-start; max-width: 880px; margin: 0 auto;">
+            <div>
+              <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 14px;">Get in touch</div>
+              <h3 style="font-size: 26px; font-weight: 800; letter-spacing: -0.025em; color: var(--fdb-ink); margin: 0 0 18px; line-height: 1.15;">Places are by <em style="font-style: italic; color: var(--fdb-purple); font-weight: 400;">personal invitation.</em></h3>
+              <p style="font-size: 13px; line-height: 1.7; color: var(--fdb-ink-mid); margin: 0 0 18px;">Use this form to introduce yourself, your organisation, and the question you'd like the room to consider. The programme board reviews enquiries weekly.</p>
+              <div class="alert neutral" style="max-width: none;">
+                <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <div class="body">
+                  <div class="t">Day One is invite-only.</div>
+                  <div class="d">Day Two and the X. Awards evening have separate processes.</div>
+                </div>
+              </div>
+            </div>
+            <form style="display: flex; flex-direction: column; gap: 18px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+                <div class="field" style="max-width: none;">
+                  <label class="field-label">First name</label>
+                  <input class="field-input" type="text" placeholder="Caroline">
+                </div>
+                <div class="field" style="max-width: none;">
+                  <label class="field-label">Last name</label>
+                  <input class="field-input" type="text" placeholder="Bocquel">
+                </div>
+              </div>
+              <div class="field" style="max-width: none;">
+                <label class="field-label">Email</label>
+                <input class="field-input" type="email" placeholder="name@example.com">
+              </div>
+              <div class="field" style="max-width: none;">
+                <label class="field-label">Organisation</label>
+                <select class="field-select">
+                  <option>National Tourism Organisation</option>
+                  <option>Destination Marketing Organisation</option>
+                  <option>Government · Ministry</option>
+                  <option>Technology partner</option>
+                </select>
+              </div>
+              <div class="field" style="max-width: none;">
+                <label class="field-label">What you'd like the room to consider</label>
+                <textarea class="field-textarea" placeholder="Two or three sentences. The room reads ahead."></textarea>
+                <div class="field-help">The board reads everything. Be specific.</div>
+              </div>
+              <label class="check"><input type="checkbox"><span class="box"></span><span>Subscribe me to quarterly briefings.</span></label>
+              <div style="display: flex; gap: 14px; align-items: center; margin-top: 6px;">
+                <button type="submit" class="btn-primary">Send enquiry</button>
+                <button type="button" class="btn-ghost">Read the FAQ</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATTERN 07 · FAQ + Contact pair ──────────────────────────── -->
+      <div class="pattern">
+        <div class="hd"><span class="n">07 · FAQ + contact pair</span><span class="s">Two-column with newsletter capture</span></div>
+        <div class="body">
+          <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: flex-start; max-width: 880px; margin: 0 auto;">
+            <div>
+              <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 12px;">Frequently asked</div>
+              <h3 style="font-size: 26px; font-weight: 800; letter-spacing: -0.025em; color: var(--fdb-ink); margin: 0 0 22px;">Questions the <em style="color: var(--fdb-purple); font-style: italic; font-weight: 400;">room</em> asks.</h3>
+              <div class="faq" style="max-width: none;">
+                <details open>
+                  <summary>How are participants selected?</summary>
+                  <div class="ans">Nominated by the FDB programme board and confirmed by the host destination. Selection criteria are public; the list is not.</div>
+                </details>
+                <details>
+                  <summary>What outputs are produced?</summary>
+                  <div class="ans">A State of Destination AI Report and an Executive Briefing Summary, both submitted to EU institutions.</div>
+                </details>
+                <details>
+                  <summary>Is the room press-friendly?</summary>
+                  <div class="ans">Day One operates under the Chatham House rule. Day Two and the X. Awards evening are press-accessible by invitation.</div>
+                </details>
+                <details>
+                  <summary>Travel and accommodation?</summary>
+                  <div class="ans">For invited speakers and ministerial delegations, covered. Other participants make their own arrangements; the host destination supports with logistics.</div>
+                </details>
+              </div>
+            </div>
+            <div style="position: sticky; top: 110px;">
+              <div class="signup" style="max-width: none;">
+                <div class="lbl">Programme updates</div>
+                <h4>The room is small by design. <strong>Stay close.</strong></h4>
+                <p>Quarterly briefings from the programme board. No marketing, no logistics chatter.</p>
+                <div class="row">
+                  <input class="field-input" type="email" placeholder="name@example.com">
+                  <button class="btn-primary">Subscribe</button>
+                </div>
+              </div>
+              <div style="margin-top: 28px;">
+                <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint); margin-bottom: 12px;">Direct enquiry</div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--fdb-ink); margin-bottom: 4px;">programme@futuredestinationbrand.com</div>
+                <div style="font-size: 12px; color: var(--fdb-ink-muted);">Replied to within five working days.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATTERN 08 · Press / newsroom ────────────────────────────── -->
+      <div class="pattern">
+        <div class="hd"><span class="n">08 · Press &amp; newsroom</span><span class="s">Date-anchored rows + sponsor strip</span></div>
+        <div class="body">
+          <div style="max-width: 800px; margin: 0 auto;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 22px;">
+              <h3 style="font-size: 26px; font-weight: 800; letter-spacing: -0.025em; color: var(--fdb-ink); margin: 0;">Press &amp; <em style="color: var(--fdb-purple); font-style: italic; font-weight: 400;">coverage.</em></h3>
+              <a class="btn-ghost">Full archive</a>
+            </div>
+            <div>
+              <div class="press-row"><div class="date">15 May 2026</div><div><div class="ttl">Ireland to host inaugural Future. Destination. Brand. summit</div><div class="src">Irish Times · Tourism</div></div><a class="btn-ghost">Read</a></div>
+              <div class="press-row"><div class="date">02 Apr 2026</div><div><div class="ttl">X. Awards categories announced for 2026 edition</div><div class="src">Skift</div></div><a class="btn-ghost">Read</a></div>
+              <div class="press-row"><div class="date">12 Mar 2026</div><div><div class="ttl">Caroline Bocquel: "The room is small by design"</div><div class="src">TTG · interview</div></div><a class="btn-ghost">Read</a></div>
+              <div class="press-row"><div class="date">28 Feb 2026</div><div><div class="ttl">Oliver Csendes joins programme board as senior advisor</div><div class="src">PhocusWire</div></div><a class="btn-ghost">Read</a></div>
+            </div>
+            <div style="margin-top: 40px;">
+              <div class="sponsors">
+                <span class="lbl">Press partners</span>
+                <span class="logo-slot">Skift</span>
+                <span class="logo-slot">PhocusWire</span>
+                <span class="logo-slot">Travel Weekly</span>
+                <span class="logo-slot">TTG</span>
+                <span class="logo-slot">Bloomberg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATTERN 09 · X. Awards · evening hero (ink) ──────────────── -->
+      <div class="pattern" style="background: var(--fdb-ink); border-color: rgba(255,255,255,0.18);">
+        <div class="hd" style="background: rgba(255,255,255,0.04); border-bottom-color: rgba(255,255,255,0.10);">
+          <span class="n" style="color: var(--fdb-dark-fg);">09 · X. Awards · evening hero</span>
+          <span class="s" style="color: var(--fdb-dark-fg-muted);">Ink-mode pattern · the only place the brand commits to dark</span>
+        </div>
+        <div class="body" style="padding: 56px clamp(20px, 4vw, 56px);">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; max-width: 880px; margin: 0 auto;">
+            <div>
+              <img src="assets/logos/dark/x-awards-wordmark-dark.png" alt="X. Awards" style="height: 64px; margin-bottom: 28px;">
+              <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fdb-dark-accent); margin-bottom: 18px;">Evening Programme · 2 December</div>
+              <h2 style="font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; color: var(--fdb-dark-fg); margin: 0 0 24px;">The industry's most<br>respected <em style="font-style: italic; color: var(--fdb-dark-accent); font-weight: 400;">recognition.</em></h2>
+              <p style="font-size: 14px; line-height: 1.75; color: var(--fdb-dark-fg-mid); max-width: 50ch; margin: 0 0 28px;">Black-tie reception, six awarded categories and one Chair's Award. The room dresses up. The programme stays small.</p>
+              <div style="display: flex; gap: 14px;">
+                <button class="btn-primary" style="background: var(--fdb-dark-accent); color: #1A1A1A;">Reserve a seat</button>
+                <button class="btn-ghost" style="color: var(--fdb-dark-fg-muted); border-color: rgba(255,255,255,0.18);">View categories</button>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.10); border-radius: 4px; overflow: hidden;">
+              <div style="background: #242424; padding: 20px;"><div style="font-family: var(--fdb-font-mono); font-size: 10px; color: var(--fdb-dark-accent); margin-bottom: 6px;">01</div><div style="font-size: 14px; font-weight: 800; color: var(--fdb-dark-fg);">Brand of the Year</div></div>
+              <div style="background: #242424; padding: 20px;"><div style="font-family: var(--fdb-font-mono); font-size: 10px; color: var(--fdb-dark-accent); margin-bottom: 6px;">02</div><div style="font-size: 14px; font-weight: 800; color: var(--fdb-dark-fg);">Digital Innovation</div></div>
+              <div style="background: #242424; padding: 20px;"><div style="font-family: var(--fdb-font-mono); font-size: 10px; color: var(--fdb-dark-accent); margin-bottom: 6px;">03</div><div style="font-size: 14px; font-weight: 800; color: var(--fdb-dark-fg);">Sustainability</div></div>
+              <div style="background: #242424; padding: 20px;"><div style="font-family: var(--fdb-font-mono); font-size: 10px; color: var(--fdb-dark-accent); margin-bottom: 6px;">04</div><div style="font-size: 14px; font-weight: 800; color: var(--fdb-dark-fg);">Regenerative</div></div>
+              <div style="background: #242424; padding: 20px;"><div style="font-family: var(--fdb-font-mono); font-size: 10px; color: var(--fdb-dark-accent); margin-bottom: 6px;">05</div><div style="font-size: 14px; font-weight: 800; color: var(--fdb-dark-fg);">People &amp; Talent</div></div>
+              <div style="background: var(--fdb-dark-accent-deep); padding: 20px;"><div style="font-family: var(--fdb-font-mono); font-size: 10px; color: var(--fdb-dark-accent); margin-bottom: 6px;">06</div><div style="font-size: 14px; font-weight: 800; color: #fff;">Chair's Award</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PATTERN 10 · End-of-page footer band ─────────────────────── -->
+      <div class="pattern">
+        <div class="hd"><span class="n">10 · Closing band · countdown</span><span class="s">End-of-page footer with mark, countdown and CTA</span></div>
+        <div class="body" style="padding: 48px clamp(20px, 4vw, 56px);">
+          <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 48px; align-items: center; max-width: 880px; margin: 0 auto;">
+            <img class="light-mode" src="assets/logos/fdb-mark.png" alt="" style="height: 90px;">
+            <img class="dark-mode" src="assets/logos/dark/fdb-mark-dark.png" alt="" style="height: 90px;">
+            <div>
+              <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 10px;">Dublin · December 2026</div>
+              <div style="font-size: 26px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; color: var(--fdb-ink); margin-bottom: 12px;">The summit begins in</div>
+              <div class="countdown" style="margin-left: -18px;">
+                <div class="seg"><div class="n">194</div><div class="l">Days</div></div>
+                <div class="seg"><div class="n">11</div><div class="l">Hours</div></div>
+                <div class="seg"><div class="n">42</div><div class="l">Minutes</div></div>
+              </div>
+            </div>
+            <button class="btn-primary" style="flex-shrink: 0;">Get in touch</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ TEMPLATES ════════════════ -->
+    <section class="tab" id="tab-templates">
+      <div class="head">
+        <div class="num">11 · Surfaces</div>
+        <h1>Templates <em>in use</em>.</h1>
+        <p class="lead">The full marketing site UI kit and the slide-template deck. Both have their own light/dark switches inside — use them to inspect the same surfaces in either mode.</p>
+      </div>
+
+      <div class="template-card">
+        <div class="hd">
+          <span class="n">Marketing site UI kit</span>
+          <span class="s">Four screens · Overview · Leadership Day · Summit · X. Awards</span>
+        </div>
+        <iframe src="FDB Marketing Site.html" height="900" loading="lazy"></iframe>
+      </div>
+
+      <div class="template-card">
+        <div class="hd">
+          <span class="n">Slide template deck</span>
+          <span class="s">Nine 16:9 templates · cover · statement · stat · agenda · speaker · two dark slides · X. Awards · closing</span>
+        </div>
+        <iframe src="slides/index.html" height="720" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <!-- ════════════════ SOCIAL POSTS ════════════════ -->
+    <section class="tab" id="tab-social">
+      <div class="head">
+        <div class="num">12 · Surfaces</div>
+        <h1>Social posts — <em>Instagram 4:5</em>.</h1>
+        <p class="lead">Six post templates plus reusable isolated elements — scaffold, offset-frame stack, banner row, photo frame and squares heat-map — shown in both cream and ink treatments.</p>
+      </div>
+
+      <div class="social-bare">
+        <iframe src="social/index.html" height="2400" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <!-- ════════════════ TOKEN CATALOGUE ════════════════ -->
+    <section class="tab" id="tab-tokens">
+      <div class="head">
+        <div class="num">13 · Reference</div>
+        <h1>Token <em>catalogue</em>.</h1>
+        <p class="lead">Every CSS custom property exposed by <code class="tok-inline">colors_and_type.css</code>. Import the file at the top of any artefact and reach for these directly. Dark-mode tokens are remapped under the <code class="tok-inline">.fdb-dark</code> scope so existing components flip automatically.</p>
+      </div>
+
+      <div class="sub-h">Colour tokens</div>
+      <table class="toks">
+        <thead><tr><th style="width: 32%;">Token</th><th style="width: 18%;">Value</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td class="tok">--fdb-cream</td>            <td class="v">#F5F0E9</td><td class="desc">Default page canvas</td></tr>
+          <tr><td class="tok">--fdb-cream-deep</td>       <td class="v">#E6E2DA</td><td class="desc">Subtle block fill, rare</td></tr>
+          <tr><td class="tok">--fdb-white</td>            <td class="v">#FFFFFF</td><td class="desc">On purple · raised card surfaces</td></tr>
+          <tr><td class="tok">--fdb-ink</td>              <td class="v">#1A1A1A</td><td class="desc">Headlines · primary text</td></tr>
+          <tr><td class="tok">--fdb-ink-mid</td>          <td class="v">#3A3A3A</td><td class="desc">Body text on cream</td></tr>
+          <tr><td class="tok">--fdb-ink-muted</td>        <td class="v">#7A7A7A</td><td class="desc">Captions · secondary</td></tr>
+          <tr><td class="tok">--fdb-ink-faint</td>        <td class="v">#B0B0B0</td><td class="desc">Labels · dividers · TBC</td></tr>
+          <tr><td class="tok">--fdb-purple</td>           <td class="v">#8239C1</td><td class="desc">Brand · CTAs · emphasis</td></tr>
+          <tr><td class="tok">--fdb-purple-deep</td>      <td class="v">#5B1FBF</td><td class="desc">Hover · pressed</td></tr>
+          <tr><td class="tok">--fdb-purple-mid</td>       <td class="v">#9B6FE0</td><td class="desc">Middle square of the mark</td></tr>
+          <tr><td class="tok">--fdb-purple-soft</td>      <td class="v">#C9AAEE</td><td class="desc">Front square · chip borders · frames</td></tr>
+          <tr><td class="tok">--fdb-purple-tint</td>      <td class="v">#EDE5F8</td><td class="desc">Chip backgrounds · tinted fills</td></tr>
+          <tr><td class="tok">--fdb-border</td>           <td class="v">rgba(26,26,26,.10)</td><td class="desc">Dividers · hairline outlines</td></tr>
+          <tr><td class="tok">--fdb-border-strong</td>    <td class="v">rgba(26,26,26,.18)</td><td class="desc">Card outlines · label separators</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-h">Ink-treatment tokens</div>
+      <table class="toks">
+        <thead><tr><th style="width: 32%;">Token</th><th style="width: 18%;">Value</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td class="tok">--fdb-dark-bg</td>          <td class="v">#1A1A1A</td><td class="desc">Page canvas</td></tr>
+          <tr><td class="tok">--fdb-dark-bg-elev</td>     <td class="v">#242424</td><td class="desc">Cards · raised blocks</td></tr>
+          <tr><td class="tok">--fdb-dark-bg-deep</td>     <td class="v">#0E0E0E</td><td class="desc">Footer · extreme contrast</td></tr>
+          <tr><td class="tok">--fdb-dark-fg</td>          <td class="v">#F0F0F0</td><td class="desc">Primary text</td></tr>
+          <tr><td class="tok">--fdb-dark-fg-mid</td>      <td class="v">#B8B0A4</td><td class="desc">Body text — warm grey</td></tr>
+          <tr><td class="tok">--fdb-dark-fg-muted</td>    <td class="v">#7A7A7A</td><td class="desc">Captions</td></tr>
+          <tr><td class="tok">--fdb-dark-fg-faint</td>    <td class="v">#4A4A4A</td><td class="desc">Labels · TBC</td></tr>
+          <tr><td class="tok">--fdb-dark-accent</td>      <td class="v">#E070F0</td><td class="desc">Brand on ink — hot magenta-pink</td></tr>
+          <tr><td class="tok">--fdb-dark-accent-mid</td>  <td class="v">#9040A0</td><td class="desc">Middle square · hover base</td></tr>
+          <tr><td class="tok">--fdb-dark-accent-deep</td> <td class="v">#502070</td><td class="desc">Back square · deep emphasis</td></tr>
+          <tr><td class="tok">--fdb-dark-accent-tint</td> <td class="v">rgba(224,112,240,.14)</td><td class="desc">Chip backgrounds</td></tr>
+          <tr><td class="tok">--fdb-dark-accent-soft</td> <td class="v">rgba(224,112,240,.35)</td><td class="desc">Chip borders · decorative frames</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-h">Spacing &amp; radii</div>
+      <table class="toks">
+        <thead><tr><th style="width: 32%;">Token</th><th style="width: 18%;">Value</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td class="tok">--fdb-space-1</td><td class="v">4px</td>  <td class="desc">Hairline gap</td></tr>
+          <tr><td class="tok">--fdb-space-2</td><td class="v">8px</td>  <td class="desc">Inline gap</td></tr>
+          <tr><td class="tok">--fdb-space-3</td><td class="v">12px</td> <td class="desc">Inner element spacing</td></tr>
+          <tr><td class="tok">--fdb-space-4</td><td class="v">16px</td> <td class="desc">Card-padding minimum</td></tr>
+          <tr><td class="tok">--fdb-space-5</td><td class="v">24px</td> <td class="desc">Default card padding</td></tr>
+          <tr><td class="tok">--fdb-space-6</td><td class="v">32px</td> <td class="desc">Block separation</td></tr>
+          <tr><td class="tok">--fdb-space-7</td><td class="v">48px</td> <td class="desc">Major section spacing</td></tr>
+          <tr><td class="tok">--fdb-space-8</td><td class="v">64px</td> <td class="desc">Hero vertical air</td></tr>
+          <tr><td class="tok">--fdb-space-9</td><td class="v">96px</td> <td class="desc">Page-level rhythm</td></tr>
+          <tr><td class="tok">--fdb-radius-xs</td><td class="v">2px</td><td class="desc">Tags · pills</td></tr>
+          <tr><td class="tok">--fdb-radius-sm</td><td class="v">3px</td><td class="desc">Buttons</td></tr>
+          <tr><td class="tok">--fdb-radius-md</td><td class="v">4px</td><td class="desc">Cards · callouts</td></tr>
+          <tr><td class="tok">--fdb-radius-lg</td><td class="v">6px</td><td class="desc">Mark squares</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-h">Type tokens</div>
+      <table class="toks">
+        <thead><tr><th style="width: 32%;">Token</th><th style="width: 18%;">Value</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td class="tok">--fdb-font-sans</td>       <td class="v">'Geist', system-ui, …</td><td class="desc">Body, headings — Geist self-hosted</td></tr>
+          <tr><td class="tok">--fdb-font-mono</td>       <td class="v">ui-monospace, …</td>     <td class="desc">Token references, captions</td></tr>
+          <tr><td class="tok">--fdb-fs-display</td>      <td class="v">clamp(2.8rem, 5.5vw, 4.2rem)</td><td class="desc">Hero titles</td></tr>
+          <tr><td class="tok">--fdb-fs-h1</td>           <td class="v">2.4rem</td><td class="desc">Section title</td></tr>
+          <tr><td class="tok">--fdb-fs-h2</td>           <td class="v">1.75rem</td><td class="desc">Subsection</td></tr>
+          <tr><td class="tok">--fdb-fs-h3</td>           <td class="v">1.25rem</td><td class="desc">Card heading</td></tr>
+          <tr><td class="tok">--fdb-fs-statement</td>    <td class="v">1.45rem</td><td class="desc">Pull-quote · lead paragraph</td></tr>
+          <tr><td class="tok">--fdb-fs-body</td>         <td class="v">0.92rem</td><td class="desc">Default body</td></tr>
+          <tr><td class="tok">--fdb-fs-small</td>        <td class="v">0.83rem</td><td class="desc">Captions</td></tr>
+          <tr><td class="tok">--fdb-fs-eyebrow</td>      <td class="v">0.68rem</td><td class="desc">Uppercase section labels</td></tr>
+          <tr><td class="tok">--fdb-fs-micro</td>        <td class="v">0.62rem</td><td class="desc">Uppercase micro labels</td></tr>
+          <tr><td class="tok">--fdb-tracking-tight</td>  <td class="v">−0.03em</td><td class="desc">Display headlines</td></tr>
+          <tr><td class="tok">--fdb-tracking-wider</td>  <td class="v">0.12em</td>  <td class="desc">Hero eyebrows</td></tr>
+          <tr><td class="tok">--fdb-tracking-widest</td> <td class="v">0.14em</td>  <td class="desc">Micro section labels</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ════════════════ DOWNLOADS ════════════════ -->
+    <section class="tab" id="tab-downloads">
+      <div class="head">
+        <div class="num">14 · Reference</div>
+        <h1>Downloads &amp; <em>handoff</em>.</h1>
+        <p class="lead">Files to take away. The whole project is also available as a single standalone HTML for the FDB marketing site, suitable for offline review.</p>
+      </div>
+
+      <div class="sub-h">Standalone exports</div>
+      <div class="dl-bar">
+        <a href="FDB Marketing Site.html" download>↓ Marketing site (standalone HTML)</a>
+        <a class="ghost" href="design-system.html" target="_blank">Open this docs page in a new tab</a>
+      </div>
+
+      <div class="sub-h">Source files</div>
+      <table class="toks">
+        <thead><tr><th>File</th><th>What's in it</th></tr></thead>
+        <tbody>
+          <tr><td class="tok">colors_and_type.css</td>      <td class="desc">All tokens · semantic type classes · <code class="tok-inline">.fdb-dark</code> scope</td></tr>
+          <tr><td class="tok">fonts/Geist-*.ttf</td>         <td class="desc">Nine Geist weights, self-hosted</td></tr>
+          <tr><td class="tok">assets/logos/</td>             <td class="desc">Full lockup · wordmark · mark · X. Awards lockup — light + dark variants</td></tr>
+          <tr><td class="tok">assets/social/</td>            <td class="desc">Reference Instagram-format brand frames</td></tr>
+          <tr><td class="tok">ui_kits/marketing-site/</td>   <td class="desc">React JSX UI kit · 4 screens, shared components</td></tr>
+          <tr><td class="tok">slides/</td>                   <td class="desc">9 slide templates in a deck-stage shell</td></tr>
+          <tr><td class="tok">social/</td>                   <td class="desc">6 Instagram-post templates · isolated reusable elements</td></tr>
+          <tr><td class="tok">preview/</td>                  <td class="desc">Specimen cards for the Design System review pane</td></tr>
+          <tr><td class="tok">README.md</td>                 <td class="desc">Full brand book · voice · visual foundations · iconography</td></tr>
+          <tr><td class="tok">SKILL.md</td>                  <td class="desc">Claude Code skill manifest — drop into <code class="tok-inline">.claude/skills/fdb-design/</code></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-h">Quick-start snippet</div>
+      <div class="card" style="padding: 22px 26px; background: var(--fdb-ink); color: #B8B0A4; font-family: var(--fdb-font-mono); font-size: 12px; line-height: 1.6; white-space: pre;"><span style="color: #7A7A7A;">&lt;!-- import the tokens --&gt;</span>
+&lt;<span style="color: #C9AAEE;">link</span> <span style="color: #E070F0;">rel</span>=<span style="color: #F0F0F0;">"stylesheet"</span> <span style="color: #E070F0;">href</span>=<span style="color: #F0F0F0;">"/path/to/colors_and_type.css"</span>&gt;
+
+<span style="color: #7A7A7A;">&lt;!-- a typical hero block --&gt;</span>
+&lt;<span style="color: #C9AAEE;">section</span> <span style="color: #E070F0;">style</span>=<span style="color: #F0F0F0;">"background: var(--fdb-cream); padding: 5rem 3rem;"</span>&gt;
+  &lt;<span style="color: #C9AAEE;">div</span> <span style="color: #E070F0;">class</span>=<span style="color: #F0F0F0;">"fdb-eyebrow"</span>&gt;Day One · Leadership Programme&lt;/<span style="color: #C9AAEE;">div</span>&gt;
+  &lt;<span style="color: #C9AAEE;">h1</span> <span style="color: #E070F0;">class</span>=<span style="color: #F0F0F0;">"fdb-display"</span>&gt;Leadership&lt;br&gt;in the Age&lt;br&gt;of &lt;<span style="color: #C9AAEE;">strong</span>&gt;AI.&lt;/<span style="color: #C9AAEE;">strong</span>&gt;&lt;/<span style="color: #C9AAEE;">h1</span>&gt;
+&lt;/<span style="color: #C9AAEE;">section</span>&gt;</div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // ── TAB ROUTER ────────────────────────────────────────────────
+  const tabs = document.querySelectorAll('.side-link[data-tab]');
+  const sections = document.querySelectorAll('section.tab');
+
+  function showTab(name) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+    sections.forEach(s => s.classList.toggle('active', s.id === 'tab-' + name));
+    history.replaceState(null, '', '#' + name);
+    document.querySelector('main.content').scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  tabs.forEach(t => {
+    t.addEventListener('click', e => {
+      e.preventDefault();
+      showTab(t.dataset.tab);
+    });
+  });
+
+  document.querySelectorAll('[data-jump]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      showTab(el.dataset.jump);
+    });
+  });
+
+  const hash = location.hash.replace('#', '');
+  if (hash && document.getElementById('tab-' + hash)) showTab(hash);
+
+  // ── THEME TOGGLE ──────────────────────────────────────────────
+  const toggle = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('fdb-docs-theme');
+  if (saved === 'dark') document.body.classList.add('fdb-dark');
+
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('fdb-dark');
+    localStorage.setItem('fdb-docs-theme', document.body.classList.contains('fdb-dark') ? 'dark' : 'light');
+  });
+</script>
+
+</body>
+</html>

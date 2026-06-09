@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="_card.css">
+<style>
+.card { padding: 0; position: relative; overflow: hidden; min-height: 320px; }
+.hero { position: relative; padding: 36px 36px 38px; z-index: 2; max-width: 460px; }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 16px; }
+.title { font-size: 46px; font-weight: 800; line-height: 0.95; letter-spacing: -0.035em; color: var(--fdb-ink); margin-bottom: 14px; }
+.title strong { color: var(--fdb-purple); font-weight: 800; }
+.intro { font-size: 12px; line-height: 1.6; color: var(--fdb-ink-mid); max-width: 36ch; }
+
+/* The squares motif — large, bleeds off the canvas */
+.decor { position: absolute; top: -90px; right: -120px; width: 460px; height: 460px; pointer-events: none; }
+.decor .sq { position: absolute; border-radius: 8px; border-style: solid; }
+.decor .s1 { width: 320px; height: 320px; top: 80px; left: 0; border-width: 2px; border-color: var(--fdb-purple-soft); }
+.decor .s2 { width: 320px; height: 320px; top: 40px; left: 40px; border-width: 2px; border-color: var(--fdb-purple-mid); }
+.decor .s3 { width: 320px; height: 320px; top: 0;   left: 80px; border-width: 3px; border-color: var(--fdb-purple); }
+</style></head><body>
+<div class="card">
+  <div class="decor">
+    <div class="sq s1"></div>
+    <div class="sq s2"></div>
+    <div class="sq s3"></div>
+  </div>
+  <div class="hero">
+    <div class="eyebrow">Day One · Leadership Programme</div>
+    <h1 class="title">Leadership<br/>in the Age<br/>of <strong>AI.</strong></h1>
+    <p class="intro">A global leadership day for national tourism organisation CEOs, senior government ministers and the technology leaders shaping AI's role.</p>
+  </div>
+</div></body></html>

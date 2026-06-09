@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Colors · Ink scale" -->
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="_card.css">
+<style>
+.swatch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.sw { display: flex; flex-direction: column; gap: 10px; }
+.chip { aspect-ratio: 1; border-radius: 4px; border: 1px solid rgba(26,26,26,0.08); }
+.sw .name { font-size: 11px; font-weight: 700; color: var(--fdb-ink); }
+.sw .hex { font-size: 10px; font-family: var(--fdb-font-mono); color: var(--fdb-ink-muted); }
+.sw .role { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fdb-ink-faint); }
+</style></head><body>
+<div class="card">
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:#1A1A1A"></div><span class="name">Ink</span><span class="hex">#1A1A1A</span><span class="role">Headlines</span></div>
+    <div class="sw"><div class="chip" style="background:#3A3A3A"></div><span class="name">Ink Mid</span><span class="hex">#3A3A3A</span><span class="role">Body</span></div>
+    <div class="sw"><div class="chip" style="background:#7A7A7A"></div><span class="name">Ink Muted</span><span class="hex">#7A7A7A</span><span class="role">Captions</span></div>
+    <div class="sw"><div class="chip" style="background:#B0B0B0"></div><span class="name">Ink Faint</span><span class="hex">#B0B0B0</span><span class="role">Labels · TBC</span></div>
+  </div>
+</div></body></html>

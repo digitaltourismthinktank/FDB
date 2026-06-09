@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDB 2026 · Slide templates</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="deck-stage.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #111; font-family: var(--fdb-font-sans); -webkit-font-smoothing: antialiased; }
+  deck-stage { width: 100%; height: 100vh; }
+  deck-stage > section {
+    background: var(--fdb-cream);
+    color: var(--fdb-ink);
+    padding: 80px 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  deck-stage > section.dark {
+    background: #1A1A1A;
+    color: var(--fdb-cream);
+  }
+
+  /* ── Reusable bits ─────────────────────────────────────────────────────── */
+  /* Banner: the horizontal lockup pinned to the top of every slide. The dark
+     copy is swapped in on .dark slides via display rules. */
+  .banner {
+    position: absolute; top: 48px; left: 96px; right: 96px;
+    display: flex; align-items: center; justify-content: flex-start;
+    pointer-events: none; z-index: 5;
+  }
+  .banner img { height: 44px; width: auto; display: block; }
+  .banner .bn-dark, .dark .banner .bn-light { display: none; }
+  .dark .banner .bn-dark { display: block; }
+
+  .footer-line {
+    position: absolute; bottom: 48px; left: 96px; right: 96px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 16px; color: var(--fdb-ink-faint); font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .dark .footer-line { color: #6A6A6A; }
+
+  /* Decorative square outlines — the brand DNA */
+  .squares-decor {
+    position: absolute; pointer-events: none;
+  }
+  .squares-decor .sq {
+    position: absolute; border-radius: 6px; border-style: solid;
+  }
+
+  /* Stacked-square motif used as decoration */
+  .deco-tr { top: -200px; right: -200px; width: 720px; height: 720px; }
+  .deco-tr .sq { width: 480px; height: 480px; border-width: 2px; }
+  .deco-tr .s1 { top: 60px; left: 240px; border-color: var(--fdb-purple-soft); opacity: 0.45; }
+  .deco-tr .s2 { top: 30px; left: 200px; border-color: var(--fdb-purple-mid); opacity: 0.55; }
+  .deco-tr .s3 { top: 0;   left: 160px; border-color: var(--fdb-purple); opacity: 0.7; }
+
+  .deco-bl { bottom: -260px; left: -260px; width: 800px; height: 800px; }
+  .deco-bl .sq { width: 540px; height: 540px; border-width: 1.5px; }
+  .deco-bl .s1 { top: 0;     left: 0;   border-color: var(--fdb-purple); opacity: 0.6; }
+  .deco-bl .s2 { top: 60px;  left: 60px;border-color: var(--fdb-purple-mid); opacity: 0.5; }
+  .deco-bl .s3 { top: 120px; left: 120px;border-color: var(--fdb-purple-soft); opacity: 0.4; }
+
+  /* ── Type @ 1920x1080 scale ────────────────────────────────────────────── */
+  .eyebrow-lg {
+    font-size: 22px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 36px;
+  }
+  .eyebrow-md {
+    font-size: 18px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fdb-ink-faint);
+  }
+  .dark .eyebrow-md { color: #6A6A6A; }
+  .display {
+    font-size: 132px; font-weight: 800; line-height: 1; letter-spacing: -0.04em;
+    color: var(--fdb-ink);
+  }
+  .dark .display { color: var(--fdb-cream); }
+  .display .accent, .display strong { color: var(--fdb-purple); font-weight: 800; }
+  .h1-slide {
+    font-size: 84px; font-weight: 800; line-height: 1.02; letter-spacing: -0.035em;
+    color: var(--fdb-ink);
+  }
+  .dark .h1-slide { color: var(--fdb-cream); }
+  .h1-slide .accent { color: var(--fdb-purple); }
+  .stmt {
+    font-size: 56px; font-weight: 700; line-height: 1.15; letter-spacing: -0.025em;
+    color: var(--fdb-ink);
+  }
+  .dark .stmt { color: var(--fdb-cream); }
+  .stmt .accent { color: var(--fdb-purple); font-weight: 800; }
+  .body-md { font-size: 22px; line-height: 1.6; color: var(--fdb-ink-mid); }
+  .dark .body-md { color: #B8B0A4; }
+
+  /* ── Slide 1: Cover ────────────────────────────────────────────────────── */
+  .cover {
+    display: flex;
+    align-items: center;
+    padding: 80px 160px;
+  }
+  .cover-full { width: 100%; max-width: 1100px; height: auto; max-height: 720px; display: block; }
+  .cover-meta { display: flex; gap: 56px; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(26,26,26,0.15); }
+  .cover-meta .cell .lbl { font-size: 14px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint); margin-bottom: 8px; }
+  .cover-meta .cell .val { font-size: 22px; font-weight: 600; color: var(--fdb-ink); }
+
+  /* Subtle grid of tiny squares as backdrop accent */
+  .micro-grid {
+    position: absolute; top: 0; right: 0; width: 240px; height: 100%;
+    background-image:
+      linear-gradient(to right, rgba(130, 57, 193, 0.10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(130, 57, 193, 0.10) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    opacity: 0.7;
+    mask-image: linear-gradient(to right, transparent 0%, black 60%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60%);
+  }
+
+  /* ── Slide 2: Statement ────────────────────────────────────────────────── */
+  .statement-slide { display: flex; align-items: center; padding-top: 140px; }
+  .statement-slide .stmt { max-width: 1500px; position: relative; z-index: 2; }
+
+  /* ── Slide 3: Stat ─────────────────────────────────────────────────────── */
+  .stat-slide { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 96px; align-items: center; padding-top: 140px; }
+  .stat-num { font-size: 320px; font-weight: 800; letter-spacing: -0.04em; line-height: 0.9; color: var(--fdb-purple); text-align: right; }
+  .stat-num .pct { font-size: 0.5em; vertical-align: top; margin-left: 8px; }
+  .stat-right h2 { font-size: 56px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; color: var(--fdb-ink); margin-bottom: 24px; }
+  .stat-right h2 .accent { color: var(--fdb-purple); }
+  .stat-right p { font-size: 24px; line-height: 1.55; color: var(--fdb-ink-mid); max-width: 600px; }
+
+  /* ── Slide 4: Agenda ───────────────────────────────────────────────────── */
+  .agenda { display: grid; grid-template-columns: 460px 1fr; gap: 80px; align-items: start; padding-top: 160px; }
+  .agenda-left .h1-slide { font-size: 96px; line-height: 1; }
+  .agenda-list { display: flex; flex-direction: column; }
+  .agenda-row {
+    display: grid; grid-template-columns: 100px 1fr 28px; gap: 32px;
+    padding: 26px 0; border-bottom: 1px solid rgba(26,26,26,0.12); align-items: center;
+  }
+  .agenda-row:first-child { border-top: 1px solid rgba(26,26,26,0.12); }
+  .agenda-time { font-size: 20px; font-weight: 700; color: var(--fdb-purple); letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+  .agenda-title { font-size: 28px; font-weight: 700; color: var(--fdb-ink); letter-spacing: -0.01em; line-height: 1.25; }
+  .agenda-title .sub { display: block; font-size: 18px; font-weight: 400; color: var(--fdb-ink-muted); letter-spacing: 0; margin-top: 6px; }
+  .agenda-marker {
+    width: 14px; height: 14px; border: 2px solid var(--fdb-purple-soft); border-radius: 2px;
+  }
+  .agenda-row.is-key .agenda-marker {
+    background: var(--fdb-purple); border-color: var(--fdb-purple);
+  }
+
+  /* ── Slide 5: Speaker ──────────────────────────────────────────────────── */
+  .speaker-slide { display: grid; grid-template-columns: 540px 1fr; gap: 96px; align-items: center; padding-top: 160px; }
+  .speaker-photo-wrap { position: relative; width: 480px; height: 600px; }
+  .speaker-photo-wrap .frame-bg-2 { position: absolute; top: 44px; left: 44px; width: 100%; height: 100%; border: 2px solid var(--fdb-purple-soft); border-radius: 4px; opacity: 0.5; z-index: 0; }
+  .speaker-photo-wrap .frame-bg-1 { position: absolute; top: 22px; left: 22px; width: 100%; height: 100%; border: 2px solid var(--fdb-purple-mid); border-radius: 4px; opacity: 0.75; z-index: 1; }
+  .speaker-photo { position: absolute; inset: 0; border: 4px solid var(--fdb-purple); border-radius: 4px; background: #6F8FA8; overflow: hidden; z-index: 2; }
+  .speaker-photo svg { position: absolute; bottom: -20px; left: 12%; width: 76%; height: 90%; opacity: 0.92; }
+  .speaker-name { font-size: 72px; font-weight: 800; letter-spacing: -0.03em; color: var(--fdb-ink); line-height: 1.0; margin-bottom: 18px; }
+  .speaker-org { font-size: 32px; color: var(--fdb-ink-mid); font-weight: 600; }
+  .speaker-role { font-size: 22px; color: var(--fdb-ink-muted); margin-top: 14px; }
+  .speaker-quote {
+    margin-top: 56px; padding-top: 32px;
+    border-top: 2px solid var(--fdb-purple);
+    font-size: 28px; line-height: 1.45; color: var(--fdb-ink); font-weight: 500;
+    letter-spacing: -0.01em; max-width: 720px;
+  }
+
+  /* ── Slide 6: DARK section divider ────────────────────────────────────── */
+  .section-slide {
+    display: flex; flex-direction: column; justify-content: center; padding: 80px 160px;
+  }
+  .section-slide .number {
+    font-size: 28px; font-weight: 700; color: var(--fdb-purple);
+    letter-spacing: 0.16em; margin: 80px 0 36px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .section-slide .number::after {
+    content: ''; flex: 0 0 240px; height: 1px; background: rgba(255,255,255,0.18);
+  }
+  .section-slide .title {
+    font-size: 156px; font-weight: 800; letter-spacing: -0.04em; line-height: 0.95;
+  }
+  .section-slide .title .accent { color: var(--fdb-purple); }
+  /* Decorative grid of small squares on the right of the dark section slide */
+  .section-slide .grid-decor {
+    position: absolute; right: 96px; top: 50%; transform: translateY(-50%);
+    display: grid; grid-template-columns: repeat(6, 28px); gap: 12px;
+  }
+  .section-slide .grid-decor div {
+    width: 28px; height: 28px; border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+  .section-slide .grid-decor div.fill-deep { background: var(--fdb-purple-deep); border-color: var(--fdb-purple-deep); }
+  .section-slide .grid-decor div.fill { background: var(--fdb-purple); border-color: var(--fdb-purple); }
+  .section-slide .grid-decor div.fill-mid { background: var(--fdb-purple-mid); border-color: var(--fdb-purple-mid); }
+  .section-slide .grid-decor div.fill-soft { background: var(--fdb-purple-soft); border-color: var(--fdb-purple-soft); }
+
+  /* ── Slide 7: DARK programme overview (alt format) ────────────────────── */
+  .dark-prog { padding: 140px 96px 96px; }
+  .dark-prog .head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.14); margin-bottom: 48px;
+  }
+  .dark-prog .head h1 { font-size: 64px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .dark-prog .head h1 .accent { color: var(--fdb-purple); }
+  .dark-prog .head .right { font-size: 16px; color: #B8B0A4; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
+  .dark-prog .grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px;
+  }
+  .dark-prog .card {
+    border: 1px solid rgba(255,255,255,0.14); border-radius: 6px;
+    padding: 28px; background: rgba(255,255,255,0.02);
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .dark-prog .card.key {
+    background: var(--fdb-purple-deep); border-color: var(--fdb-purple-deep);
+  }
+  .dark-prog .card .time { font-size: 18px; font-weight: 700; color: var(--fdb-purple-soft); letter-spacing: 0.04em; }
+  .dark-prog .card.key .time { color: rgba(255,255,255,0.7); }
+  .dark-prog .card .title { font-size: 28px; font-weight: 700; line-height: 1.22; letter-spacing: -0.015em; color: var(--fdb-cream); }
+  .dark-prog .card .desc { font-size: 16px; line-height: 1.55; color: #9A938A; }
+  .dark-prog .card.key .desc { color: rgba(255,255,255,0.85); }
+  .dark-prog .card .chip {
+    align-self: flex-start;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 2px;
+    background: rgba(130, 57, 193, 0.2); color: var(--fdb-purple-soft);
+    border: 1px solid rgba(130, 57, 193, 0.35);
+  }
+  .dark-prog .card.key .chip {
+    background: rgba(255,255,255,0.18); color: #fff; border-color: rgba(255,255,255,0.3);
+  }
+  .dark-prog .grid-deco {
+    position: absolute; right: 64px; bottom: 64px;
+    display: grid; grid-template-columns: repeat(8, 10px); gap: 6px; opacity: 0.7;
+  }
+  .dark-prog .grid-deco span { width: 10px; height: 10px; border-radius: 1px; background: rgba(255,255,255,0.10); }
+  .dark-prog .grid-deco span:nth-child(3n) { background: var(--fdb-purple); }
+
+  /* ── Slide 8: X. Awards moment ─────────────────────────────────────────── */
+  .awards-slide {
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center;
+    padding: 140px 160px 80px;
+  }
+  .awards-slide .left h1 { font-size: 96px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.0; color: var(--fdb-ink); margin-bottom: 32px; }
+  .awards-slide .left h1 .accent { color: var(--fdb-purple); }
+  .awards-slide .left .lede { font-size: 28px; color: var(--fdb-ink-mid); max-width: 720px; line-height: 1.5; margin-bottom: 64px; }
+  .awards-slide .left .meta { display: flex; gap: 64px; }
+  .awards-slide .left .meta .cell .lbl { font-size: 14px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-ink-faint); margin-bottom: 10px; }
+  .awards-slide .left .meta .cell .val { font-size: 26px; font-weight: 700; color: var(--fdb-ink); }
+  .awards-slide .right { display: flex; align-items: center; justify-content: center; }
+  .awards-slide .right img { width: 480px; height: auto; display: block; }
+
+  /* ── Slide 9: Closing ──────────────────────────────────────────────────── */
+  .closing-slide { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 96px; align-items: center; padding-top: 140px; }
+  .closing-slide h1 { font-size: 72px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: var(--fdb-ink); }
+  .closing-slide h1 .accent { color: var(--fdb-purple); }
+  .closing-slide .right { display: flex; flex-direction: column; gap: 32px; }
+  .closing-slide .right p { font-size: 22px; line-height: 1.6; color: var(--fdb-ink-mid); }
+  .closing-slide .btn {
+    display: inline-flex; align-self: flex-start; gap: 12px; align-items: center;
+    background: var(--fdb-purple); color: #fff; font-size: 18px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 22px 36px; border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<deck-stage>
+
+  <!-- 01 ── COVER ─────────────────────────────────────────────────────────── -->
+  <section class="cover" data-screen-label="01 Cover">
+    <div class="micro-grid"></div>
+    <div>
+      <img class="cover-full" src="../assets/logos/fdb-logo-full.png" alt="Future Destination Brand."/>
+      <div class="cover-meta">
+        <div class="cell"><div class="lbl">Edition</div><div class="val">2026</div></div>
+        <div class="cell"><div class="lbl">Dates</div><div class="val">December 2026</div></div>
+        <div class="cell"><div class="lbl">Location</div><div class="val">Dublin · Ireland</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ── BIG STATEMENT ────────────────────────────────────────────────── -->
+  <section class="statement-slide" data-screen-label="02 Statement">
+    <div class="squares-decor deco-tr">
+      <div class="sq s1"></div>
+      <div class="sq s2"></div>
+      <div class="sq s3"></div>
+    </div>
+    <div class="banner">
+      <img class="bn-light" src="../assets/logos/fdb-banner.png" alt="Future Destination Brand."/>
+      <img class="bn-dark" src="../assets/logos/dark/fdb-banner-dark.png" alt="Future Destination Brand."/>
+    </div>
+    <div>
+      <div class="eyebrow-lg" style="margin-top: 80px;">About the day</div>
+      <p class="stmt">
+        AI is reshaping where destinations are discovered, how tourism is managed and how national bodies are led.<br/>
+        The question is <span class="accent">not whether to engage.</span> It is whether leadership is ready.
+      </p>
+    </div>
+    <div class="footer-line"><span>Leadership · Day One</span><span>02 / 09</span></div>
+  </section>
+
+  <!-- 03 ── STAT ─────────────────────────────────────────────────────────── -->
+  <section class="stat-slide" data-screen-label="03 Stat">
+    <div class="banner">
+      <img class="bn-light" src="../assets/logos/fdb-banner.png" alt="Future Destination Brand."/>
+      <img class="bn-dark" src="../assets/logos/dark/fdb-banner-dark.png" alt="Future Destination Brand."/>
+    </div>
+    <div class="stat-num">75<span class="pct">%</span></div>
+    <div class="stat-right">
+      <h2>of destination searches<br/>now <span class="accent">begin with an<br/>answer-engine.</span></h2>
+      <p>Replace with a sourced, citable data point. The stat slide is built for a single number plus one declarative sentence — never more.</p>
+    </div>
+    <div class="footer-line"><span>Source · Replace with citation</span><span>03 / 09</span></div>
+  </section>
+
+  <!-- 04 ── AGENDA ───────────────────────────────────────────────────────── -->
+  <section class="agenda" data-screen-label="04 Agenda">
+    <div class="banner">
+      <img class="bn-light" src="../assets/logos/fdb-banner.png" alt="Future Destination Brand."/>
+      <img class="bn-dark" src="../assets/logos/dark/fdb-banner-dark.png" alt="Future Destination Brand."/>
+    </div>
+    <div class="agenda-left">
+      <div class="eyebrow-lg">Day One</div>
+      <h1 class="h1-slide">The<br/>programme.</h1>
+    </div>
+    <div class="agenda-list">
+      <div class="agenda-row"><div class="agenda-time">08:30</div><div class="agenda-title">Private breakfast<span class="sub">Introductions, before the working day begins.</span></div><div class="agenda-marker"></div></div>
+      <div class="agenda-row is-key"><div class="agenda-time">09:30</div><div class="agenda-title">Welcome and framing<span class="sub">Fáilte Ireland · Digital Tourism Think Tank</span></div><div class="agenda-marker"></div></div>
+      <div class="agenda-row is-key"><div class="agenda-time">10:00</div><div class="agenda-title">Opening provocation<span class="sub">Twenty minutes, no slides. Open response from the room.</span></div><div class="agenda-marker"></div></div>
+      <div class="agenda-row is-key"><div class="agenda-time">11:00</div><div class="agenda-title">A shared framework for AI in destination leadership</div><div class="agenda-marker"></div></div>
+      <div class="agenda-row is-key"><div class="agenda-time">11:30</div><div class="agenda-title">Working sessions<span class="sub">Two concurrent 75-minute sessions, pre-assigned.</span></div><div class="agenda-marker"></div></div>
+      <div class="agenda-row is-key"><div class="agenda-time">14:30</div><div class="agenda-title">Big Tech intelligence briefing</div><div class="agenda-marker"></div></div>
+      <div class="agenda-row is-key"><div class="agenda-time">15:45</div><div class="agenda-title">Synthesis and shared conclusions</div><div class="agenda-marker"></div></div>
+      <div class="agenda-row"><div class="agenda-time">19:30</div><div class="agenda-title">X. Awards</div><div class="agenda-marker"></div></div>
+    </div>
+    <div class="footer-line"><span>FDB 2026 · Dublin</span><span>04 / 09</span></div>
+  </section>
+
+  <!-- 05 ── SPEAKER ──────────────────────────────────────────────────────── -->
+  <section class="speaker-slide" data-screen-label="05 Speaker">
+    <div class="banner">
+      <img class="bn-light" src="../assets/logos/fdb-banner.png" alt="Future Destination Brand."/>
+      <img class="bn-dark" src="../assets/logos/dark/fdb-banner-dark.png" alt="Future Destination Brand."/>
+    </div>
+    <div class="speaker-photo-wrap">
+      <div class="frame-bg-2"></div>
+      <div class="frame-bg-1"></div>
+      <div class="speaker-photo">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMax meet">
+          <ellipse cx="50" cy="32" rx="18" ry="22" fill="#2A3F50"/>
+          <path d="M14 100 Q20 56 50 56 Q80 56 86 100 Z" fill="#2A3F50"/>
+        </svg>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow-lg">Opening provocation</div>
+      <div class="speaker-name">Oliver<br/>Csendes.</div>
+      <div class="speaker-org">Former CEO · Visit Hungary</div>
+      <div class="speaker-role">UN Tourism Advisor</div>
+      <div class="speaker-quote">
+        "The destinations that will matter in five years are the ones whose leadership treats AI as a governance question, not a tooling question."
+      </div>
+    </div>
+    <div class="footer-line"><span>10:00 · Provocation</span><span>05 / 09</span></div>
+  </section>
+
+  <!-- 06 ── DARK SECTION DIVIDER ────────────────────────────────────────── -->
+  <section class="dark section-slide" data-screen-label="06 Section divider (dark)">
+    <div class="banner">
+      <img class="bn-light" src="../assets/logos/fdb-banner.png" alt="Future Destination Brand."/>
+      <img class="bn-dark" src="../assets/logos/dark/fdb-banner-dark.png" alt="Future Destination Brand."/>
+    </div>
+    <div class="number">02.</div>
+    <h1 class="title">Who is<br/><span class="accent">in the room.</span></h1>
+    <div class="grid-decor">
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div class="fill-soft"></div><div class="fill-soft"></div><div></div><div></div><div></div>
+      <div></div><div class="fill-soft"></div><div class="fill-mid"></div><div class="fill-mid"></div><div></div><div></div>
+      <div></div><div></div><div class="fill-mid"></div><div class="fill"></div><div class="fill"></div><div></div>
+      <div></div><div></div><div></div><div class="fill"></div><div class="fill-deep"></div><div class="fill-deep"></div>
+      <div></div><div></div><div></div><div></div><div class="fill-deep"></div><div class="fill-deep"></div>
+    </div>
+    <div class="footer-line"><span>Future. Destination. Brand. 2026</span><span>06 / 09</span></div>
+  </section>
+
+  <!-- 07 ── DARK PROGRAMME OVERVIEW (alt format) ─────────────────────────── -->
+  <section class="dark dark-prog" data-screen-label="07 Programme cards (dark)">
+    <div class="head">
+      <h1>Working sessions of <span class="accent">the day.</span></h1>
+      <div class="right">Day One · December 2026</div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="time">10:00 — 11:00</div>
+        <div class="title">Opening provocation</div>
+        <span class="chip">Provocation</span>
+        <div class="desc">A senior voice with direct experience of NTO leadership delivers a deliberate challenge. Twenty minutes, no slides.</div>
+      </div>
+      <div class="card">
+        <div class="time">11:00 — 11:30</div>
+        <div class="title">AI in destination leadership</div>
+        <span class="chip">Framework</span>
+        <div class="desc">DTTT introduces the AI Transparency Framework as a leadership instrument, illustrated with practice from NTOs already deploying it.</div>
+      </div>
+      <div class="card key">
+        <div class="time">11:30 — 13:00</div>
+        <div class="title">Working sessions</div>
+        <span class="chip">Two concurrent · 75 min</span>
+        <div class="desc">Pre-assigned. Two structured streams: AI readiness &amp; organisational leadership · AI and destination competitiveness.</div>
+      </div>
+      <div class="card">
+        <div class="time">14:30 — 15:15</div>
+        <div class="title">Big Tech briefing</div>
+        <span class="chip">Intelligence briefing</span>
+        <div class="desc">A senior representative from one of Dublin's major technology companies on what the platforms see in travel and destination search.</div>
+      </div>
+      <div class="card">
+        <div class="time">15:15 — 15:45</div>
+        <div class="title">European policy landscape</div>
+        <span class="chip">Policy</span>
+        <div class="desc">A structured contribution on the regulatory and investment landscape around AI from an institutional perspective.</div>
+      </div>
+      <div class="card">
+        <div class="time">15:45 — 16:30</div>
+        <div class="title">Synthesis &amp; conclusions</div>
+        <span class="chip">Policy output</span>
+        <div class="desc">A small number of documented priorities, forming the basis of the Executive Briefing Summary submitted to EU institutions.</div>
+      </div>
+    </div>
+    <div class="grid-deco">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="footer-line"><span>FDB 2026 · Working sessions</span><span>07 / 09</span></div>
+  </section>
+
+  <!-- 08 ── X. AWARDS MOMENT ─────────────────────────────────────────────── -->
+  <section class="awards-slide" data-screen-label="08 X. Awards">
+    <div class="banner">
+      <img class="bn-light" src="../assets/logos/fdb-banner.png" alt="Future Destination Brand."/>
+      <img class="bn-dark" src="../assets/logos/dark/fdb-banner-dark.png" alt="Future Destination Brand."/>
+    </div>
+    <div class="left">
+      <div class="eyebrow-lg">Day Two · Evening</div>
+      <h1>The year's strongest work in <span class="accent">destination branding.</span></h1>
+      <p class="lede">The industry's most respected recognition of destination branding, transformation and digital innovation.</p>
+      <div class="meta">
+        <div class="cell"><div class="lbl">Entries open</div><div class="val">June 2026</div></div>
+        <div class="cell"><div class="lbl">Entries close</div><div class="val">October 2026</div></div>
+        <div class="cell"><div class="lbl">Ceremony</div><div class="val">December 2026</div></div>
+      </div>
+    </div>
+    <div class="right">
+      <img src="../assets/logos/x-awards-wordmark.png" alt="X. Awards"/>
+    </div>
+    <div class="footer-line"><span>X. Awards 2026</span><span>08 / 09</span></div>
+  </section>
+
+  <!-- 09 ── CLOSING ─────────────────────────────────────────────────────── -->
+  <section class="closing-slide" data-screen-label="09 Closing">
+    <div class="squares-decor deco-bl">
+      <div class="sq s1"></div>
+      <div class="sq s2"></div>
+      <div class="sq s3"></div>
+    </div>
+    <div class="banner">
+      <img class="bn-light" src="../assets/logos/fdb-banner.png" alt="Future Destination Brand."/>
+      <img class="bn-dark" src="../assets/logos/dark/fdb-banner-dark.png" alt="Future Destination Brand."/>
+    </div>
+    <h1>The outputs of this day reach <span class="accent">EU institutions, national governments</span> and the technology companies shaping destination marketing.</h1>
+    <div class="right">
+      <p>Places on the leadership day are by personal invitation only. To discuss participation, please get in touch.</p>
+      <a class="btn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Get in touch
+      </a>
+    </div>
+    <div class="footer-line"><span>Future. Destination. Brand. 2026</span><span>09 / 09</span></div>
+  </section>
+
+</deck-stage>
+
+</body>
+</html>

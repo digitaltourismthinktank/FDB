@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Components · Tags & pills" -->
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="_card.css">
+<style>
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
+.tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--fdb-purple-tint); color: var(--fdb-purple-deep); border-radius: 2px; padding: 4px 9px; }
+.pill { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fdb-purple); border: 1px solid var(--fdb-purple-soft); background: var(--fdb-purple-tint); padding: 5px 11px; border-radius: 2px; }
+.tag.dark { background: var(--fdb-ink); color: #fff; }
+.tag.outline { background: transparent; border: 1px solid var(--fdb-purple-soft); color: var(--fdb-purple); }
+.lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fdb-ink-faint); margin-top: 12px; }
+</style></head><body>
+<div class="card">
+  <div class="row">
+    <span class="tag">Provocation</span>
+    <span class="tag">Framework</span>
+    <span class="tag">Peer testimony</span>
+    <span class="tag">Policy output</span>
+    <span class="pill">Invite Only</span>
+    <span class="tag outline">Day One</span>
+    <span class="tag dark">FDB 2026</span>
+  </div>
+  <div class="lbl">Tag (fill) · Pill (header) · Outline · Inverse</div>
+</div></body></html>

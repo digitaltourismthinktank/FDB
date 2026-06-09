@@ -1,0 +1,206 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components.jsx",
+              "fdb-design/slides/**",
+              "fdb-design/ui_kits/marketing-site/**",
+              "page-overview.jsx",
+              "site/**",
+              "slides/**",
+              "ui_kits/marketing-site/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Geist))/i]",
+        "message": "Font not provided by the design system. Available: Geist."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {},
+    "tokens": [
+      "--fdb-bg",
+      "--fdb-border",
+      "--fdb-border-purple",
+      "--fdb-border-strong",
+      "--fdb-cream",
+      "--fdb-cream-deep",
+      "--fdb-dark-accent",
+      "--fdb-dark-accent-deep",
+      "--fdb-dark-accent-mid",
+      "--fdb-dark-accent-soft",
+      "--fdb-dark-accent-tint",
+      "--fdb-dark-bg",
+      "--fdb-dark-bg-deep",
+      "--fdb-dark-bg-elev",
+      "--fdb-dark-border",
+      "--fdb-dark-border-strong",
+      "--fdb-dark-fg",
+      "--fdb-dark-fg-faint",
+      "--fdb-dark-fg-mid",
+      "--fdb-dark-fg-muted",
+      "--fdb-dark-x-awards",
+      "--fdb-font-mono",
+      "--fdb-font-sans",
+      "--fdb-fs-body",
+      "--fdb-fs-body-lg",
+      "--fdb-fs-caption",
+      "--fdb-fs-display",
+      "--fdb-fs-eyebrow",
+      "--fdb-fs-h1",
+      "--fdb-fs-h2",
+      "--fdb-fs-h3",
+      "--fdb-fs-micro",
+      "--fdb-fs-small",
+      "--fdb-fs-statement",
+      "--fdb-ink",
+      "--fdb-ink-faint",
+      "--fdb-ink-mid",
+      "--fdb-ink-muted",
+      "--fdb-leading-body",
+      "--fdb-leading-headline",
+      "--fdb-leading-snug",
+      "--fdb-leading-tight",
+      "--fdb-purple",
+      "--fdb-purple-deep",
+      "--fdb-purple-mid",
+      "--fdb-purple-soft",
+      "--fdb-purple-tint",
+      "--fdb-radius-lg",
+      "--fdb-radius-md",
+      "--fdb-radius-sm",
+      "--fdb-radius-xs",
+      "--fdb-shadow-1",
+      "--fdb-shadow-2",
+      "--fdb-space-1",
+      "--fdb-space-2",
+      "--fdb-space-3",
+      "--fdb-space-4",
+      "--fdb-space-5",
+      "--fdb-space-6",
+      "--fdb-space-7",
+      "--fdb-space-8",
+      "--fdb-space-9",
+      "--fdb-tracking-normal",
+      "--fdb-tracking-snug",
+      "--fdb-tracking-tight",
+      "--fdb-tracking-wide",
+      "--fdb-tracking-wider",
+      "--fdb-tracking-widest",
+      "--fdb-white"
+    ],
+    "tokenKinds": {
+      "--fdb-cream": "color",
+      "--fdb-cream-deep": "color",
+      "--fdb-white": "color",
+      "--fdb-bg": "color",
+      "--fdb-ink": "color",
+      "--fdb-ink-mid": "color",
+      "--fdb-ink-muted": "color",
+      "--fdb-ink-faint": "color",
+      "--fdb-purple": "color",
+      "--fdb-purple-deep": "color",
+      "--fdb-purple-mid": "color",
+      "--fdb-purple-soft": "color",
+      "--fdb-purple-tint": "color",
+      "--fdb-dark-bg": "color",
+      "--fdb-dark-bg-elev": "shadow",
+      "--fdb-dark-bg-deep": "color",
+      "--fdb-dark-fg": "color",
+      "--fdb-dark-fg-mid": "color",
+      "--fdb-dark-fg-muted": "color",
+      "--fdb-dark-fg-faint": "color",
+      "--fdb-dark-accent": "color",
+      "--fdb-dark-accent-mid": "color",
+      "--fdb-dark-accent-deep": "color",
+      "--fdb-dark-accent-tint": "color",
+      "--fdb-dark-accent-soft": "color",
+      "--fdb-dark-x-awards": "color",
+      "--fdb-dark-border": "color",
+      "--fdb-dark-border-strong": "color",
+      "--fdb-border": "color",
+      "--fdb-border-strong": "color",
+      "--fdb-border-purple": "color",
+      "--fdb-shadow-1": "shadow",
+      "--fdb-shadow-2": "shadow",
+      "--fdb-radius-xs": "radius",
+      "--fdb-radius-sm": "radius",
+      "--fdb-radius-md": "radius",
+      "--fdb-radius-lg": "radius",
+      "--fdb-space-1": "spacing",
+      "--fdb-space-2": "spacing",
+      "--fdb-space-3": "spacing",
+      "--fdb-space-4": "spacing",
+      "--fdb-space-5": "spacing",
+      "--fdb-space-6": "spacing",
+      "--fdb-space-7": "spacing",
+      "--fdb-space-8": "spacing",
+      "--fdb-space-9": "spacing",
+      "--fdb-font-sans": "font",
+      "--fdb-font-mono": "font",
+      "--fdb-fs-display": "font",
+      "--fdb-fs-h1": "spacing",
+      "--fdb-fs-h2": "spacing",
+      "--fdb-fs-h3": "spacing",
+      "--fdb-fs-statement": "spacing",
+      "--fdb-fs-body": "spacing",
+      "--fdb-fs-body-lg": "spacing",
+      "--fdb-fs-small": "spacing",
+      "--fdb-fs-caption": "spacing",
+      "--fdb-fs-eyebrow": "spacing",
+      "--fdb-fs-micro": "spacing",
+      "--fdb-tracking-tight": "font",
+      "--fdb-tracking-snug": "font",
+      "--fdb-tracking-normal": "font",
+      "--fdb-tracking-wide": "font",
+      "--fdb-tracking-wider": "font",
+      "--fdb-tracking-widest": "font",
+      "--fdb-leading-tight": "font",
+      "--fdb-leading-headline": "font",
+      "--fdb-leading-snug": "font",
+      "--fdb-leading-body": "font"
+    },
+    "fontFamilies": [
+      "Geist"
+    ]
+  }
+}

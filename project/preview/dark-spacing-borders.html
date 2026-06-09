@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="_card.css">
+<style>
+.row { display: flex; flex-direction: column; gap: 18px; }
+.line { display: grid; grid-template-columns: 1fr 220px; gap: 18px; align-items: center; }
+.bar { height: 1px; }
+.bar.b1 { background: rgba(255,255,255,0.10); }
+.bar.b2 { background: rgba(255,255,255,0.18); }
+.bar.b3 { background: var(--fdb-dark-accent-soft); }
+.lbl { font-size: 11px; font-weight: 700; color: var(--fdb-dark-fg); }
+.spec { font-size: 9px; font-family: var(--fdb-font-mono); color: var(--fdb-dark-fg-muted); }
+.box-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+.box-demo > div { padding: 16px 18px; font-size: 11px; line-height: 1.5; color: var(--fdb-dark-fg-mid); }
+.box-demo .a { border: 1px solid rgba(255,255,255,0.10); border-radius: 4px; }
+.box-demo .b { background: var(--fdb-dark-bg-elev); border: 1px solid rgba(255,255,255,0.18); border-radius: 4px; }
+</style></head>
+<body class="fdb-dark">
+<div class="card">
+  <div class="row">
+    <div class="line"><div class="bar b1"></div><div><div class="lbl">Border</div><div class="spec">rgba(255,255,255,0.10) · dividers</div></div></div>
+    <div class="line"><div class="bar b2"></div><div><div class="lbl">Border Strong</div><div class="spec">rgba(255,255,255,0.18) · card outlines</div></div></div>
+    <div class="line"><div class="bar b3"></div><div><div class="lbl">Border Accent</div><div class="spec">Magenta-pink · decorative frames</div></div></div>
+  </div>
+  <div class="box-demo">
+    <div class="a">Hairline card on ink — no shadow.</div>
+    <div class="b">Raised card on elevated bg.</div>
+  </div>
+</div></body></html>

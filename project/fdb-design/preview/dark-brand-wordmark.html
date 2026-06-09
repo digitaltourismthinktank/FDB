@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Logo · Wordmark · Dark" -->
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="_card.css">
+<style>
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; }
+.cell { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.cell img { display: block; max-width: 100%; width: auto; }
+.cell .a { height: 200px; }
+.cell .b { height: 90px; }
+.lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fdb-dark-fg-muted); text-align: center; }
+</style></head>
+<body class="fdb-dark">
+<div class="card" style="padding: 32px 36px;">
+  <div class="grid">
+    <div class="cell">
+      <img class="a" src="../assets/logos/dark/fdb-logo-full-dark.png" alt="Full lockup">
+      <span class="lbl">Full lockup · on dark</span>
+    </div>
+    <div class="cell">
+      <img class="b" src="../assets/logos/dark/fdb-logo-wordmark-dark.png" alt="Wordmark only">
+      <span class="lbl">Wordmark only · on dark</span>
+    </div>
+  </div>
+</div>
+</body></html>

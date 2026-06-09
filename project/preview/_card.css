@@ -1,0 +1,29 @@
+/* Shared style for design-system preview cards.
+   Cards are ~700×variable, on cream, no titles/framing — just specimens. */
+
+@import url('../colors_and_type.css');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--fdb-cream);
+  color: var(--fdb-ink);
+  font-family: var(--fdb-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* When the body carries .fdb-dark the canvas flips to ink-on-ink for the
+   dark-mode preview cards. */
+body.fdb-dark { background: var(--fdb-dark-bg); color: var(--fdb-dark-fg); }
+
+.card {
+  box-sizing: border-box;
+  width: 700px;
+  padding: 28px 32px;
+  background: var(--fdb-cream);
+}
+body.fdb-dark .card { background: var(--fdb-dark-bg); }
+
+.row { display: flex; align-items: center; gap: 12px; }
+.col { display: flex; flex-direction: column; }
+.between { display: flex; align-items: center; justify-content: space-between; }

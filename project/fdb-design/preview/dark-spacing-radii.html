@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Spacing · Radii · Dark" -->
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="_card.css">
+<style>
+.row { display: flex; align-items: flex-end; gap: 28px; }
+.cell { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.box { width: 72px; height: 72px; background: var(--fdb-dark-accent); }
+.lbl { font-size: 10px; font-weight: 700; color: var(--fdb-dark-fg-muted); font-family: var(--fdb-font-mono); }
+.role { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fdb-dark-fg-faint); }
+.note { font-size: 11px; line-height: 1.5; color: var(--fdb-dark-fg-muted); margin-top: 22px; max-width: 540px; }
+</style></head>
+<body class="fdb-dark">
+<div class="card">
+  <div class="row">
+    <div class="cell"><div class="box" style="border-radius:0"></div><span class="lbl">0</span><span class="role">Photo frame</span></div>
+    <div class="cell"><div class="box" style="border-radius:2px"></div><span class="lbl">2</span><span class="role">Pills · Tags</span></div>
+    <div class="cell"><div class="box" style="border-radius:3px"></div><span class="lbl">3</span><span class="role">Buttons</span></div>
+    <div class="cell"><div class="box" style="border-radius:4px"></div><span class="lbl">4</span><span class="role">Cards · Callouts</span></div>
+    <div class="cell"><div class="box" style="border-radius:6px"></div><span class="lbl">6</span><span class="role">Mark squares</span></div>
+  </div>
+  <p class="note">No fully-rounded shapes anywhere. The only circular element in the system is the dot on the X. Awards <em>x.</em> glyph.</p>
+</div></body></html>

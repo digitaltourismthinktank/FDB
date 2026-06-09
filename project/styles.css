@@ -1,0 +1,12 @@
+/* ============================================================================
+   FDB — Future. Destination. Brand. — Design System entry point
+   ============================================================================
+   This is the canonical stylesheet for the design system. It pulls in the
+   token + type layer. Consumers should link THIS file (or import it) rather
+   than the individual partials.
+
+   The skill-package copy under fdb-design/ is a self-contained mirror for
+   distribution and is intentionally NOT imported here.
+   ============================================================================ */
+
+@import url('colors_and_type.css');

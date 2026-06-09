@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future. Destination. Brand. 2026 · Marketing site</title>
+
+<!-- Resources referenced as strings inside JSX must be declared here so the
+     bundler can inline them and expose them on window.__resources. -->
+<meta name="ext-resource-dependency" content="../../assets/logos/fdb-banner.png"                 data-resource-id="banner"/>
+<meta name="ext-resource-dependency" content="../../assets/logos/dark/fdb-banner-dark.png"       data-resource-id="bannerDark"/>
+<meta name="ext-resource-dependency" content="../../assets/logos/fdb-logo-full.png"             data-resource-id="logoFull"/>
+<meta name="ext-resource-dependency" content="../../assets/logos/dark/fdb-logo-full-dark.png"   data-resource-id="logoFullDark"/>
+<meta name="ext-resource-dependency" content="../../assets/logos/fdb-mark.png"                   data-resource-id="mark"/>
+<meta name="ext-resource-dependency" content="../../assets/logos/dark/fdb-mark-dark.png"         data-resource-id="markDark"/>
+<meta name="ext-resource-dependency" content="../../assets/logos/x-awards-mark.png"              data-resource-id="xAwardsMark"/>
+<meta name="ext-resource-dependency" content="../../assets/logos/x-awards-wordmark.png"          data-resource-id="xAwardsWordmark"/>
+<meta name="ext-resource-dependency" content="../../assets/logos/dark/x-awards-wordmark-dark.png" data-resource-id="xAwardsWordmarkDark"/>
+<meta name="ext-resource-dependency" content="../../assets/logos/failte-ireland.png"            data-resource-id="failteIreland"/>
+
+<link rel="stylesheet" href="../../colors_and_type.css"/>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--fdb-font-sans);
+    background: var(--fdb-cream);
+    color: var(--fdb-ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  #root [data-screen-label] { min-height: calc(100vh - 0px); }
+</style>
+
+<!-- Splash thumbnail — shown while the bundle unpacks and as the
+     no-JS fallback. Brand mark on cream. -->
+<template id="__bundler_thumbnail" data-bg-color="#F5F0E9">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(420 200)">
+      <rect x="0"   y="0"   width="220" height="220" rx="18" fill="none" stroke="#8239C1" stroke-width="7"/>
+      <rect x="70"  y="70"  width="220" height="220" rx="18" fill="none" stroke="#9B6FE0" stroke-width="7"/>
+      <rect x="140" y="140" width="220" height="220" rx="18" fill="none" stroke="#C9AAEE" stroke-width="7"/>
+    </g>
+  </svg>
+</template>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="components-standalone.jsx"></script>
+<script type="text/babel" src="pages-standalone.jsx"></script>
+
+<script type="text/babel">
+  const { useState } = React;
+
+  const SCREENS = {
+    '/':           { label: '01 Overview',      Page: OverviewPage   },
+    '/leadership': { label: '02 Leadership',    Page: LeadershipPage },
+    '/summit':     { label: '03 Summit',        Page: SummitPage     },
+    '/awards':     { label: '04 X. Awards',     Page: AwardsPage     },
+  };
+
+  function App() {
+    const [path, setPath] = useState('/');
+    const [dark, setDark] = useState(false);
+    const { label, Page } = SCREENS[path];
+    return (
+      <div data-screen-label={label} className={dark ? 'fdb-dark' : ''} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--fdb-cream)', color: 'var(--fdb-ink)' }}>
+        <Header currentPath={path} onNav={setPath} dark={dark} onToggleDark={() => setDark(d => !d)}/>
+        <main style={{ flex: 1 }}>
+          <Page onNav={setPath} dark={dark}/>
+        </main>
+        <Footer dark={dark}/>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+
+</body>
+</html>

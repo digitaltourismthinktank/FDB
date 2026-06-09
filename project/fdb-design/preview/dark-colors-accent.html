@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Colors · Accent · Dark" -->
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="_card.css">
+<style>
+.swatch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.sw { display: flex; flex-direction: column; gap: 10px; }
+.chip { aspect-ratio: 1; border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); }
+.sw .name { font-size: 11px; font-weight: 700; color: var(--fdb-dark-fg); letter-spacing: -0.005em; }
+.sw .hex { font-size: 10px; font-family: var(--fdb-font-mono); color: var(--fdb-dark-fg-muted); letter-spacing: 0.02em; }
+.sw .role { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fdb-dark-fg-faint); }
+</style></head>
+<body class="fdb-dark">
+<div class="card">
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:#E070F0"></div><span class="name">Accent</span><span class="hex">#E070F0</span><span class="role">Brand. on dark</span></div>
+    <div class="sw"><div class="chip" style="background:#9040A0"></div><span class="name">Accent Mid</span><span class="hex">#9040A0</span><span class="role">Middle square</span></div>
+    <div class="sw"><div class="chip" style="background:#502070"></div><span class="name">Accent Deep</span><span class="hex">#502070</span><span class="role">Back square</span></div>
+    <div class="sw"><div class="chip" style="background:#A030B0"></div><span class="name">X. Awards</span><span class="hex">#A030B0</span><span class="role">Lockup on dark</span></div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="_card.css">
+<style>
+.grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(26,26,26,0.10); border: 1px solid rgba(26,26,26,0.10); border-radius: 4px; overflow: hidden; }
+.cell { background: var(--fdb-cream); padding: 16px 16px; }
+.cell.tint { background: var(--fdb-purple-tint); }
+.type { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fdb-purple); margin-bottom: 5px; }
+.type.deep { color: var(--fdb-purple-deep); }
+.name { font-size: 13px; font-weight: 700; color: var(--fdb-ink); margin-bottom: 2px; line-height: 1.3; }
+.name.tbc { color: var(--fdb-ink-muted); font-weight: 500; font-style: italic; }
+.org { font-size: 11px; color: var(--fdb-ink-muted); line-height: 1.4; }
+.long { font-size: 12px; color: var(--fdb-ink-mid); font-weight: 500; }
+</style></head><body>
+<div class="card">
+  <div class="grid">
+    <div class="cell">
+      <div class="type">Host</div>
+      <div class="name">Caroline Bocquel</div>
+      <div class="org">CEO · Fáilte Ireland</div>
+    </div>
+    <div class="cell">
+      <div class="type">Provocation</div>
+      <div class="name">Oliver Csendes</div>
+      <div class="org">Former CEO · Visit Hungary</div>
+    </div>
+    <div class="cell">
+      <div class="type">Technology briefing</div>
+      <div class="name tbc">Senior representative</div>
+      <div class="org">Google / Microsoft / OpenAI · TBC</div>
+    </div>
+    <div class="cell tint" style="grid-column: span 3;">
+      <div class="type deep">Further participants</div>
+      <div class="long">20 to 30 additional NTO and DMO chief executives, by personal invitation.</div>
+    </div>
+  </div>
+</div></body></html>
