@@ -34,6 +34,7 @@
 
 <script type="text/babel" src="components.jsx"></script>
 <script src="x-glyph-path.js"></script>
+<script src="x-awards-svg.js"></script>
 <script type="text/babel" src="motif.jsx"></script>
 <script type="text/babel" src="page-overview.jsx"></script>
 <script type="text/babel" src="page-leadership.jsx"></script>
@@ -71,8 +72,9 @@ function App() {
     const onHash = () => {
       const np = getPath();
       const apply = () => { ReactDOM.flushSync(() => setPath(np)); window.scrollTo(0, 0); };
-      if (document.startViewTransition) { document.startViewTransition(apply); }
-      else { setPath(np); window.scrollTo(0, 0); }
+      if (document.startViewTransition && document.visibilityState === 'visible') {
+        document.startViewTransition(apply).catch(() => apply());
+      } else { setPath(np); window.scrollTo(0, 0); }
     };
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);

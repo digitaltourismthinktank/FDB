@@ -10,15 +10,32 @@
 //   council     — Day One   · FRONT pane filled (foreground)
 //   programme   — Day Two   · MIDDLE pane filled
 //   workstream  — Day Three · BACK pane filled (background)
-//   awards      — X. Awards · white front square + purple x. (set apart)
+//   awards      — X. Awards · the MIDDLE square is bold and carries the x. dead-
+//                  centre; the front & back squares are faded (set apart)
 //
 // On navigation the header mark plays "step & pop": the lit pane pops in with an
-// overshoot and the mark steps forward; arriving at X. Awards the front fills and
-// the x. scales in.
-const X_AR = (window.FDB_X && window.FDB_X.ar) || 1.531;     // crisp vector x. aspect (w/h)
+// overshoot and the mark steps forward; arriving at X. Awards the cascade settles
+// to outlines and the x. scales in.
+const X_AR = (window.FDB_X && window.FDB_X.ar) || 1.569;     // crisp vector x. aspect (w/h)
 function XGlyph({ color, left, top, wPx, style }) {
   const F = window.FDB_X || { vb: '0 0 173 113', d: '' };
   return <svg viewBox={F.vb} width={wPx} height={wPx / X_AR} aria-hidden="true" style={{ position: 'absolute', left, top, display: 'block', ...style }}><path d={F.d} fill={color}/></svg>;
+}
+
+// ─── X. AWARDS — the authoritative logo, used directly ────────────────────────
+// Renders the agreed X. Awards SVG (assets/logos/x-awards-mark.svg) inline, so it
+// is pixel-faithful and crisp at any size — never reconstructed. `muted` greys it
+// for inactive journey stations. Sized to the mark's square footprint.
+const XAW = window.FDB_XAWARDS || { vb: '0 0 282 266', ar: 1.06, inner: '' };
+function AwardsLogo({ size = 120, muted = false, style }) {
+  const w = size, h = size / XAW.ar;
+  return (
+    <div aria-hidden="true" style={{ position: 'relative', width: size, height: size, flexShrink: 0,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      filter: muted ? 'grayscale(1)' : 'none', opacity: muted ? 0.45 : 1, ...style }}>
+      <svg viewBox={XAW.vb} width={w} height={h} fill="none" style={{ display: 'block' }} dangerouslySetInnerHTML={{ __html: XAW.inner }}/>
+    </div>
+  );
 }
 
 const S = 46, C = 50, UO = 9;                           // square side, centre, cascade offset
@@ -36,28 +53,19 @@ function squarePositions() {
 // `state` selects which pane fills (or the awards x.); `muted` greys it for
 // inactive journey stations; `sw` is the base stroke (viewBox is 100).
 function Motif({ state = 'brand', size = 120, sw = 2.4, muted = false, style }) {
+  if (state === 'awards') return <AwardsLogo size={size} muted={muted} style={style}/>;
   const pos = squarePositions();
-  const awards = state === 'awards';
-  const fillIdx = awards ? 2 : (FILLIDX[state] ?? -1);
-  const gwPx = 0.39 * size, ghPx = gwPx / X_AR;
-  const cxPx = (pos[2][0] / 100) * size, cyPx = (pos[2][1] / 100) * size;
+  const fillIdx = (FILLIDX[state] ?? -1);
   return (
     <div aria-hidden="true" style={{ position: 'relative', width: size, height: size, flexShrink: 0, ...style }}>
       <svg width={size} height={size} viewBox="0 0 100 100" fill="none" style={{ display: 'block', position: 'absolute', inset: 0 }}>
         {pos.map((p, idx) => {
-          let fill = 'none';
-          if (!muted) {
-            if (awards && idx === 2) fill = '#FFFFFF';
-            else if (idx === fillIdx) fill = PANE;
-          }
+          const fill = (!muted && idx === fillIdx) ? PANE : 'none';
           return <rect key={idx} x={p[0] - S / 2} y={p[1] - S / 2} width={S} height={S} rx="6"
             fill={fill} stroke={muted ? 'var(--fdb-ink-faint)' : STROKE[TINTNAME[idx]]}
             strokeOpacity={muted ? 0.5 : 1} strokeWidth={sw}/>;
         })}
       </svg>
-      {awards && !muted && (
-        <XGlyph color="var(--fdb-purple)" left={cxPx - gwPx / 2} top={cyPx - ghPx / 2} wPx={gwPx}/>
-      )}
     </div>
   );
 }
@@ -66,21 +74,19 @@ function Motif({ state = 'brand', size = 120, sw = 2.4, muted = false, style }) 
 // The same shape, animated. When `state` changes (on navigation) the lit pane
 // pops in and the mark steps forward; X. Awards fills white and the x. scales in.
 function TwistMark({ state = 'brand', size = 34, sw = 1.7, style }) {
+  if (state === 'awards') return <AwardsLogo size={size} style={style}/>;
   const pos = squarePositions();
-  const awards = state === 'awards';
-  const fillIdx = awards ? 2 : (FILLIDX[state] ?? -1);
+  const fillIdx = (FILLIDX[state] ?? -1);
   const litIdx = fillIdx < 0 ? 0 : fillIdx;
   const step = DAYORDER[state] ?? 0;
   const cpx = (i) => (pos[i][0] / 100) * size, cpy = (i) => (pos[i][1] / 100) * size;
-  const gwPx = 0.40 * size, ghPx = gwPx / X_AR;
   return (
     <div aria-hidden="true" style={{ position: 'relative', width: size, height: size, flexShrink: 0,
-      transition: 'transform .5s cubic-bezier(.34,1.4,.64,1)', transform: awards ? 'scale(1.03)' : `translate(${step * 0.6}px, ${step * 0.6}px)`, ...style }}>
+      transition: 'transform .5s cubic-bezier(.34,1.4,.64,1)', transform: `translate(${step * 0.6}px, ${step * 0.6}px)`, ...style }}>
       <svg width={size} height={size} viewBox="0 0 100 100" fill="none" style={{ position: 'absolute', inset: 0 }}>
         {pos.map((p, idx) => {
           const isLit = fillIdx === idx;
-          const f = awards && idx === 2 ? '#FFFFFF' : PANE;
-          return <rect key={'f' + idx} x={p[0] - S / 2} y={p[1] - S / 2} width={S} height={S} rx="6" fill={f}
+          return <rect key={'f' + idx} x={p[0] - S / 2} y={p[1] - S / 2} width={S} height={S} rx="6" fill={PANE}
             style={{ transformBox: 'fill-box', transformOrigin: 'center', transform: isLit ? 'scale(1)' : 'scale(0.45)', opacity: isLit ? 1 : 0, transition: 'transform .5s cubic-bezier(.34,1.56,.64,1), opacity .3s ease' }}/>;
         })}
         {pos.map((p, idx) => (
@@ -88,8 +94,6 @@ function TwistMark({ state = 'brand', size = 34, sw = 1.7, style }) {
             stroke={STROKE[TINTNAME[idx]]} strokeWidth={fillIdx === idx ? sw * 1.3 : sw} style={{ transition: 'stroke-width .4s ease' }}/>
         ))}
       </svg>
-      <XGlyph color="var(--fdb-purple)" left={cpx(2) - gwPx / 2} top={cpy(2) - ghPx / 2} wPx={gwPx} style={{
-        transformOrigin: 'center', transition: 'opacity .35s ease .1s, transform .45s cubic-bezier(.34,1.56,.64,1) .08s', opacity: awards ? 1 : 0, transform: awards ? 'scale(1)' : 'scale(0.4)' }}/>
     </div>
   );
 }
