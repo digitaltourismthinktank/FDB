@@ -1,3 +1,6 @@
 # Root-level copies — canonical versions live in site/
 colors_and_type.css
 fonts/
+
+# Local settings — contains secrets, never commit
+.claude/settings.local.json
