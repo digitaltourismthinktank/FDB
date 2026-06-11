@@ -37,7 +37,7 @@ function RegisterPage() {
             Register your<br/><Accent>place.</Accent>
           </h1>
           <p style={{ fontSize: '1.02rem', lineHeight: 1.7, color: 'var(--fdb-ink-mid)', maxWidth: '52ch' }}>
-            Free for DTTT members — sign in with your DTTT Account and your details carry straight through. Delegates register and pay in a few steps. The Leadership Meeting is by invitation.
+            Free for DTTT members; sign in with your DTTT Account and your details carry straight through. Delegates register and pay in a few steps. The Leadership Meeting is by invitation.
           </p>
         </div>
       </section>
@@ -113,7 +113,7 @@ function MemberFlow({ nav }) {
   if (!authed) {
     return (
       <div>
-        <FlowHead title="Sign in to register" body="Registration is free for DTTT members. Sign in with your DTTT Account — your name, organisation and role carry straight through."/>
+        <FlowHead title="Sign in to register" body="Registration is free for DTTT members. Sign in with your DTTT Account; your name, organisation and role carry straight through."/>
         <Button onClick={() => setAuthed(true)} icon={ArrowIcon} style={{ width: '100%', padding: '0.85rem' }}>Sign in with your DTTT Account</Button>
         <SignInNote/>
       </div>
@@ -121,7 +121,7 @@ function MemberFlow({ nav }) {
   }
   return (
     <div>
-      <FlowHead title="Welcome back." body="Your details are pre-filled from your DTTT Account. The form just confirms them — a few seconds and you're done."/>
+      <FlowHead title="Welcome back." body="Your details are pre-filled from your DTTT Account. The form just confirms them in a few seconds."/>
       <PrefillCard/>
       <EmbedSlot note="Typeform · details confirmed from your DTTT Account (hidden fields)"/>
       <Button onClick={() => setDone(true)} icon={ArrowIcon} style={{ width: '100%', padding: '0.85rem', marginTop: '1.4rem' }}>Confirm registration</Button>
@@ -136,7 +136,7 @@ function DelegateFlow() {
   if (done) return <Confirmed lines={["Day Two · Keynote Day (delegate)", "X. Awards · evening"]} paid onReset={() => setDone(false)}/>;
   return (
     <div>
-      <FlowHead title="Register as a delegate" body="Not a DTTT member? Register here. A short form tailors your options — DMO, commercial partner or individual — and payment is taken on the final step."/>
+      <FlowHead title="Register as a delegate" body="Not a DTTT member? Register here. A short form establishes the right delegate type (DMO, commercial partner or individual) and payment is taken on the final step."/>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.4rem' }}>
         <StepLine n="1" t="Tell us who you are" s="Branching questions set the right delegate type and price."/>
         <StepLine n="2" t="Choose your days" s="Keynote Day and the X. Awards evening are open to delegates."/>

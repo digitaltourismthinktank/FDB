@@ -24,7 +24,7 @@ function AwardsPage() {
         station="awards"
         eyebrow="X. Awards · Day One evening · 02 December"
         title={<>The first <Accent>AI-Positive</Accent> Industry Awards.</>}
-        lead="The sector's recognition of destination branding, transformation and digital innovation, awarded the evening of Day One. Celebratory in atmosphere, serious in recognition. No black tie."
+        lead="The sector's recognition of outstanding destination branding, transformation and digital innovation, taking place on the evening of Day One. Smart casual dress."
         meta={[
           { label: 'When', value: 'Evening of Day One · 02 Dec' },
           { label: 'Judging', value: 'Eight categories · human-only final round' },

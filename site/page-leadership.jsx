@@ -28,13 +28,13 @@ function LeadershipPage() {
       <section className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
         <SectionLabel>About the day</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
-          AI is reshaping where destinations are discovered, how tourism is managed and how national bodies are led. The question is <Accent>not whether to engage.</Accent> It is whether leadership is ready.
+          AI is reshaping where destinations are discovered, how tourism is managed and how national bodies are led. The critical question for destination leadership is <Accent>not whether to engage, but how to lead with clarity.</Accent>
         </Statement>
         <BodyText style={{ marginBottom: '1rem' }}>
-          The format is a meeting, not a conference. Boardroom arrangement, no stage, no panels, no commercial agenda. The room is small by design, and what is said in it is held under the Chatham House Rule.
+          The meeting is structured around two parallel questions: how AI changes the competitive environment for destination brands, and what it requires of the organisations and leaders responsible for them. Sessions are designed for working through both in depth, with time for candid peer exchange.
         </BodyText>
         <BodyText>
-          The day is convened by Fáilte Ireland under Ireland's EU Council Presidency and facilitated by the Digital Tourism Think Tank. <Accent>What participants bring to this table does not stay in the room.</Accent>
+          The day is convened by Fáilte Ireland under Ireland's EU Council Presidency and facilitated by the Digital Tourism Think Tank. Its conclusions are documented and submitted to EU institutions under the Irish Presidency.
         </BodyText>
       </section>
 

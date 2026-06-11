@@ -23,7 +23,7 @@ function WorkstreamPage() {
         station="workstream"
         eyebrow="Day Three · 04 December · Trends workstream"
         title={<>The day the<br/>next year gets<br/><Accent>written.</Accent></>}
-        lead="A members-only working day. The Future Destination Trends 2027 report is built in the room, across eight trend tables. The most generative day of the three."
+        lead="A members-only working day in which the Future Destination Trends 2027 report is built across eight trend tables. Contributors are named in the published report and continue as quarterly working groups through 2027."
         meta={[
           { label: 'Date', value: 'Thursday 04 December 2026' },
           { label: 'Audience', value: 'DTTT members only' },

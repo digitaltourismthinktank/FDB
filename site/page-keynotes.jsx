@@ -33,7 +33,7 @@ function KeynotesPage() {
         station="programme"
         eyebrow="Day Two · 03 December · Keynote programme"
         title={<>The keynote<br/><Accent>programme.</Accent></>}
-        lead="Back-to-back keynotes from the destination marketers, brand leads and digital teams doing the work. Not a tech conference. A destination marketing conference that takes AI seriously."
+        lead="A full day of keynotes from destination marketers, brand leads and digital teams at the world's leading NTOs and DMOs, structured around six themes with a transatlantic conversation mid-morning."
         meta={[
           { label: 'Date', value: 'Wednesday 03 December 2026' },
           { label: 'Audience', value: '125 to 200 senior delegates' },
@@ -46,12 +46,12 @@ function KeynotesPage() {
 
       {/* ── INTRO ─────────────────────────────────────────────────────── */}
       <section className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
-        <SectionLabel>The room</SectionLabel>
+        <SectionLabel>The day</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
-          Peer authority over outside expertise. The most valuable voices are <Accent>destinations doing the work.</Accent>
+          Six themes, one keynote each, with a <Accent>transatlantic fireside</Accent> mid-morning and a report from the Day One leadership meeting at the close.
         </Statement>
         <BodyText>
-          Pace, but with breathing room. Outside speakers expand the frame; they do not fill time. Mostly DTTT members, mostly senior, mostly active. The day moves through six themes and closes by reconnecting to the Council formed the day before.
+          The audience is primarily DTTT members and senior delegates from national, regional and city destinations. The programme is paced to allow time for discussion alongside the talks, and closes by reconnecting to the conclusions of the leadership meeting the day before.
         </BodyText>
       </section>
 
@@ -97,7 +97,7 @@ function KeynotesPage() {
           <div>
             <SectionLabel>Speakers</SectionLabel>
             <BodyText style={{ marginTop: '1rem', marginBottom: 0 }}>
-              One keynote per theme, plus the transatlantic fireside — the destination marketers and brand leads doing the work. <Accent>The full line-up is announced closer to the event.</Accent>
+              One keynote per theme, plus the transatlantic fireside, from the destination marketers and brand leads doing the work. <Accent>The full line-up is announced closer to the event.</Accent>
             </BodyText>
           </div>
           <Button variant="outline" onClick={() => nav('/register')}>Get notified</Button>
