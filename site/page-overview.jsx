@@ -8,14 +8,14 @@ function OverviewPage() {
   // The event, in four parts — in CHRONOLOGICAL order: the private meeting and
   // the awards on Day One, the keynote day, then the members' workstream.
   const parts = [
-    { part: '01', station: 'council', kicker: 'Day One · 02 Dec', access: 'Invite only', title: 'The Leadership Meeting.', sub: 'Leadership in the Age of AI', path: '/leadership',
-      desc: 'A private, invite-only working day for 30 to 40 NTO and DMO chief executives, ministers and senior leaders. Boardroom format, no stage, no panels. The room constitutes a Council and issues the Dublin Declaration.' },
-    { part: '02', station: 'awards', kicker: 'Day One · The evening', title: 'X. Awards.', sub: 'The first AI-Positive Industry Awards', path: '/awards',
-      desc: 'Held on the evening of Day One. Eight categories, human-only final judging, reasoning notes published with every winner. Celebratory, considered.' },
+    { part: '01', station: 'council', kicker: 'Day One · 02 Dec', access: 'Invite only', title: "Chief Executives' Leadership Meeting.", sub: 'Leadership in the Age of AI', path: '/leadership',
+      desc: 'An invitation-only working day bringing together Chief Executives, CMOs and senior leaders from the world\'s leading NTOs and DMOs. The day addresses the most pressing strategic challenges facing destination brands in the age of AI, exploring how organisations can build resilience, adapt their brand positioning and lead with confidence through rapid change. The day concludes with the publication of the Dublin Declaration.' },
+    { part: '02', station: 'awards', kicker: 'Day One · Evening', title: 'X. Awards.', sub: 'The first AI-Positive Industry Awards', path: '/awards',
+      desc: 'Taking place on the evening of Day One, the X. Awards are the first industry awards designed for the AI era, recognising outstanding achievement across eight categories. All finalists are assessed through human-only final judging, with full reasoning notes published alongside every winning entry.' },
     { part: '03', station: 'programme', kicker: 'Day Two · 03 Dec', title: 'The Keynote Day.', sub: 'Talks from leading destinations', path: '/keynotes',
-      desc: 'Back-to-back keynotes from the destination marketers and brand leads actually doing the work, across six themes, with a transatlantic fireside mid-morning. Free for DTTT members; ticketed for delegates, with separate tickets for DMOs and commercial partners.' },
+      desc: 'A full day of back-to-back keynotes from destination marketers and brand leaders at the world\'s leading NTOs and DMOs, presented across six themes with a transatlantic fireside mid-morning. Open to all: free for DTTT members and ticketed for delegates, with separate rates for DMOs and commercial partners.' },
     { part: '04', station: 'workstream', kicker: 'Day Three · 04 Dec', access: 'Members only', title: 'The Trends Workstream.', sub: 'Future Destination Trends 2027', path: '/workstream',
-      desc: 'A members-only working day. The Future Destination Trends 2027 report is built in the room, across eight trend tables. The day the next year gets written.' },
+      desc: 'A members-only working day dedicated to building the Future Destination Trends 2027 report. Delegates work across eight trend tables to define and document the most important themes shaping destination brand and marketing in the year ahead, producing a report used by the sector throughout 2027.' },
   ];
 
   return (
@@ -46,7 +46,7 @@ function OverviewPage() {
                 The Digital Tourism Think Tank's global forum on the future of destination brand and leadership in the age of AI. <strong style={{ color: 'var(--fdb-ink)', fontWeight: 700 }}>Four parts, across three days.</strong>
               </p>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                <Button icon={ArrowIcon} onClick={() => nav('/leadership')}>View the programme</Button>
+                <Button icon={ArrowIcon} onClick={() => { const el = document.getElementById('four-parts'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>View the programme</Button>
                 <Button variant="ghost" onClick={() => nav('/register')}>Register your place</Button>
               </div>
             </div>
@@ -68,13 +68,13 @@ function OverviewPage() {
       <hr className="fdb-rule"/>
 
       {/* ── THE EVENT, IN FOUR PARTS ─────────────────────────────────── */}
-      <section className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
+      <section id="four-parts" className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
         <SectionLabel>The event, in four parts</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '0.5rem' }}>
-          A private leadership meeting, an open keynote day, a members' working day, and an <Accent>evening of recognition.</Accent>
+          The leading platform for destination brands in the <Accent>age of AI</Accent>, brought together across three distinct days in Dublin.
         </Statement>
         <BodyText style={{ marginBottom: '1rem' }}>
-          One gathering with four distinct moments, each with its own way in, from the invitation-only Council room to the keynote day open to members and delegates. Three run across the days; the X. Awards is held on the evening of Day One.
+          An indispensable programme comprising an invitation-only leadership meeting for Chief Executives and senior leaders, the X. Awards ceremony, a full day of keynotes from globally leading destinations, and a deep-dive workstream exploring every key trend to watch in 2027. Each part has its own format, access and audience — together forming the most important annual gathering for destination brand and marketing leadership.
         </BodyText>
       </section>
 
@@ -89,7 +89,7 @@ function OverviewPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4rem' }}>
         <SectionLabel>Across three days</SectionLabel>
         <BodyText style={{ marginTop: '1rem', marginBottom: '2.5rem' }}>
-          How the event runs, in sequence: the leadership meeting and X. Awards on Day One, the keynote day, then the members' workstream.
+          The programme runs across three consecutive days, each with a distinct focus and audience. Chief Executives and senior leaders may attend all three days, or join solely for the Leadership Meeting and X. Awards on Day One. Marketing and brand teams will find the greatest value in the Keynote Day and Trends Workstream on Days Two and Three, while the awards evening on Day One is open to all attendees.
         </BodyText>
         <JourneyRail allLit markSize={56} style={{ maxWidth: 840, margin: '0 auto' }}/>
       </section>
@@ -121,16 +121,16 @@ function OverviewPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4rem' }}>
         <SectionLabel>What sets it apart</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '2.5rem' }}>
-          A global forum with a <Accent>100% destination lens</Accent>, focused entirely on how destinations build brand and lead in a rapidly changing landscape.
+          A global forum with a <Accent>100% destination lens</Accent>, focused entirely on how destinations build a compelling proposition and lead change in a rapidly changing landscape.
         </Statement>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem 2rem' }}>
           {[
             { h: 'A 100% destination lens.', b: 'Every session is framed around destinations and the organisations that market them. A single, undiluted focus you will not find at a general industry event.' },
-            { h: 'The room is the asset.', b: 'The most valuable voices are the destination marketers and brand leaders actively doing the work: peers speaking candidly to peers.' },
-            { h: 'Value across the programme.', b: "Leadership strategy on Day One, peer keynotes on Day Two, and a members' trends workstream on Day Three. Each day adds a distinct layer." },
-            { h: 'Editorial and declarative.', b: 'Restrained and substantive throughout, written like a memo to a knowledgeable peer. The work itself is the point.' },
-            { h: 'Peer authority.', b: 'Outside voices expand the frame rather than fill time. The sector speaks for itself.' },
-            { h: 'Small by design.', b: 'The leadership room holds 30 to 40 people, a deliberate choice that keeps the conversation candid.' },
+            { h: 'Global best practice.', b: 'Drawing on the direct experience of Chief Executives, CMOs and brand leads from the world\'s leading national, regional and city destinations — the room itself represents an unmatched concentration of global knowledge and best practice.' },
+            { h: 'Comprehensive multi-part programme.', b: "A structured three-day programme designed to address the full spectrum of destination brand challenges — from executive leadership and strategic direction through to campaign innovation, content and the trends shaping 2027." },
+            { h: 'Inspiration, strategy and output.', b: 'FDB is not just a source of inspiration. Each part of the programme is designed to move beyond ideas into actionable strategies and defined outputs — including the Dublin Declaration from the Leadership Meeting and the Future Destination Trends 2027 report.' },
+            { h: 'Expert voices, peer perspectives.', b: 'The programme brings together two invaluable and complementary perspectives: expert voices who expand the strategic frame, and peer presentations from destination leaders doing the work at the highest level. The combination creates insight that neither alone can deliver.' },
+            { h: 'Built around real outputs.', b: 'Unlike most events, FDB is designed to produce tangible, lasting deliverables. The Leadership Meeting concludes with the Dublin Declaration; the Trends Workstream produces the Future Destination Trends 2027 report — a resource used across the sector throughout the year.' },
           ].map((p, i) => (
             <div key={i} style={{ borderTop: '2px solid var(--fdb-purple)', paddingTop: '1rem' }}>
               <div style={{ fontSize: '1.05rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--fdb-ink)', lineHeight: 1.2, marginBottom: '0.6rem' }}>{p.h}</div>
@@ -144,7 +144,7 @@ function OverviewPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4.5rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
           <p style={{ fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.025em', color: 'var(--fdb-ink)', textWrap: 'pretty' }}>
-            Four moments, one conversation on the <Accent>future of destination brand.</Accent> Register your interest and we'll be in touch about the parts you can join.
+            Future. Destination. Brand. is the most important annual gathering for destinations examining trends, innovation and future strategies in the <Accent>age of AI.</Accent> Register your interest and we'll be in touch about the parts of the programme you can join.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', alignItems: 'center', flexWrap: 'wrap' }}>
             <Button icon={ArrowIcon} onClick={() => nav('/register')}>Register your place</Button>
