@@ -43,19 +43,19 @@ function LeadershipPage() {
         <div className="fdb-wrap" style={{ paddingTop: '3.5rem', paddingBottom: '3.5rem' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '3.5rem', alignItems: 'center' }}>
             <div>
-              <Eyebrow style={{ marginBottom: '1.5rem' }}>The standing output</Eyebrow>
+              <Eyebrow style={{ marginBottom: '1.5rem' }}>Programme output</Eyebrow>
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.03em', color: 'var(--fdb-ink)', marginBottom: '1.5rem', textWrap: 'balance' }}>
-                The room constitutes the <Accent>Global Tourism Council</Accent> for AI Governance and Leadership.
+                The day is designed to constitute the <Accent>Global Tourism Council</Accent> for AI Governance and Leadership.
               </h2>
               <BodyText>
-                This is not a panel and not a session. It is the formation of a standing body. The Council issues the Dublin Declaration on AI in Tourism and establishes the Global Tourism Code of Practice on AI, submitted to EU institutions under the Irish Presidency.
+                Participants are invited to form a standing body representing destination leadership at the national level. The Council is intended to issue the Dublin Declaration on AI in Tourism and to establish a Global Tourism Code of Practice on AI, for submission to EU institutions under the Irish Presidency.
               </BodyText>
             </div>
             {/* the charter plate - a designed object */}
             <StackFrame offset={12} strokeWidth={1.5}>
               <div style={{ background: 'var(--fdb-cream)', border: '1px solid var(--fdb-border-strong)', borderRadius: 4, padding: '2.25rem 2rem' }}>
                 <Mark size={44}/>
-                <div style={{ fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fdb-ink-faint)', margin: '1.5rem 0 0.6rem' }}>Constituted at FDB 2026</div>
+                <div style={{ fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fdb-ink-faint)', margin: '1.5rem 0 0.6rem' }}>Proposed · FDB 2026</div>
                 <div style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15, color: 'var(--fdb-ink)' }}>
                   Global Tourism Council<br/>for AI Governance<br/>and Leadership.
                 </div>
@@ -144,12 +144,12 @@ function LeadershipPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4rem' }}>
         <SectionLabel>Published outputs</SectionLabel>
         <Statement style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
-          Four documents leave this room. They are written to be read in <Accent>Brussels and in national capitals.</Accent>
+          Four documents are planned to come out of this day, intended for <Accent>EU institutions and national governments.</Accent>
         </Statement>
-        <BodyText style={{ marginBottom: '2.5rem' }}>Published after the event and distributed beyond the room, to EU institutions and to the technology companies shaping the tools and regulations that govern destination work.</BodyText>
+        <BodyText style={{ marginBottom: '2.5rem' }}>Each document is designed to travel beyond the room, to EU institutions and to the technology companies shaping the tools and regulations that govern destination work.</BodyText>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2.5rem 1.75rem' }}>
-          <DocumentObject kind="Declaration" title="Dublin Declaration on AI in Tourism" desc="The Council's founding statement of principle. Submitted under the Irish Presidency."/>
-          <DocumentObject kind="Code of Practice" title="Global Tourism Code of Practice on AI" desc="The operating standard the sector commits to. Built on the AI Transparency Framework."/>
+          <DocumentObject kind="Declaration" title="Dublin Declaration on AI in Tourism" desc="The founding statement of principle from the day, intended for submission under the Irish Presidency."/>
+          <DocumentObject kind="Code of Practice" title="Global Tourism Code of Practice on AI" desc="A proposed operating standard for the sector, built on the AI Transparency Framework."/>
           <DocumentObject kind="Report" title="State of Destination AI Report" desc="A comprehensive synthesis of the day, distributed across the industry."/>
           <DocumentObject kind="Briefing" title="Executive Briefing Summary" desc="Concise, formal, designed to be read by policy audiences."/>
         </div>
@@ -159,7 +159,7 @@ function LeadershipPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4.5rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start' }}>
           <p style={{ fontSize: '1.35rem', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.025em', color: 'var(--fdb-ink)', textWrap: 'pretty' }}>
-            The outputs of this day reach <Accent>EU institutions, national governments</Accent> and the technology companies shaping destination marketing.
+            The planned outputs of this day are intended to reach <Accent>EU institutions, national governments</Accent> and the technology companies shaping destination marketing.
           </p>
           <div>
             <BodyText style={{ marginBottom: '1.5rem' }}>Places on the leadership day are by personal invitation only. To discuss participation, please get in touch.</BodyText>
