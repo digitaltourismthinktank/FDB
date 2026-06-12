@@ -144,7 +144,7 @@ function OverviewPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4.5rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
           <p style={{ fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.025em', color: 'var(--fdb-ink)', textWrap: 'pretty' }}>
-            Future. Destination. Brand. is where destinations examine the <Accent>trends, innovation and strategy</Accent> shaping the year ahead. Register your interest and we will be in touch about the parts you can join.
+            Future. Destination. Brand. is where destinations examine the <Accent>trends, innovation and strategies</Accent> shaping the year ahead.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', alignItems: 'center', flexWrap: 'wrap' }}>
             <Button icon={ArrowIcon} onClick={() => nav('/register')}>Register your place</Button>
