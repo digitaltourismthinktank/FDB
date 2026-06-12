@@ -45,7 +45,7 @@ function AwardsPage() {
           The first awards to be explicit about <Accent>how AI takes part</Accent> in the work being recognised.
         </Statement>
         <BodyText>
-          Entrants disclose the role AI played in what they are submitting. Disclosure is the price of entry, not a disadvantage. The awards reward judgement and craft, including the judgement to use these tools well. The final round is human-only, and the panel's reasoning is published with every winner.
+          The awards celebrate the very best destination branding, marketing and digital work from around the world, across eight categories from Destination Brand of the Year and AI in Destination Marketing to Content and Storytelling, Data and Insight and Sustainable Tourism Communications. Entries declare the role AI played in the work: the awards recognise judgement and craft in equal measure.
         </BodyText>
       </section>
 

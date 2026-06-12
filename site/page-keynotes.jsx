@@ -33,7 +33,7 @@ function KeynotesPage() {
         station="programme"
         eyebrow="Day Two · 03 December · Keynote programme"
         title={<>The keynote<br/><Accent>programme.</Accent></>}
-        lead="A full day of keynotes from destination marketers, brand leads and digital teams at the world's leading NTOs and DMOs, structured around six themes with a transatlantic conversation mid-morning."
+        lead="A full day of keynotes from destination marketers, brand leads and digital teams at the world's leading NTOs and DMOs, structured around six themes with a special transatlantic focus celebrating destination marketing on both sides of the Atlantic."
         meta={[
           { label: 'Date', value: 'Wednesday 03 December 2026' },
           { label: 'Audience', value: '125 to 200 senior delegates' },
@@ -77,10 +77,10 @@ function KeynotesPage() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.25rem' }}>
             <div>
               <Eyebrow style={{ marginBottom: '0.75rem' }}>Mid-morning · Featured</Eyebrow>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.05, color: 'var(--fdb-ink)' }}>The transatlantic fireside.</h2>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.05, color: 'var(--fdb-ink)' }}>The transatlantic spotlight.</h2>
             </div>
             <p style={{ fontSize: '0.9rem', color: 'var(--fdb-ink-muted)', lineHeight: 1.6, maxWidth: '36ch' }}>
-              Three of the world's most-watched destination brands, in one room, on one stage. A rare exchange across the Atlantic.
+              A dedicated mid-morning focus on destination marketing on both sides of the Atlantic, bringing together leading voices from North America and Europe.
             </p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem 1.5rem' }}>
@@ -137,8 +137,8 @@ function KeynotesPage() {
           speakers={[{ name: 'Nick Hall, CEO · Digital Tourism Think Tank' }]}/>
         <ProgrammeRow time="10:00" title="Keynote: building a national brand for AI search" tags={['Brand', 'Marketing']}
           speakers={[{ name: 'Major NTO · Brand lead · TBC', tbc: true }]}/>
-        <ProgrammeRow time="10:30" title="Transatlantic fireside" tags={['Featured']}
-          desc="Destination Canada, Brand USA and a European NTO, in conversation."
+        <ProgrammeRow time="10:30" title="Transatlantic spotlight" tags={['Featured']}
+          desc="A special session bringing together destination marketing leaders from North America and Europe."
           speakers={[{ name: 'Destination Canada · Brand USA · European NTO · TBC', tbc: true }]}/>
         <ProgrammeRow time="11:15" title="Break"/>
         <ProgrammeRow time="11:30" title="Keynote: content as a permanent surface" tags={['Content']}

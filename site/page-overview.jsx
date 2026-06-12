@@ -9,13 +9,13 @@ function OverviewPage() {
   // the awards on Day One, the keynote day, then the members' workstream.
   const parts = [
     { part: '01', station: 'council', kicker: 'Day One · 02 Dec', access: 'Invite only', title: 'Leadership in the Age of AI.', sub: 'Chief Executives, CMOs and senior destination leaders', path: '/leadership',
-      desc: 'An invitation-only working day bringing together Chief Executives, CMOs and senior leaders from the world\'s leading NTOs and DMOs. The day addresses the strategic challenges facing destination organisations, examining how leadership teams can build resilience, adapt brand positioning and engage with the policy landscape forming around AI. Concludes with the publication of the Dublin Declaration.' },
+      desc: 'An invitation-only working day bringing together Chief Executives, CMOs and senior leaders from the world\'s leading NTOs and DMOs. The day addresses the strategic challenges facing destination organisations, examining how leadership teams can build resilience, adapt brand positioning and engage with the policy landscape forming around AI. This day concludes with agreement on the terms of the Dublin Declaration.' },
     { part: '02', station: 'awards', kicker: 'Day One · Evening', title: 'X. Awards.', sub: 'The first AI-Positive Industry Awards', path: '/awards',
-      desc: 'Taking place on the evening of Day One, the X. Awards are the first industry awards designed for the AI era, recognising outstanding achievement across eight categories. All finalists are assessed through human-only final judging, with full reasoning notes published alongside every winning entry.' },
+      desc: 'The X. Awards recognise the very best destination branding, marketing and digital work from around the world. Eight categories span the full scope of the discipline, from Destination Brand of the Year and AI in Destination Marketing to Content and Storytelling, Data and Insight and Sustainable Tourism Communications. Held on the evening of Day One.' },
     { part: '03', station: 'programme', kicker: 'Day Two · 03 Dec', title: 'The Keynote Day.', sub: 'Talks from leading destinations', path: '/keynotes',
-      desc: 'A full day of back-to-back keynotes from destination marketers and brand leaders at the world\'s leading NTOs and DMOs, presented across six themes with a transatlantic fireside mid-morning. Open to all: free for DTTT members and ticketed for delegates, with separate rates for DMOs and commercial partners.' },
+      desc: 'A full day of keynotes from destination marketers and brand leaders at the world\'s leading NTOs and DMOs, structured around six themes with a special transatlantic focus celebrating destination marketing on both sides of the Atlantic. Free for DTTT members and ticketed for delegates.' },
     { part: '04', station: 'workstream', kicker: 'Day Three · 04 Dec', access: 'Members only', title: 'The Trends Workstream.', sub: 'Future Destination Trends 2027', path: '/workstream',
-      desc: 'A members-only working day dedicated to building the Future Destination Trends 2027 report. Delegates work across eight trend tables to define and document the most important themes shaping destination brand and marketing in the year ahead, producing a report used by the sector throughout 2027.' },
+      desc: 'A members-only working day dedicated to building the Future Destination Trends 2027 report. Members work across eight trend tables to define and document the most important themes shaping destination brand and marketing in the year ahead, producing a report used by the sector throughout 2027.' },
   ];
 
   return (
@@ -74,7 +74,7 @@ function OverviewPage() {
           The defining gathering for <Accent>destination brand and marketing leadership</Accent>, structured across three days in Dublin.
         </Statement>
         <BodyText style={{ marginBottom: '1rem' }}>
-          The programme comprises an invitation-only leadership meeting, the X. Awards ceremony, a full day of keynotes from globally leading destinations, and a members-only workstream exploring the key trends shaping 2027. Each part has its own format and access. Together they form the most important annual gathering for destination brand and marketing leadership.
+          The programme comprises an invitation-only leadership meeting, the X. Awards ceremony, a full day of keynotes from globally leading destinations and a members-only workstream exploring the key trends shaping 2027. Each part has its own format and access. Together they form the most important annual gathering for destination brand and marketing leadership.
         </BodyText>
       </section>
 
@@ -99,7 +99,7 @@ function OverviewPage() {
         <SectionLabel>Who it's for</SectionLabel>
         <div className="fdb-audience-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', marginTop: '1.25rem', alignItems: 'start' }}>
           <Statement style={{ marginBottom: 0 }}>
-            Built for the <Accent>Chief Executives, CMOs and marketing teams</Accent> leading the world's national, regional and city destinations.
+            Built for Chief Executives and CMOs setting destination strategy, and the <Accent>digital, content and marketing teams</Accent> delivering it across national, regional and city destinations.
           </Statement>
           <div>
             {[
@@ -121,16 +121,16 @@ function OverviewPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4rem' }}>
         <SectionLabel>What sets it apart</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '2.5rem' }}>
-          A global forum with a <Accent>100% destination lens</Accent>, focused entirely on how destinations build a compelling proposition and lead change in a rapidly changing landscape.
+          A global forum with a <Accent>100% destination lens</Accent>, focused entirely on how destinations build a compelling proposition and lead change in a rapidly evolving landscape.
         </Statement>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem 2rem' }}>
           {[
-            { h: 'A 100% destination lens.', b: 'Every session is framed around destinations and the organisations that market them. A single, undiluted focus you will not find at a general industry event.' },
-            { h: 'Global best practice.', b: 'Drawing on the direct experience of Chief Executives, CMOs and brand leads from the world\'s leading national, regional and city destinations. The room itself represents an unmatched concentration of global knowledge and best practice.' },
+            { h: 'A non-commercial programme.', b: 'No vendor keynotes, no commercial track. Every session is led by destination practitioners, with the agenda shaped by the membership and the sector\'s own priorities.' },
+            { h: 'Global best practice.', b: 'Drawing on the direct experience of Chief Executives, CMOs and brand leads from the world\'s leading national, regional and city destinations. The room itself represents an unmatched concentration of global knowledge.' },
             { h: 'Comprehensive multi-part programme.', b: 'A structured three-day programme covering the full spectrum of destination brand challenges, from executive leadership and strategic direction through to campaign innovation, content and the trends shaping 2027.' },
-            { h: 'Inspiration, strategy and output.', b: 'FDB is designed to move beyond inspiration into actionable strategy and defined outputs, including the Dublin Declaration from the Leadership Meeting and the Future Destination Trends 2027 report.' },
+            { h: 'Strategy and deliverables.', b: 'The programme moves from inspiration to action. Sessions are structured to produce documented conclusions, including the Dublin Declaration and the Future Destination Trends 2027 report.' },
             { h: 'Expert voices, peer perspectives.', b: 'The programme combines expert voices who broaden the strategic frame with keynotes from senior destination leaders at the world\'s leading NTOs and DMOs. The combination creates insight that neither alone can deliver.' },
-            { h: 'Built around real outputs.', b: 'FDB produces tangible, lasting deliverables. The Leadership Meeting concludes with the Dublin Declaration; the Trends Workstream produces the Future Destination Trends 2027 report, which is used across the sector throughout the year.' },
+            { h: 'Year-round continuation.', b: 'The trend working groups from Day Three continue quarterly through 2027. FDB is the start of a year of structured peer exchange, not a standalone conference.' },
           ].map((p, i) => (
             <div key={i} style={{ borderTop: '2px solid var(--fdb-purple)', paddingTop: '1rem' }}>
               <div style={{ fontSize: '1.05rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--fdb-ink)', lineHeight: 1.2, marginBottom: '0.6rem' }}>{p.h}</div>
@@ -144,7 +144,7 @@ function OverviewPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4.5rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
           <p style={{ fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.025em', color: 'var(--fdb-ink)', textWrap: 'pretty' }}>
-            Future. Destination. Brand. is where destinations examine the trends, innovation and strategy shaping the year ahead. Register your interest and we will be in touch about the parts you can join.
+            Future. Destination. Brand. is where destinations examine the <Accent>trends, innovation and strategy</Accent> shaping the year ahead. Register your interest and we will be in touch about the parts you can join.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', alignItems: 'center', flexWrap: 'wrap' }}>
             <Button icon={ArrowIcon} onClick={() => nav('/register')}>Register your place</Button>
@@ -178,7 +178,7 @@ function MomentRow({ part, station, kicker, access, title, sub, desc, isFirst, o
           )}
         </span>
         <span style={{ display: 'block', fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--fdb-ink)', lineHeight: 1.1, marginBottom: '0.2rem' }}>{title}</span>
-        {sub && <span style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, fontStyle: 'italic', color: 'var(--fdb-ink-muted)', marginBottom: '0.6rem' }}>{sub}</span>}
+        {sub && <span style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, color: 'var(--fdb-ink-muted)', marginBottom: '0.6rem' }}>{sub}</span>}
         <span style={{ display: 'block', fontSize: '0.88rem', color: 'var(--fdb-ink-muted)', lineHeight: 1.65, maxWidth: '64ch' }}>{desc}</span>
       </span>
       <span style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: hover ? 'var(--fdb-purple-deep)' : 'var(--fdb-purple)', whiteSpace: 'nowrap', paddingTop: '1.5rem' }}>
