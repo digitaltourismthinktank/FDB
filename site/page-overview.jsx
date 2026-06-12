@@ -125,12 +125,12 @@ function OverviewPage() {
         </Statement>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem 2rem' }}>
           {[
-            { h: 'A non-commercial programme.', b: 'No vendor keynotes, no commercial track. Every session is led by destination practitioners, with the agenda shaped by the membership and the sector\'s own priorities.' },
+            { h: 'A practitioner-led programme.', b: 'Sessions are selected to address the real challenges facing destination marketing and brand teams. Every speaker brings direct, first-hand experience of the work, ensuring the programme reflects what the sector actually needs.' },
             { h: 'Global best practice.', b: 'Drawing on the direct experience of Chief Executives, CMOs and brand leads from the world\'s leading national, regional and city destinations. The room itself represents an unmatched concentration of global knowledge.' },
             { h: 'Comprehensive multi-part programme.', b: 'A structured three-day programme covering the full spectrum of destination brand challenges, from executive leadership and strategic direction through to campaign innovation, content and the trends shaping 2027.' },
             { h: 'Strategy and deliverables.', b: 'The programme moves from inspiration to action. Sessions are structured to produce documented conclusions, including the Dublin Declaration and the Future Destination Trends 2027 report.' },
             { h: 'Expert voices, peer perspectives.', b: 'The programme combines expert voices who broaden the strategic frame with keynotes from senior destination leaders at the world\'s leading NTOs and DMOs. The combination creates insight that neither alone can deliver.' },
-            { h: 'Year-round continuation.', b: 'The trend working groups from Day Three continue quarterly through 2027. FDB is the start of a year of structured peer exchange, not a standalone conference.' },
+            { h: 'Year-round value.', b: 'The programme is designed to inform strategic planning for the year ahead. The Future Destination Trends 2027 report gives destination teams a structured foundation for reviewing priorities and allocating resource. Working groups continue quarterly through 2027, translating the insights and conversations from Dublin into sustained actions and measurable value well beyond the event itself.' },
           ].map((p, i) => (
             <div key={i} style={{ borderTop: '2px solid var(--fdb-purple)', paddingTop: '1rem' }}>
               <div style={{ fontSize: '1.05rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--fdb-ink)', lineHeight: 1.2, marginBottom: '0.6rem' }}>{p.h}</div>
