@@ -12,13 +12,13 @@ function LeadershipPage() {
         station="council"
         eyebrow="Day One · 02 December · Leadership programme"
         title={<>Leadership<br/>in the Age<br/>of <Accent>AI.</Accent></>}
-        lead="A structured, invite-only working day for the chief executives, ministers and senior leaders who set tourism's direction at the national and international level."
+        lead="An invite-only working day for NTO and DMO Chief Executives and their senior leadership teams, including Chief Marketing Officers and strategy and digital leads."
         meta={[
           { label: 'Date', value: 'Tuesday 02 December 2026' },
           { label: 'Location', value: 'Dublin, Ireland' },
           { label: 'Format', value: 'Invite-only · 30 to 40 participants' },
           { label: 'Convention', value: 'Held under the Chatham House Rule' },
-          { label: 'Host', value: 'Fáilte Ireland · Irish EU Presidency' },
+          { label: 'Host', value: 'Fáilte Ireland' },
         ]}
       />
 
@@ -28,13 +28,13 @@ function LeadershipPage() {
       <section className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
         <SectionLabel>About the day</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
-          AI is reshaping where destinations are discovered, how tourism is managed and how national bodies are led. The critical question for destination leadership is <Accent>not whether to engage, but how to lead with clarity.</Accent>
+          AI is reshaping how destinations are discovered, how visitors choose and how tourism is managed. The question this raises is about the role of destination marketing and management organisations in leading that change. The critical leadership question is <Accent>not whether to engage, but how to lead with clarity.</Accent>
         </Statement>
         <BodyText style={{ marginBottom: '1rem' }}>
           The meeting is structured around two parallel questions: how AI changes the competitive environment for destination brands, and what it requires of the organisations and leaders responsible for them. Sessions are designed for working through both in depth, with time for candid peer exchange.
         </BodyText>
         <BodyText>
-          The day is convened by Fáilte Ireland under Ireland's EU Council Presidency and facilitated by the Digital Tourism Think Tank. Its conclusions are documented and submitted to EU institutions under the Irish Presidency.
+          The day is hosted by Fáilte Ireland and facilitated by the Digital Tourism Think Tank. It takes place during Ireland's EU Council Presidency.
         </BodyText>
       </section>
 
@@ -47,8 +47,11 @@ function LeadershipPage() {
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.03em', color: 'var(--fdb-ink)', marginBottom: '1.5rem', textWrap: 'balance' }}>
                 The day is designed to constitute the <Accent>Global Tourism Council</Accent> for AI Governance and Leadership.
               </h2>
+              <BodyText style={{ marginBottom: '1rem' }}>
+                Participants are invited to form a standing body representing destination leadership at the national level. The Council is intended to issue the Dublin Declaration on AI in Tourism and to establish a Global Tourism Code of Practice on AI.
+              </BodyText>
               <BodyText>
-                Participants are invited to form a standing body representing destination leadership at the national level. The Council is intended to issue the Dublin Declaration on AI in Tourism and to establish a Global Tourism Code of Practice on AI, for submission to EU institutions under the Irish Presidency.
+                The Council is convened as a focused leadership coalition rather than a new permanent institution. It is designed to give destination leaders a shared position on AI that supports the work of established international bodies, not to duplicate it.
               </BodyText>
             </div>
             {/* the charter plate - a designed object */}
@@ -73,33 +76,33 @@ function LeadershipPage() {
       {/* ── PROGRAMME ─────────────────────────────────────────────────── */}
       <section className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
         <SectionLabel style={{ marginBottom: '1.5rem' }}>Programme</SectionLabel>
-        <ProgrammeRow isFirst time="08:30" title="Private breakfast" desc="Seated breakfast for all participants. Introductions happen informally before the working day begins."/>
-        <ProgrammeRow time="09:30" title="Welcome and framing" desc="Fáilte Ireland opens with a statement of intent. DTTT frames the day's central question and working method."
+        <ProgrammeRow isFirst time="08:30" title="Networking breakfast" desc="An informal networking breakfast as participants arrive, before the working day begins."/>
+        <ProgrammeRow time="09:30" title="Opening: destination AI leadership in 2026" desc="Fáilte Ireland welcomes participants and sets the context for the day. DTTT introduces the central question: what destination organisations need to decide about AI in 2026 and how the day is structured to move from discussion to documented conclusions."
           speakers={[{ name: 'Caroline Bocquel, CEO · Fáilte Ireland' }, { name: 'Nick Hall, CEO · Digital Tourism Think Tank' }]}/>
-        <ProgrammeRow time="10:00" title="Opening provocation" tags={['Provocation', 'Open response']}
-          desc="A senior voice with direct experience of NTO leadership delivers a deliberate challenge to the room. Twenty minutes, no slides."
+        <ProgrammeRow time="10:00" title="Who is setting your organisation's AI direction?" tags={['Provocation', 'Open response']}
+          desc="Oliver Csendes draws on direct experience as an NTO Chief Executive to put a single challenge to the room: whether destination leaders are driving their organisation's AI strategy, or whether that direction is being set for them by platforms, vendors and procurement decisions. Twenty minutes, no slides, with time for open response."
           speakers={[{ name: 'Oliver Csendes · Former CEO, Visit Hungary' }]}/>
-        <ProgrammeRow time="11:00" title="AI in destination leadership: a shared framework" tags={['Framework', 'Peer testimony']}
-          desc="DTTT introduces the AI Transparency Framework as a leadership instrument, illustrated with practice from NTOs already deploying it nationally."
+        <ProgrammeRow time="11:00" title="Transparency, disclosure and capability: the leadership instruments" tags={['Framework', 'Peer testimony']}
+          desc="DTTT introduces the AI Transparency Framework as a set of leadership instruments spanning transparency and disclosure alongside organisational capability development, illustrated with practice from NTOs already applying them."
           speakers={[{ name: 'NTO leaders engaged in AI governance programmes · TBC', tbc: true }]}/>
         <ProgrammeRow time="11:30" title="Working sessions"
-          desc="Two concurrent structured sessions of 75 minutes each. Participants are pre-assigned. Each session produces documented conclusions feeding directly into the published outputs.">
+          desc="Two concurrent working sessions, each 75 minutes. Participants are pre-assigned by relevance to the session theme. Each session produces a set of documented conclusions that feed directly into the day's published outputs.">
           <div style={{ marginTop: '0.85rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
             <SessionCard label="Session A" title="AI readiness and organisational leadership" desc="What AI actually requires of an NTO leadership team. Where the gaps are. What decisions are being deferred."/>
             <SessionCard label="Session B" title="AI and destination competitiveness" desc="How AI is reshaping where visitors go and how they choose. What this means for national positioning and investment."/>
           </div>
         </ProgrammeRow>
-        <ProgrammeRow time="13:00" title="Private lunch" desc="Seated, hosted, informal. The conversation continues."/>
-        <ProgrammeRow time="14:30" title="Big Tech intelligence briefing" tags={['Intelligence briefing']}
-          desc="A senior representative from one of Dublin's major technology companies briefs the room on what the platforms are building and observing in travel and destination search."
-          speakers={[{ name: 'Senior representative · Google / Microsoft / OpenAI · Dublin · TBC', tbc: true }]}/>
+        <ProgrammeRow time="13:00" title="Business lunch" desc="A working lunch that carries the morning's discussion forward, before the room reconvenes to reflect on what has emerged."/>
+        <ProgrammeRow time="14:30" title="Technology platform briefing" tags={['Intelligence briefing']}
+          desc="An intelligence briefing on what the major AI and search platforms are building and observing in travel and destination discovery."
+          speakers={[{ name: 'Senior technology platform representative · TBC', tbc: true }]}/>
         <ProgrammeRow time="15:15" title="The European policy landscape" tags={['Policy']}
           desc="A structured contribution on the regulatory and investment landscape around AI from a European institutional or government perspective."
           speakers={[{ name: 'EU institutional or government representative · TBC', tbc: true }]}/>
         <ProgrammeRow time="15:45" title="Synthesis and shared conclusions" tags={['Policy output']}
-          desc="DTTT facilitates a structured synthesis of the day's work into a small number of documented priorities, forming the basis of the Executive Briefing submitted to EU institutions."/>
-        <ProgrammeRow time="16:30" title="Dublin city experience"
-          desc="A curated late afternoon in Dublin, in partnership with Fáilte Ireland's Winter in Dublin programme. Details to be confirmed."/>
+          desc="DTTT facilitates a structured synthesis of the day's work, producing the documented conclusions that form the published outputs."/>
+        <ProgrammeRow time="16:30" title="Winter in Dublin"
+          desc="An introduction to Fáilte Ireland's Winter in Dublin campaign, with a short contribution from Visit Dublin on the role of product and experience development in the city's strategy, followed by time to experience it before the X. Awards."/>
         <ProgrammeRow time="19:30" title="X. Awards"
           desc="Transition to the X. Awards evening. The first AI-Positive Industry Awards.">
           <div style={{ marginTop: '0.85rem' }}>
@@ -132,11 +135,14 @@ function LeadershipPage() {
           <PortraitFrame name="Caroline Bocquel" org="CEO · Fáilte Ireland" role="Host" tone="#94816A"/>
           <PortraitFrame name="Nick Hall" org="CEO · Digital Tourism Think Tank" role="Facilitation" tone="#6F8FA8"/>
           <PortraitFrame name="Oliver Csendes" org="Former CEO · Visit Hungary<br/>Destination AI Strategist" role="Provocation" tone="#7B8C7A"/>
-          <PortraitFrame name="Senior representative" org="Google / Microsoft / OpenAI · Dublin" role="Technology briefing" tbc tone="#A09EB4"/>
+          <PortraitFrame name="Technology briefing" org="Major AI and search platform · TBC" role="Technology briefing" tbc tone="#A09EB4"/>
         </div>
-        <div style={{ marginTop: '2.5rem', borderTop: '2px solid var(--fdb-purple)', paddingTop: '1rem', background: 'var(--fdb-purple-tint)', padding: '1.25rem 1.5rem', borderRadius: 4 }}>
-          <div style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--fdb-purple-deep)', marginBottom: '0.4rem' }}>Further participants</div>
-          <div style={{ fontSize: '0.9rem', color: 'var(--fdb-ink-mid)', lineHeight: 1.5 }}>20 to 30 additional NTO and DMO chief executives and C-suite leaders, one or two EU and member-state policy voices, by personal invitation.</div>
+        <div style={{ marginTop: '2.5rem', borderTop: '2px solid var(--fdb-purple)', paddingTop: '1.25rem', background: 'var(--fdb-purple-tint)', padding: '1.25rem 1.5rem', borderRadius: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
+          <div>
+            <div style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--fdb-purple-deep)', marginBottom: '0.5rem' }}>Who should attend</div>
+            <div style={{ fontSize: '0.9rem', color: 'var(--fdb-ink-mid)', lineHeight: 1.55, maxWidth: '52ch' }}>NTO and DMO Chief Executives and their senior leadership teams, including Chief Marketing Officers and strategy and digital leads, who hold a direct mandate for their organisation's AI direction.</div>
+          </div>
+          <button onClick={() => window.Intercom && window.Intercom('show')} style={{ flexShrink: 0, fontFamily: 'var(--fdb-font-sans)', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.04em', color: 'var(--fdb-purple-deep)', background: 'var(--fdb-white)', border: '1px solid var(--fdb-purple-soft)', borderRadius: 3, padding: '0.6rem 1.1rem', cursor: 'pointer' }}>Request an invitation</button>
         </div>
       </section>
 
@@ -144,11 +150,11 @@ function LeadershipPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4rem' }}>
         <SectionLabel>Published outputs</SectionLabel>
         <Statement style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
-          Four documents are planned to come out of this day, intended for <Accent>EU institutions and national governments.</Accent>
+          The day produces a set of documents <Accent>built for destination leaders:</Accent> a shared position on AI they can take to their own boards and governments, and practical instruments they can apply at home.
         </Statement>
-        <BodyText style={{ marginBottom: '2.5rem' }}>Each document is designed to travel beyond the room, to EU institutions and to the technology companies shaping the tools and regulations that govern destination work.</BodyText>
+        <BodyText style={{ marginBottom: '2.5rem' }}>Because the sector speaks with one voice, these outputs also reach national governments, EU institutions and the technology companies shaping the tools and rules that affect destination work.</BodyText>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2.5rem 1.75rem' }}>
-          <DocumentObject kind="Declaration" title="Dublin Declaration on AI in Tourism" desc="The founding statement of principle from the day, intended for submission under the Irish Presidency."/>
+          <DocumentObject kind="Declaration" title="Dublin Declaration on AI in Tourism" desc="A shared statement of principle that destination leaders can take to their own boards and governments."/>
           <DocumentObject kind="Code of Practice" title="Global Tourism Code of Practice on AI" desc="A proposed operating standard for the sector, built on the AI Transparency Framework."/>
           <DocumentObject kind="Report" title="State of Destination AI Report" desc="A comprehensive synthesis of the day, distributed across the industry."/>
           <DocumentObject kind="Briefing" title="Executive Briefing Summary" desc="Concise, formal, designed to be read by policy audiences."/>
@@ -159,7 +165,7 @@ function LeadershipPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4.5rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start' }}>
           <p style={{ fontSize: '1.35rem', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.025em', color: 'var(--fdb-ink)', textWrap: 'pretty' }}>
-            The planned outputs of this day are intended to reach <Accent>EU institutions, national governments</Accent> and the technology companies shaping destination marketing.
+            The day gives destination leaders a <Accent>shared position on AI</Accent> and practical instruments they can apply within their own organisations.
           </p>
           <div>
             <BodyText style={{ marginBottom: '1.5rem' }}>Places on the leadership day are by personal invitation only. To discuss participation, please get in touch.</BodyText>
@@ -195,7 +201,7 @@ function DocumentObject({ kind, title, desc }) {
           <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 6, paddingTop: '1.25rem' }}>
             {[1, 0.92, 0.78, 0.6].map((w, i) => <span key={i} style={{ height: 2, width: `${w * 100}%`, background: 'var(--fdb-border-strong)', borderRadius: 2 }}/>)}
           </div>
-          <div style={{ fontSize: '0.5rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--fdb-ink-faint)', marginTop: '1rem' }}>Submitted · EU institutions · 2026</div>
+          <div style={{ fontSize: '0.5rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--fdb-ink-faint)', marginTop: '1rem' }}>FDB 2026</div>
         </div>
       </StackFrame>
       <div style={{ fontSize: '0.78rem', color: 'var(--fdb-ink-muted)', lineHeight: 1.55, marginTop: '1rem' }}>{desc}</div>

@@ -59,7 +59,7 @@ function OverviewPage() {
 
           {/* presidency line */}
           <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid var(--fdb-border)', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-            <span style={{ fontSize: '0.56rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--fdb-ink-faint)' }}>Convened under</span>
+            <span style={{ fontSize: '0.56rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--fdb-ink-faint)' }}>During</span>
             <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--fdb-ink)' }}>Ireland's EU Council Presidency · H2 2026</span>
           </div>
         </div>
@@ -103,7 +103,7 @@ function OverviewPage() {
           </Statement>
           <div>
             {[
-              { h: 'C-level destination leaders', b: 'The chief executives and senior teams setting destination strategy.' },
+              { h: 'C-suite destination leaders', b: 'The Chief Executives and senior leadership teams setting destination strategy.' },
               { h: 'National, regional & city DMOs', b: "The world's leading destination management and marketing organisations." },
               { h: 'Marketing & digital teams', b: 'The people turning strategy into brand, campaigns and content.' },
               { h: 'DTTT members', b: 'The global membership community at the heart of the trends workstream.' },
