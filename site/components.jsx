@@ -304,7 +304,7 @@ function FDBFooter({ onNav }) {
             <span aria-hidden="true" style={{ width: 1, height: 22, background: 'var(--fdb-border-strong)' }}/>
             <HostPartner/>
           </div>
-          <span style={{ fontSize: '0.7rem', color: 'var(--fdb-ink-faint)' }}>Convened under Ireland's EU Council Presidency · H2 2026</span>
+          <span style={{ fontSize: '0.7rem', color: 'var(--fdb-ink-faint)' }}>Taking place during Ireland's EU Council Presidency · H2 2026</span>
         </div>
       </div>
     </footer>

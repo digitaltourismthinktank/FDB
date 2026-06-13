@@ -48,7 +48,7 @@ function LeadershipPage() {
                 The day is designed to constitute the <Accent>Global Tourism Council</Accent> for AI Governance and Leadership.
               </h2>
               <BodyText style={{ marginBottom: '1rem' }}>
-                Participants are invited to form a standing body representing destination leadership at the national level. The Council is intended to issue the Dublin Declaration on AI in Tourism and to establish a Global Tourism Code of Practice on AI.
+                Participants are invited to form a focused leadership coalition representing destination leadership at the national level. The Council is intended to issue the Dublin Declaration on AI in Tourism and to establish a Global Tourism Code of Practice on AI.
               </BodyText>
               <BodyText>
                 The Council is convened as a focused leadership coalition rather than a new permanent institution. It is designed to give destination leaders a shared position on AI that supports the work of established international bodies, not to duplicate it.
@@ -65,7 +65,7 @@ function LeadershipPage() {
                 <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid var(--fdb-border)', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
                   <CouncilLine n="01">Dublin Declaration on AI in Tourism</CouncilLine>
                   <CouncilLine n="02">Global Tourism Code of Practice on AI</CouncilLine>
-                  <CouncilLine n="03">Standing through 2027, reporting on Day Two</CouncilLine>
+                  <CouncilLine n="03">Active through 2027, reporting on Day Two</CouncilLine>
                 </div>
               </div>
             </StackFrame>
@@ -131,11 +131,12 @@ function LeadershipPage() {
         <BodyText style={{ marginTop: '1rem', marginBottom: '2.5rem' }}>
           The day brings together eight to ten active contributors in a room of 30 to 40. Places are allocated <Accent>by invitation only.</Accent>
         </BodyText>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem 1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem 1.5rem' }}>
           <PortraitFrame name="Caroline Bocquel" org="CEO · Fáilte Ireland" role="Host" tone="#94816A"/>
           <PortraitFrame name="Nick Hall" org="CEO · Digital Tourism Think Tank" role="Facilitation" tone="#6F8FA8"/>
           <PortraitFrame name="Oliver Csendes" org="Former CEO · Visit Hungary<br/>Destination AI Strategist" role="Provocation" tone="#7B8C7A"/>
-          <PortraitFrame name="Technology briefing" org="Major AI and search platform · TBC" role="Technology briefing" tbc tone="#A09EB4"/>
+          <RoleCard role="Technology briefing" desc="Major AI and search platform"/>
+          <RoleCard role="Policy" desc="European institutional or government perspective"/>
         </div>
         <div style={{ marginTop: '2.5rem', borderTop: '2px solid var(--fdb-purple)', paddingTop: '1.25rem', background: 'var(--fdb-purple-tint)', padding: '1.25rem 1.5rem', borderRadius: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
           <div>
@@ -174,6 +175,29 @@ function LeadershipPage() {
         </div>
       </section>
     </>
+  );
+}
+
+// Role-only card for defined but unconfirmed contributor slots.
+// Uses the council motif and diagonal pattern in place of a portrait.
+function RoleCard({ role, desc }) {
+  return (
+    <div style={{ width: '100%' }}>
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5' }}>
+        <div style={{ position: 'absolute', top: 16, left: 16, width: '100%', height: '100%', border: '1px solid var(--fdb-purple-soft)', borderRadius: 2, opacity: 0.55, zIndex: 0 }}/>
+        <div style={{ position: 'absolute', top: 8, left: 8, width: '100%', height: '100%', border: '1px solid var(--fdb-purple-soft)', borderRadius: 2, zIndex: 1 }}/>
+        <div style={{ position: 'absolute', inset: 0, border: '2px solid var(--fdb-purple)', borderRadius: 2, zIndex: 2, overflow: 'hidden',
+          background: 'repeating-linear-gradient(135deg, rgba(130,57,193,0.03) 0 9px, rgba(130,57,193,0.07) 9px 18px)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+          <Motif state="council" size={40} sw={2.5} muted/>
+          <span style={{ fontSize: '0.52rem', fontWeight: 700, letterSpacing: '0.13em', textTransform: 'uppercase', color: 'var(--fdb-purple)', textAlign: 'center', padding: '0 1.25rem', lineHeight: 1.5 }}>{role}</span>
+        </div>
+      </div>
+      <div style={{ marginTop: '0.85rem' }}>
+        <div style={{ fontSize: '0.98rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--fdb-ink)', lineHeight: 1.15 }}>{role}</div>
+        {desc && <div style={{ fontSize: '0.8rem', color: 'var(--fdb-ink-mid)', marginTop: '0.25rem', lineHeight: 1.4 }}>{desc}</div>}
+      </div>
+    </div>
   );
 }
 
