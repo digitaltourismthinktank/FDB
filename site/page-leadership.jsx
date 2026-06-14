@@ -28,7 +28,7 @@ function LeadershipPage() {
       <section className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
         <SectionLabel>About the day</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
-          AI is reshaping how destinations are discovered, how visitors choose and how tourism is managed. The question this raises is about the role of destination marketing and management organisations in leading that change. The critical leadership question is <Accent>not whether to engage, but how to lead with clarity.</Accent>
+          AI is reshaping <Accent>how destinations are discovered</Accent> and how tourism is managed. The critical leadership question is not whether to engage, but <Accent>how to lead with clarity.</Accent>
         </Statement>
         <BodyText style={{ marginBottom: '1rem' }}>
           The meeting addresses two questions directly. The first is competitive: how AI is reshaping the environment for destination brands and what that means for positioning and investment. The second is organisational: what AI requires of the leaders and teams responsible for destination management and marketing. Sessions are structured to work through both in depth, with time for candid peer exchange.
@@ -90,7 +90,7 @@ function LeadershipPage() {
         <ProgrammeRow time="11:30" title="Working sessions"
           desc="Two concurrent working sessions, each 75 minutes. Participants are pre-assigned by relevance to the session theme. Each session produces a set of documented conclusions that feed directly into the day's published outputs.">
           <div style={{ marginTop: '0.85rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-            <SessionCard label="Session A" title="AI readiness and organisational leadership" desc="What AI actually requires of an NTO leadership team. Where the gaps are. What decisions are being deferred."/>
+            <SessionCard label="Session A" title="AI readiness and organisational leadership" desc="What AI actually requires of a destination leadership team. Where the gaps are. What decisions are being deferred."/>
             <SessionCard label="Session B" title="AI and destination competitiveness" desc="How AI is reshaping where visitors go and how they choose. What this means for national positioning and investment."/>
           </div>
         </ProgrammeRow>

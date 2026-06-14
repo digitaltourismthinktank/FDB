@@ -6,12 +6,12 @@
 // to the Council formed on Day One.
 
 const KEYNOTE_THEMES = [
-  { name: 'Brand', desc: 'Positioning a destination when an answer-engine sits between it and the visitor.' },
-  { name: 'Marketing', desc: 'The new visitor brief, and the shift from campaign to permanent surface.' },
-  { name: 'Content', desc: 'Narrative and voice as a destination\u2019s most durable asset.' },
-  { name: 'Data', desc: 'Reporting performance to boards and ministers after the funnel.' },
-  { name: 'AI', desc: 'Material, disclosed deployment inside real destination teams.' },
-  { name: 'Organisation', desc: 'Structuring the modern destination team for the work ahead.' },
+  { name: 'Brand', desc: 'AI has changed how destinations are found. Keynotes explore how brand strategy and positioning adapt when discovery moves from search results to AI-generated answers and recommendations.' },
+  { name: 'Marketing', desc: 'The campaign cycle is giving way to something more permanent. Talks examine how destination organisations are rethinking their marketing structures, briefs and channels in response.' },
+  { name: 'Content', desc: 'A flood of synthetic AI-generated content is changing what credibility means. Keynotes look at how leading destination content programmes are building the voice and systems to stay distinctive.' },
+  { name: 'Data', desc: 'Traditional attribution does not work when the path to a booking is increasingly indirect. Talks explore what meaningful destination performance data looks like in an AI-mediated world.' },
+  { name: 'AI', desc: 'The organisations making the most progress are treating AI as a leadership question, not a tool selection. Keynotes feature real deployments from destination teams, disclosed in full and examined in depth.' },
+  { name: 'Organisation', desc: 'The team structures and decision processes built for the previous era are under pressure. Talks examine how leading destination organisations are restructuring to lead rather than follow on AI.' },
 ];
 
 function KeynotesPage() {
@@ -38,7 +38,7 @@ function KeynotesPage() {
           { label: 'Date', value: 'Wednesday 03 December 2026' },
           { label: 'Audience', value: '125 to 200 senior delegates' },
           { label: 'Format', value: 'Full-day keynote programme' },
-          { label: 'Theme', value: 'Destination brand competitiveness in the age of AI' },
+          { label: 'Theme', value: 'Brand competitiveness in the age of AI' },
         ]}
       />
 
@@ -48,10 +48,10 @@ function KeynotesPage() {
       <section className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
         <SectionLabel>The day</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
-          The world's leading NTOs and DMOs gathered in Dublin, presenting the work that is shaping destination brand and marketing in the year ahead. A carefully curated programme built around <Accent>one theme.</Accent>
+          <Accent>Leading destinations</Accent> gathered in Dublin, showcasing the work shaping an AI-driven marketing landscape. Join us for a carefully curated programme of <Accent>inspiring keynotes.</Accent>
         </Statement>
         <BodyText>
-          Destinations presenting are selected for the quality and ambition of their work. DTTT members attend as part of their membership, joined by invited delegates from national, regional and city destinations around the world. The programme is paced to allow time for discussion alongside the talks, and closes by reconnecting to the conclusions of the leadership meeting the day before.
+          A back-to-back programme of keynotes from a wide range of destination perspectives, from national and regional tourism organisations to city destinations across every continent. The day is paced for conversation alongside the talks, and closes with a report from the Day One leadership meeting.
         </BodyText>
       </section>
 
@@ -59,7 +59,7 @@ function KeynotesPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4rem' }}>
         <SectionLabel style={{ marginBottom: '1rem' }}>2026 Theme</SectionLabel>
         <h2 style={{ fontSize: 'clamp(1.5rem, 2.4vw, 2rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: 'var(--fdb-ink)', marginBottom: '0.75rem' }}>
-          Destination brand competitiveness in the age of AI.
+          Brand competitiveness in the age of AI.
         </h2>
         <BodyText style={{ marginBottom: '2.5rem' }}>Six keynotes explore the theme across its core disciplines.</BodyText>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
@@ -75,60 +75,31 @@ function KeynotesPage() {
         </div>
       </section>
 
-      {/* ── TRANSATLANTIC FIRESIDE - the visual moment ────────────────── */}
-      <section style={{ marginTop: '4rem', background: 'var(--fdb-cream-deep)', borderTop: '1px solid var(--fdb-border)', borderBottom: '1px solid var(--fdb-border)' }}>
+      {/* ── TRANSATLANTIC SPOTLIGHT ──────────────────────────────────── */}
+      <section style={{ marginTop: '4rem', background: 'var(--fdb-ink)' }}>
         <div className="fdb-wrap" style={{ paddingTop: '3.5rem', paddingBottom: '3.5rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.25rem' }}>
-            <div>
-              <Eyebrow style={{ marginBottom: '0.75rem' }}>Mid-morning · Featured</Eyebrow>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.05, color: 'var(--fdb-ink)' }}>The transatlantic spotlight.</h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '3.5rem', flexWrap: 'wrap' }}>
+            <div style={{ maxWidth: '38ch' }}>
+              <div style={{ fontSize: '0.56rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--fdb-purple)', marginBottom: '1.1rem' }}>Mid-morning · Featured</div>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.05, color: 'var(--fdb-white)', marginBottom: '1.25rem', textWrap: 'balance' }}>The transatlantic spotlight.</h2>
+              <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
+                AI is developing fast on both sides of the Atlantic, but different cultural, regulatory and innovation patterns are beginning to emerge. In this mid-morning session, destinations from North America and Europe compare perspectives on a fast-moving question none of them is navigating alone.
+              </p>
             </div>
-            <p style={{ fontSize: '0.9rem', color: 'var(--fdb-ink-muted)', lineHeight: 1.6, maxWidth: '36ch' }}>
-              A dedicated mid-morning focus on destination marketing on both sides of the Atlantic, bringing together leading voices from North America and Europe.
-            </p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem 1.5rem' }}>
-            <PortraitFrame name="Destination Canada" org="National tourism organisation" role="Fireside" tbc tone="#8A9BA8"/>
-            <PortraitFrame name="Brand USA" org="National tourism organisation" role="Fireside" tbc tone="#94816A"/>
-            <PortraitFrame name="European NTO" org="To be confirmed" role="Fireside" tbc tone="#7B8C7A"/>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SPEAKERS · holding treatment until the line-up is confirmed ── */}
-      <section className="fdb-wrap" style={{ paddingTop: '4rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '1.5rem', flexWrap: 'wrap', marginBottom: '2.25rem' }}>
-          <div>
-            <SectionLabel>Speakers</SectionLabel>
-            <BodyText style={{ marginTop: '1rem', marginBottom: 0 }}>
-              One keynote per theme, plus the transatlantic fireside, from the destination marketers and brand leads doing the work. <Accent>The full line-up is announced closer to the event.</Accent>
-            </BodyText>
-          </div>
-          <Button variant="outline" onClick={() => nav('/register')}>Get notified</Button>
-        </div>
-        <div className="fdb-speaker-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.25rem 1.5rem' }}>
-          {[
-            { theme: 'Brand', org: 'Major NTO · Brand lead' },
-            { theme: 'Marketing', org: 'European NTO · Marketing' },
-            { theme: 'Content', org: 'DMO · Content lead' },
-            { theme: 'Data', org: 'NTO · Head of insight' },
-            { theme: 'AI', org: 'DMO · AI lead' },
-            { theme: 'Organisation', org: 'NTO · Organisation' },
-          ].map((t) => (
-            <div key={t.theme}>
-              <div style={{ position: 'relative', aspectRatio: '4/5', borderRadius: 3, border: '1px solid var(--fdb-border-strong)',
-                background: 'repeating-linear-gradient(135deg, rgba(130,57,193,0.045) 0 9px, rgba(130,57,193,0.09) 9px 18px)',
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.7rem', overflow: 'hidden' }}>
-                <span style={{ position: 'absolute', top: '0.6rem', left: '0.6rem', fontSize: '0.5rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--fdb-purple)', background: 'var(--fdb-white)', border: '1px solid var(--fdb-purple-soft)', borderRadius: 2, padding: '0.2rem 0.45rem' }}>{t.theme}</span>
-                <Motif state="programme" size={46} sw={3.2} muted/>
-                <span style={{ fontFamily: 'var(--fdb-font-mono)', fontSize: '0.58rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fdb-ink-faint)' }}>Announced soon</span>
-              </div>
-              <div style={{ marginTop: '0.85rem' }}>
-                <div style={{ fontSize: '0.95rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--fdb-ink)', lineHeight: 1.2 }}>Keynote · {t.theme}</div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--fdb-ink-muted)', marginTop: '0.2rem' }}>{t.org}</div>
-              </div>
+            <div style={{ flex: 1, minWidth: 260 }}>
+              {[
+                { label: 'Pace of transformation', desc: 'How quickly are destination organisations moving, and what does adoption look like across different markets and contexts?' },
+                { label: 'Content integrity', desc: 'What does it mean to maintain a credible destination voice in a world flooded with synthetic AI-generated content?' },
+                { label: 'Disclosure and transparency', desc: 'How are destinations approaching disclosure, and what standards are beginning to emerge on either side of the Atlantic?' },
+                { label: 'The regulatory environment', desc: 'How the EU AI Act and North American policy direction are creating different operating contexts for destination organisations.' },
+              ].map((t, i) => (
+                <div key={i} style={{ borderTop: '1px solid rgba(255,255,255,0.12)', padding: '1.1rem 0' }}>
+                  <div style={{ fontSize: '0.88rem', fontWeight: 700, letterSpacing: '-0.01em', color: 'var(--fdb-white)', marginBottom: '0.35rem' }}>{t.label}</div>
+                  <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.55 }}>{t.desc}</div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
@@ -137,26 +108,25 @@ function KeynotesPage() {
         <SectionLabel style={{ marginBottom: '1.5rem' }}>The day</SectionLabel>
         <ProgrammeRow isFirst time="09:00" title="Doors and coffee" desc="Arrivals. The room settles."/>
         <ProgrammeRow time="09:30" title="Opening: the state of destination brand" tags={['Brand']}
-          desc="The host opens with where the work stands and where the day is heading."
+          desc="Nick Hall opens with an assessment of where destination brand stands heading into 2027: what has shifted in the past year, what the sector has and has not yet resolved, and how the day will move through the questions."
           speakers={[{ name: 'Nick Hall, CEO · Digital Tourism Think Tank' }]}/>
-        <ProgrammeRow time="10:00" title="Keynote: building a national brand for AI search" tags={['Brand', 'Marketing']}
-          speakers={[{ name: 'Major NTO · Brand lead · TBC', tbc: true }]}/>
+        <ProgrammeRow time="10:00" title="Keynote: brand visibility in an AI-mediated world" tags={['Brand', 'Marketing']}
+          desc="When discovery moves from search results to AI-generated summaries and recommendations, what does national brand strategy look like? This talk examines how leading destination organisations are adapting their positioning, brand architecture and content to stay visible and competitive in systems they do not own."/>
         <ProgrammeRow time="10:30" title="Transatlantic spotlight" tags={['Featured']}
-          desc="A special session bringing together destination marketing leaders from North America and Europe."
-          speakers={[{ name: 'Destination Canada · Brand USA · European NTO · TBC', tbc: true }]}/>
+          desc="Destinations from North America and Europe in conversation, exploring how AI development looks different from either side of the Atlantic, across pace of adoption, content integrity and the regulatory environment."/>
         <ProgrammeRow time="11:15" title="Break"/>
         <ProgrammeRow time="11:30" title="Keynote: content as a permanent surface" tags={['Content']}
-          speakers={[{ name: 'DMO · Content lead · TBC', tbc: true }]}/>
+          desc="Content is no longer built for a campaign. For destination organisations it is a permanent surface, continuously indexed, that shapes how AI systems understand and represent a destination. This talk explores what a modern content programme looks like and how the leading organisations are building the systems to sustain it."/>
         <ProgrammeRow time="12:00" title="Keynote: measurement after the funnel" tags={['Data']}
-          speakers={[{ name: 'NTO · Head of insight · TBC', tbc: true }]}/>
+          desc="When the path to a booking decision is increasingly indirect, traditional attribution tells an incomplete story. This keynote addresses how destinations are rethinking what they measure, what they report to boards and governments, and which indicators hold up in an AI-mediated world."/>
         <ProgrammeRow time="12:30" title="Lunch" desc="Hosted. The conversations carry over."/>
         <ProgrammeRow time="14:00" title="Keynote: deploying AI without losing the voice" tags={['AI']}
-          speakers={[{ name: 'DMO · AI lead · TBC', tbc: true }]}/>
+          desc="Deploying AI at scale creates a real risk: that the distinct voice and character of a destination gets averaged out. This keynote explores how a leading destination organisation has approached AI adoption while protecting its editorial identity, covering the governance decisions and disclosure practice that made it possible."/>
         <ProgrammeRow time="14:30" title="Keynote: organising the modern destination team" tags={['Organisation']}
-          speakers={[{ name: 'NTO · Organisation · TBC', tbc: true }]}/>
+          desc="The team structures, skills and decision processes built for the previous era are under pressure. This talk examines how a leading organisation has restructured to treat AI as a leadership question, covering the capability frameworks and governance arrangements that underpin their approach."/>
         <ProgrammeRow time="15:00" title="Break"/>
         <ProgrammeRow time="15:15" title="Keynote: the new visitor brief" tags={['Marketing']}
-          speakers={[{ name: 'European NTO · Marketing · TBC', tbc: true }]}/>
+          desc="How destinations brief their teams and plan their marketing is shifting as AI changes how travellers discover and choose. This keynote examines what the emerging visitor brief looks like, how leading organisations are adapting their strategy, and what it means for the marketing function."/>
         <ProgrammeRow time="15:45" title="Report from the Council" tags={['Policy', 'Reconnects to Day One']}
           desc="The Council formed on Day One reports back to the wider room. The private morning meets the public day.">
           <div style={{ marginTop: '0.85rem' }}>
