@@ -43,7 +43,7 @@ function OverviewPage() {
                 Future<br/>Destination<br/><span style={{ color: 'var(--fdb-purple)' }}>Brand.</span>
               </h1>
               <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--fdb-ink-mid)', maxWidth: '42ch', marginBottom: '2.25rem' }}>
-                The Digital Tourism Think Tank's global forum on destination brand and marketing leadership in the age of AI, bringing together Chief Executives, CMOs and senior teams from the world's leading NTOs and DMOs for three days in Dublin each December.
+                The Digital Tourism Think Tank's global forum on destination brand and marketing leadership in the age of AI, bringing together Chief Executives and CMOs alongside their marketing, strategy, content and digital teams from the world's leading NTOs and DMOs for three days in Dublin.
               </p>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
                 <Button icon={ArrowIcon} onClick={() => { const el = document.getElementById('four-parts'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>View the programme</Button>

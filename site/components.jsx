@@ -289,6 +289,7 @@ function FDBFooter({ onNav }) {
           </div>
           <nav style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <NavLink to="/leadership">Leadership</NavLink>
+            <NavLink to="/council" style={{ fontSize: '0.78rem', opacity: 0.75 }}>Global Tourism Council</NavLink>
             <NavLink to="/awards">X. Awards</NavLink>
             <NavLink to="/keynotes">Keynotes</NavLink>
             <NavLink to="/workstream">Workstream</NavLink>

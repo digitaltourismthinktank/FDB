@@ -38,6 +38,7 @@
 <script type="text/babel" src="motif.jsx"></script>
 <script type="text/babel" src="page-overview.jsx"></script>
 <script type="text/babel" src="page-leadership.jsx"></script>
+<script type="text/babel" src="page-council.jsx"></script>
 <script type="text/babel" src="page-aiact.jsx"></script>
 <script type="text/babel" src="page-awards.jsx"></script>
 <script type="text/babel" src="page-keynotes.jsx"></script>
@@ -53,6 +54,7 @@ const { NavContext } = window;
 const SCREENS = {
   '/': { label: '01 Overview', station: null, Page: () => <OverviewPage /> },
   '/leadership': { label: '02 Day One', station: 'council', Page: () => <LeadershipPage /> },
+  '/council': { label: '02a Council', station: 'council', Page: () => <CouncilPage /> },
   '/ai-act': { label: '03 EU AI Act', station: 'council', Page: () => <AiActPage /> },
   '/awards': { label: '04 X. Awards', station: 'awards', Page: () => <AwardsPage /> },
   '/keynotes': { label: '05 Day Two', station: 'programme', Page: () => <KeynotesPage /> },
