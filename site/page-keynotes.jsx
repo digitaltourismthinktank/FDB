@@ -6,12 +6,12 @@
 // to the Council formed on Day One.
 
 const KEYNOTE_THEMES = [
-  { name: 'Brand', desc: 'AI has changed how destinations are found. Keynotes explore how brand strategy and positioning adapt when discovery moves from search results to AI-generated answers and recommendations.' },
-  { name: 'Marketing', desc: 'The campaign cycle is giving way to something more permanent. Talks examine how destination organisations are rethinking their marketing structures, briefs and channels in response.' },
-  { name: 'Content', desc: 'A flood of synthetic AI-generated content is changing what credibility means. Keynotes look at how leading destination content programmes are building the voice and systems to stay distinctive.' },
-  { name: 'Data', desc: 'Traditional attribution does not work when the path to a booking is increasingly indirect. Talks explore what meaningful destination performance data looks like in an AI-mediated world.' },
-  { name: 'AI', desc: 'The organisations making the most progress are treating AI as a leadership question, not a tool selection. Keynotes feature real deployments from destination teams, disclosed in full and examined in depth.' },
-  { name: 'Organisation', desc: 'The team structures and decision processes built for the previous era are under pressure. Talks examine how leading destination organisations are restructuring to lead rather than follow on AI.' },
+  { name: 'Brand', desc: 'AI has changed how destinations are found. When discovery moves from search results to AI-generated answers, brand visibility becomes a technical and strategic challenge. Sessions explore how leading DMOs are rethinking positioning and content architecture in response.' },
+  { name: 'Marketing', desc: 'The campaign cycle is giving way to a more permanent, always-on model. How DMOs set their briefs, plan their channels and measure success is changing fast. Sessions surface the emerging practice from organisations navigating this now.' },
+  { name: 'Content', desc: 'A flood of synthetic AI-generated content is raising the stakes for credibility and distinctiveness. The DMOs cutting through are building distinct editorial voice and content systems designed to hold up. Sessions explore what the best content programmes have in common.' },
+  { name: 'Data', desc: 'Traditional attribution breaks down when the path to a booking is increasingly indirect. What should destinations measure, and how do they make the case to boards and governments? Sessions bring the most rigorous current thinking on performance and insight.' },
+  { name: 'AI', desc: 'The organisations gaining ground are the ones treating AI as a leadership decision, not a technology choice. Real deployments from destination teams — disclosed in full, examined in depth — form the backbone of this theme.' },
+  { name: 'Organisation', desc: 'The destination team of 2027 looks different from its predecessor. Capability, structure and governance are becoming competitive variables. Sessions draw on the experience of DMOs that have already begun the work.' },
 ];
 
 function KeynotesPage() {
@@ -33,7 +33,7 @@ function KeynotesPage() {
         station="programme"
         eyebrow="Day Two · 03 December · Keynote programme"
         title={<>The keynote<br/><Accent>programme.</Accent></>}
-        lead="A full day of keynotes from destination marketers and brand leads at the world's leading NTOs and DMOs, curated around one theme, with a transatlantic spotlight mid-morning and a report from the Day One leadership meeting at the close."
+        lead="A full day of keynotes from brand leads, CMOs and digital teams at globally leading DMOs, curated around one theme, with a transatlantic spotlight mid-morning and a report from the Day One leadership meeting at the close."
         meta={[
           { label: 'Date', value: 'Wednesday 03 December 2026' },
           { label: 'Audience', value: '125 to 200 senior delegates' },
@@ -48,10 +48,10 @@ function KeynotesPage() {
       <section className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
         <SectionLabel>The day</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
-          <Accent>Leading destinations</Accent> gathered in Dublin, showcasing the work shaping an AI-driven marketing landscape. Join us for a carefully curated programme of <Accent>inspiring keynotes.</Accent>
+          Join <Accent>globally leading DMOs</Accent> gathered in Dublin, showcasing work that sets the bar for competitiveness in an AI-driven marketing landscape.
         </Statement>
         <BodyText>
-          A back-to-back programme of keynotes from a wide range of destination perspectives, from national and regional tourism organisations to city destinations across every continent. The day is paced for conversation alongside the talks, and closes with a report from the Day One leadership meeting.
+          A carefully curated programme of inspiring keynotes from a wide range of destination perspectives, bringing together national, regional and city DMOs from across every continent. The day is paced for conversation alongside the talks, and closes with a report from the Day One leadership meeting.
         </BodyText>
       </section>
 
@@ -140,7 +140,7 @@ function KeynotesPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2rem', flexWrap: 'wrap', borderTop: '1px solid var(--fdb-border)', paddingTop: '2.5rem' }}>
           <p style={{ fontSize: '1.4rem', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.025em', color: 'var(--fdb-ink)', maxWidth: '26ch', textWrap: 'pretty' }}>
-            Day Two is open to <Accent>DTTT members and invited delegates.</Accent>
+            Day Two is free for <Accent>DTTT Members.</Accent> Discounted tickets are available for non-member DMOs.
           </p>
           <Button icon={ArrowIcon} onClick={() => nav('/register')}>Register your place</Button>
         </div>

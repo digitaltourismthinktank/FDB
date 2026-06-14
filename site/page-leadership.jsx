@@ -31,7 +31,7 @@ function LeadershipPage() {
           AI is reshaping <Accent>how destinations are discovered</Accent> and how tourism is managed. The critical leadership question is not whether to engage, but <Accent>how to lead with clarity.</Accent>
         </Statement>
         <BodyText style={{ marginBottom: '1rem' }}>
-          The meeting addresses two questions directly. The first is competitive: how AI is reshaping the environment for destination brands and what that means for positioning and investment. The second is organisational: what AI requires of the leaders and teams responsible for destination management and marketing. Sessions are structured to work through both in depth, with time for candid peer exchange.
+          The meeting addresses two questions directly. The first is competitive: <Accent>how AI is reshaping the environment for destination brands</Accent> and what that means for positioning and investment. The second is organisational: <Accent>what AI requires of the leaders and teams responsible for destination management and marketing.</Accent> Sessions are structured to work through both in depth, with time for candid peer exchange.
         </BodyText>
         <BodyText>
           The day is hosted by Fáilte Ireland and facilitated by the Digital Tourism Think Tank. It takes place during Ireland's EU Council Presidency.
@@ -45,13 +45,13 @@ function LeadershipPage() {
             <div>
               <Eyebrow style={{ marginBottom: '1.5rem' }}>Programme output</Eyebrow>
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.03em', color: 'var(--fdb-ink)', marginBottom: '1.5rem', textWrap: 'balance' }}>
-                The day is designed to constitute the <Accent>Global Tourism Council for AI Governance and Leadership.</Accent>
+                The day is designed to constitute the <Accent>Global Tourism Council</Accent> for AI Governance and Leadership.
               </h2>
               <BodyText style={{ marginBottom: '1rem' }}>
                 Participants are invited to form a focused leadership coalition representing destination leadership at the national, regional and city level. The Council is intended to issue the Dublin Declaration on AI in Tourism and to establish a Global Tourism Code of Practice on AI.
               </BodyText>
               <BodyText>
-                The Council is convened as a focused leadership coalition rather than a new permanent institution, working a layer below established intergovernmental bodies to translate principle into practice at destination level.
+                The Council is convened as a focused leadership coalition, working a layer below established intergovernmental bodies to translate principle into practice at destination level.
               </BodyText>
               <div style={{ marginTop: '1.25rem' }}>
                 <Button variant="ghost" onClick={() => nav('/council')}>Read the terms of reference →</Button>
@@ -86,7 +86,8 @@ function LeadershipPage() {
           desc="Oliver Csendes brings deep practical expertise in destination AI strategy and the organisational questions it raises. His provocation puts a single challenge to the room: whether destination leaders are actively shaping how AI positions their destination, or whether those terms are being determined by platforms, vendors and the systems already in place."
           speakers={[{ name: 'Oliver Csendes · Former CEO, Visit Hungary' }]}/>
         <ProgrammeRow time="11:00" title="Transparency, disclosure and capability: the leadership questions" tags={['Discussion']}
-          desc="What does it mean for a destination organisation to be transparent about AI in its work? What should disclosure look like, and for whom? How does leadership build the organisational capability to act on these questions? This session explores these questions through the AI Transparency Framework, drawing on practice from organisations already working through them."/>
+          desc="What does it mean for a DMO to be transparent about AI in its work? What should disclosure look like, and for whom? How does leadership build the organisational capability to act on these questions? This session explores these questions through the AI Transparency Framework, drawing on practice from DMOs already working through them."
+          speakers={[{ name: 'Nick Hall, CEO · Digital Tourism Think Tank' }]}/>
         <ProgrammeRow time="11:30" title="Working sessions"
           desc="Two concurrent working sessions, each 75 minutes. Participants are pre-assigned by relevance to the session theme. Each session produces a set of documented conclusions that feed directly into the day's published outputs.">
           <div style={{ marginTop: '0.85rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
@@ -142,9 +143,9 @@ function LeadershipPage() {
       <section className="fdb-wrap" style={{ paddingTop: '4rem' }}>
         <SectionLabel>Published outputs</SectionLabel>
         <Statement style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
-          The day produces a set of documents <Accent>built for destination leaders:</Accent> a shared position on AI they can take to their own boards and governments, and practical instruments they can apply at home.
+          The day produces a set of papers <Accent>built for destination leaders:</Accent> a shared position on AI they can take to their own boards and governments, and practical instruments they can apply at home.
         </Statement>
-        <BodyText style={{ marginBottom: '2.5rem' }}>Because the sector speaks with one voice, these outputs also reach national governments, EU institutions and the technology companies shaping the tools and regulatory environment that affects destination work.</BodyText>
+        <BodyText style={{ marginBottom: '2.5rem' }}>Because the sector speaks with one voice, these outputs are also intended to reach policymakers, institutions and technology leaders shaping how AI impacts the global tourism landscape.</BodyText>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2.5rem 1.75rem' }}>
           <DocumentObject kind="Declaration" title="Dublin Declaration on AI in Tourism" desc="A shared statement of principle that destination leaders can take to their own boards and governments."/>
           <DocumentObject kind="Code of Practice" title="Global Tourism Code of Practice on AI" desc="A proposed operating standard for the sector, built on the AI Transparency Framework."/>
