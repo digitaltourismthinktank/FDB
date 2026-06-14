@@ -30,8 +30,19 @@ function LeadershipPage() {
         <Statement style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
           AI is reshaping <Accent>how destinations are discovered</Accent> and how tourism is managed. The critical leadership question is not whether to engage, but <Accent>how to lead with clarity.</Accent>
         </Statement>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', margin: '1.5rem 0 1rem' }}>
+          {[
+            { n: '01', label: 'Competitive', body: 'How AI is reshaping the environment for destination brands and what that means for positioning and investment.' },
+            { n: '02', label: 'Organisational', body: 'What AI requires of the leaders and teams responsible for destination management and marketing.' },
+          ].map((q) => (
+            <div key={q.n} style={{ borderTop: '2px solid var(--fdb-purple)', paddingTop: '1rem' }}>
+              <div style={{ fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--fdb-purple)', marginBottom: '0.5rem' }}>{q.n} · {q.label}</div>
+              <div style={{ fontSize: '0.88rem', color: 'var(--fdb-ink-mid)', lineHeight: 1.6 }}>{q.body}</div>
+            </div>
+          ))}
+        </div>
         <BodyText style={{ marginBottom: '1rem' }}>
-          The meeting addresses two questions directly. The first is competitive: <Accent>how AI is reshaping the environment for destination brands</Accent> and what that means for positioning and investment. The second is organisational: <Accent>what AI requires of the leaders and teams responsible for destination management and marketing.</Accent> Sessions are structured to work through both in depth, with time for candid peer exchange.
+          Sessions are structured to work through both in depth, with time for candid peer exchange.
         </BodyText>
         <BodyText>
           The day is hosted by Fáilte Ireland and facilitated by the Digital Tourism Think Tank. It takes place during Ireland's EU Council Presidency.
