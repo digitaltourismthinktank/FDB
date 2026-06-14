@@ -45,7 +45,7 @@ const COUNCIL_TOR = [
   },
   {
     label: 'Timeline',
-    body: 'Convened for Future. Destination. Brand. 2026. Outputs are drafted at the meeting, finalised in the weeks that follow, and their progress is reported at the next gathering in 2027. There is no permanent secretariat.',
+    body: 'Convened for Future. Destination. Brand. 2026. Outputs are drafted at the meeting and finalised in the weeks that follow. This is work the sector will continue through 2027, with progress reported at the next gathering.',
   },
   {
     label: 'Outputs',
@@ -53,7 +53,7 @@ const COUNCIL_TOR = [
   },
   {
     label: 'How positions are agreed',
-    body: 'Positions are developed through facilitated discussion and circulated to participants for endorsement after the meeting. Participants choose whether to be named.',
+    body: 'Positions are developed through facilitated discussion and circulated to participants after the meeting. Where agreement is reached, participants may add their name to the declaration.',
   },
   {
     label: 'What it does not do',
@@ -77,10 +77,6 @@ const COUNCIL_QA = [
   {
     q: 'Is this a Digital Tourism Think Tank initiative under another name?',
     a: 'The Digital Tourism Think Tank convenes, facilitates and documents the work. It does not own the result. The Dublin Declaration and the Code of Practice belong to the leaders who shape them.',
-  },
-  {
-    q: 'How does it relate to UN Tourism and the Riyadh Declaration?',
-    a: "It complements them. UN Tourism's work is intergovernmental and ministerial, and its adoption of the Riyadh Declaration in 2025 placed AI firmly on the global agenda. The Council operates at the level of destination organisations and their practice. The two are designed to reinforce one another, not to overlap.",
   },
   {
     q: 'What happens after 2027?',
