@@ -41,11 +41,8 @@ function LeadershipPage() {
             </div>
           ))}
         </div>
-        <BodyText style={{ marginBottom: '1rem' }}>
-          Sessions are structured to work through both in depth, with time for candid peer exchange.
-        </BodyText>
         <BodyText>
-          The day is hosted by Fáilte Ireland and facilitated by the Digital Tourism Think Tank. It takes place during Ireland's EU Council Presidency.
+          Sessions are structured to work through both in depth, with time for candid peer exchange. The day is hosted by Fáilte Ireland and facilitated by the Digital Tourism Think Tank, taking place during Ireland's EU Council Presidency.
         </BodyText>
       </section>
 
