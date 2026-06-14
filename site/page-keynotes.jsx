@@ -33,12 +33,12 @@ function KeynotesPage() {
         station="programme"
         eyebrow="Day Two · 03 December · Keynote programme"
         title={<>The keynote<br/><Accent>programme.</Accent></>}
-        lead="A full day of keynotes from destination marketers, brand leads and digital teams at the world's leading NTOs and DMOs, structured around six themes with a special transatlantic focus celebrating destination marketing on both sides of the Atlantic."
+        lead="A full day of keynotes from destination marketers and brand leads at the world's leading NTOs and DMOs, curated around one theme, with a transatlantic spotlight mid-morning and a report from the Day One leadership meeting at the close."
         meta={[
           { label: 'Date', value: 'Wednesday 03 December 2026' },
           { label: 'Audience', value: '125 to 200 senior delegates' },
           { label: 'Format', value: 'Full-day keynote programme' },
-          { label: 'Themes', value: 'Six, across the day' },
+          { label: 'Theme', value: 'Destination brand competitiveness in the age of AI' },
         ]}
       />
 
@@ -48,16 +48,20 @@ function KeynotesPage() {
       <section className="fdb-wrap" style={{ paddingTop: '3.5rem' }}>
         <SectionLabel>The day</SectionLabel>
         <Statement style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
-          Six themes, one keynote each, with a <Accent>transatlantic fireside</Accent> mid-morning and a report from the Day One leadership meeting at the close.
+          The world's leading NTOs and DMOs gathered in Dublin, presenting the work that is shaping destination brand and marketing in the year ahead. A carefully curated programme built around <Accent>one theme.</Accent>
         </Statement>
         <BodyText>
-          The audience is primarily DTTT members and senior delegates from national, regional and city destinations. The programme is paced to allow time for discussion alongside the talks, and closes by reconnecting to the conclusions of the leadership meeting the day before.
+          Destinations presenting are selected for the quality and ambition of their work. DTTT members attend as part of their membership, joined by invited delegates from national, regional and city destinations around the world. The programme is paced to allow time for discussion alongside the talks, and closes by reconnecting to the conclusions of the leadership meeting the day before.
         </BodyText>
       </section>
 
-      {/* ── SIX THEMES ────────────────────────────────────────────────── */}
+      {/* ── 2026 THEME ────────────────────────────────────────────────── */}
       <section className="fdb-wrap" style={{ paddingTop: '4rem' }}>
-        <SectionLabel style={{ marginBottom: '1.5rem' }}>Six themes</SectionLabel>
+        <SectionLabel style={{ marginBottom: '1rem' }}>2026 Theme</SectionLabel>
+        <h2 style={{ fontSize: 'clamp(1.5rem, 2.4vw, 2rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: 'var(--fdb-ink)', marginBottom: '0.75rem' }}>
+          Destination brand competitiveness in the age of AI.
+        </h2>
+        <BodyText style={{ marginBottom: '2.5rem' }}>Six keynotes explore the theme across its core disciplines.</BodyText>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
           {KEYNOTE_THEMES.map((t, i) => (
             <div key={i} style={{ borderTop: '2px solid var(--fdb-purple)', paddingTop: '1rem' }}>
